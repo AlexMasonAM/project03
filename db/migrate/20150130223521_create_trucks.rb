@@ -8,7 +8,10 @@ class CreateTrucks < ActiveRecord::Migration
       t.string :yelp_ratings
       t.string :tweet_most_recent
 
+      t.references :truck_account, index: true
+
       t.timestamps null: false
     end
+    add_foreign_key :trucks, :truck_accounts
   end
 end

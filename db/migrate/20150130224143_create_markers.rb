@@ -6,7 +6,10 @@ class CreateMarkers < ActiveRecord::Migration
       t.float :longitude
       t.datetime :end_time
 
+      t.references :truck, index: true
+
       t.timestamps null: false
     end
+    add_foreign_key :markers, :trucks
   end
 end
