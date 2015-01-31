@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130224143) do
+ActiveRecord::Schema.define(version: 20150131001259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,20 @@ ActiveRecord::Schema.define(version: 20150130224143) do
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "end_time"
+    t.integer  "truck_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "markers", ["truck_id"], name: "index_markers_on_truck_id", using: :btree
+
   create_table "preference_lists", force: :cascade do |t|
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "preference_lists", ["user_id"], name: "index_preference_lists_on_user_id", using: :btree
 
   create_table "truck_accounts", force: :cascade do |t|
     t.string   "first_name"
@@ -47,9 +53,20 @@ ActiveRecord::Schema.define(version: 20150130224143) do
     t.string   "yelp_id"
     t.string   "yelp_ratings"
     t.string   "tweet_most_recent"
+    t.integer  "truck_account_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  add_index "trucks", ["truck_account_id"], name: "index_trucks_on_truck_account_id", using: :btree
+
+  create_table "trucks_users", id: false, force: :cascade do |t|
+    t.integer "truck_id"
+    t.integer "user_id"
+  end
+
+  add_index "trucks_users", ["truck_id"], name: "index_trucks_users_on_truck_id", using: :btree
+  add_index "trucks_users", ["user_id"], name: "index_trucks_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -61,4 +78,7 @@ ActiveRecord::Schema.define(version: 20150130224143) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "markers", "trucks"
+  add_foreign_key "preference_lists", "users"
+  add_foreign_key "trucks", "truck_accounts"
 end
