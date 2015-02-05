@@ -1,0 +1,3 @@
+class TrucksController < ApplicationController
+
+end

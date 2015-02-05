@@ -1,0 +1,3 @@
+class TruckAccountsController < ApplicationController
+
+end
