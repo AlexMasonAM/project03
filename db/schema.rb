@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131001259) do
+ActiveRecord::Schema.define(version: 20150205224742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "truck_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favorites", ["truck_id"], name: "index_favorites_on_truck_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "markers", force: :cascade do |t|
     t.string   "address"
@@ -60,14 +70,6 @@ ActiveRecord::Schema.define(version: 20150131001259) do
 
   add_index "trucks", ["truck_account_id"], name: "index_trucks_on_truck_account_id", using: :btree
 
-  create_table "trucks_users", id: false, force: :cascade do |t|
-    t.integer "truck_id"
-    t.integer "user_id"
-  end
-
-  add_index "trucks_users", ["truck_id"], name: "index_trucks_users_on_truck_id", using: :btree
-  add_index "trucks_users", ["user_id"], name: "index_trucks_users_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -78,6 +80,8 @@ ActiveRecord::Schema.define(version: 20150131001259) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "favorites", "trucks"
+  add_foreign_key "favorites", "users"
   add_foreign_key "markers", "trucks"
   add_foreign_key "preference_lists", "users"
   add_foreign_key "trucks", "truck_accounts"
