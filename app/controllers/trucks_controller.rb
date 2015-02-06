@@ -17,7 +17,7 @@ class TrucksController < ApplicationController
     else
       flash[:danger] = @truck.errors.full_messages.to_sentence
     end
-    redirect_to new_truck_account_path
+    redirect_to new_truck_account_path # or edit_truck_account_path(params[:truck_account_id])
   end
 
   def update
@@ -30,6 +30,12 @@ class TrucksController < ApplicationController
       flash[:danger] = @truck.errors.full_messages.to_sentence
     end
     redirect_to edit_truck_account_path(params[:truck_account_id])
+  end
+
+  def destroy
+    @truck = Truck.find(params[:id])
+    @truck.destroy
+    redirect_to new_truck_account_path # or edit_truck_account_path
   end
 
   private
