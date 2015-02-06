@@ -4,7 +4,7 @@ FactoryGirl.define do
     latitude Faker::Address.latitude
     longitude Faker::Address.longitude
     end_time Faker::Time.forward(2, :evening)
-    truck_id Faker::Number.number(10)  
+    truck_id Faker::Number.number(4)  
   end
 
 end
