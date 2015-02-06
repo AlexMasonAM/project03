@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # need to change this to our actual main page.  just needed a placeholder root
   root "application#home"
 
@@ -9,5 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :trucks, only: [:index, :show]
+
+  resources :favorites
+  resources :markers
 
 end
