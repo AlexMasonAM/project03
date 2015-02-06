@@ -4,20 +4,41 @@ require 'rails_helper'
 RSpec.describe TrucksController, type: :controller do
   
   describe 'GET index' do
-    it "should be successful" do
-      get :index
-      expect(response).to have_http_status 200
+    context "all trucks" do
+      it "should be successful" do
+        get :index
+        expect(response).to have_http_status 200
+      end
+      it "should render index template" do
+        get :index
+        expect(response).to render_template :index
+      end 
+      it "should assign all trucks to @trucks variable" do
+        truck = FactoryGirl.create(:truck)
+        truck2 = FactoryGirl.create(:truck)
+        get :index
+        expect( assigns(:trucks) ).to eq [truck, truck2]
+        # expect( assigns(:trucks) ).to include truck, truck2
+      end
     end
-    it "should render index template" do
-      get :index
-      expect(response).to render_template :index
-    end 
-    it "should assign all trucks to @trucks variable" do
-      truck = FactoryGirl.create(:truck)
-      truck2 = FactoryGirl.create(:truck)
-      get :index
-      expect( assigns(:trucks) ).to eq [truck, truck2]
-      # expect( assigns(:trucks) ).to include truck, truck2
+    context "truck account's trucks only" do
+      let(:truck_account) { FactoryGirl.create(:truck_account) }
+      
+      it "should be successful" do
+        get :index, truck_account_id: truck_account.id
+        expect(response).to have_http_status 200
+      end
+      it "should render index template" do
+        get :index, truck_account_id: truck_account.id
+        expect(response).to render_template :index
+      end 
+      it "should assign only account's trucks to @trucks variable" do
+        truck = FactoryGirl.create(:truck, truck_account_id: truck_account.id)
+        truck2 = FactoryGirl.create(:truck)
+        get :index, truck_account_id: truck_account.id
+        expect( assigns(:trucks) ).to eq [truck]
+        # expect( assigns(:trucks) ).to include truck, truck2
+      end
     end
   end
 

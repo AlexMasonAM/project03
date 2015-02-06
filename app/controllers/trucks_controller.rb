@@ -2,7 +2,7 @@ class TrucksController < ApplicationController
 
   def index
     if params[:truck_account_id]
-      @trucks = Truck.find_by(truck_account_id: params[:truck_account_id])
+      @trucks = Truck.where(truck_account_id: params[:truck_account_id])
     else
       @trucks = Truck.all
     end
