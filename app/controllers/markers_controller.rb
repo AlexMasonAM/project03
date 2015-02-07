@@ -1,5 +1,11 @@
 class MarkersController < ApplicationController
   
+  def index
+    markers = Marker.where("created_at >= ?", Time.now.beginning_of_day)
+    render json: markers
+  end
+
+
   def new
     @marker = Marker.new
   end
