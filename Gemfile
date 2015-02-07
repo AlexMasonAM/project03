@@ -30,6 +30,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Added Faker gem
 gem 'faker'
 
+# Figaro for hiding stuff
+gem 'figaro'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
