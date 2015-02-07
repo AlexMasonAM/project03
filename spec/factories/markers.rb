@@ -4,6 +4,7 @@ FactoryGirl.define do
     longitude Faker::Name.last_name
     address Faker::Address.street_address
     end_time DateTime.now
+
   end
 
 end
