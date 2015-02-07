@@ -6,6 +6,8 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
     yelp_id Faker::Bitcoin.address
+    # id Faker::Bitcoin.address
+    
   end
 
 end

@@ -2,52 +2,63 @@ require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
 
+  let!(:user) {FactoryGirl.build(:user)}
+
   describe "GET new" do
     it "returns http success" do
       get :new
-      expect(response).to have_http_status(:success)
+      expect(response).to be_success
     end
   end
 
-  describe "GET create" do
+  describe "POST create" do
+    let(:user1) {FactoryGirl.attributes_for(:user)}
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      post :create, user: user1
+      expect(response.status).to eq(302)
     end
   end
 
   describe "GET edit" do
+
+    let!(:user) {FactoryGirl.create(:user)}
+
     it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+      get :edit, id: user.id
+      expect(response).to render_template :edit
     end
   end
 
-  describe "GET update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
+  describe "PATCH update" do
+    let!(:user) {FactoryGirl.create(:user)}
+    it "Update will redirect to " do
+      patch :update, id: user.id, user: {first_name: 'a'}
+      expect(response).to redirect_to users_path
     end
   end
 
   describe "GET show" do
+    let!(:user) {FactoryGirl.create(:user)}
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+      get :show, id: user.id
+      expect(response).to render_template :show
     end
   end
 
   describe "GET index" do
+    let!(:user) {FactoryGirl.create(:user)}
     it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
+      get :index, id: user.id
+      expect(response).to render_template :index
     end
   end
 
   describe "GET destroy" do
+    let!(:user) {FactoryGirl.create(:user)}
     it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
+      delete :destroy, id: user.id
+      expect(response).to redirect_to users_path
+
     end
   end
 
