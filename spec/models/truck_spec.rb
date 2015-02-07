@@ -25,6 +25,4 @@ RSpec.describe Truck, :type => :model do
   it "should respond to tweet_most_recent" do
     expect(truck).to respond_to :tweet_most_recent
   end
-
 end
-
