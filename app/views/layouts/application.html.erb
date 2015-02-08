@@ -2,11 +2,11 @@
 <html ng-app='truckApp'>
 <head>
   <title>Project03</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
   <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_KEY'] %>">
   </script>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
