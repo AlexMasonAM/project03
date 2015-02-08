@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require angular
-//= require angular-resource
-//= require angular-rails-templates
+//= require angular-animate
 //= require angular-ui-router
-//= require app
+//= require angular-rails-templates
+//= require angular-resource
 //= require_tree .
 //= require_tree ./templates
