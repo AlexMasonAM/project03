@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   # resources :trucks, only: [:index, :show]
 
   # resources :favorites
-  # resources :markers
+  resources :markers
 
   root "application#index"
-  get '*path' => 'application#index'
+  # get '*path' => 'application#index'
 
 end
