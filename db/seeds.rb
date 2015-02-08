@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+seedTruck = FactoryGirl.build(:truck)
+seedTruck.save
+
+seedUser = FactoryGirl.build(:user)
+seedUser.save
+
+# seedFavorite = seedUser.seedTruck([id: Math.Random(0,25)])
