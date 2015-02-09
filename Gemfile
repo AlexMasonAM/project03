@@ -35,7 +35,7 @@ gem 'faker'
 
 # Figaro for hiding stuff
 gem 'figaro'
-
+gem 'geocoder'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
