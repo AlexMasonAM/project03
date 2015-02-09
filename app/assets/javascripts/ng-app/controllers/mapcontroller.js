@@ -13,9 +13,8 @@ angular.module('truckApp').controller('MapController', function($resource, $inte
     for(var i = 0; i < markers.length; i++) {
       var latlng = new google.maps.LatLng(markers[i].latitude, markers[i].longitude);
       var m = new google.maps.Marker({position: latlng, map: scope.map});
-      scope.markers.push(m);
       var infowindow = new google.maps.InfoWindow(
-        { content: "<h1>test</h1><p>"+ markers[i].address +"</p>",
+        { content: "<h1>" + markers[i].truck['name'] + "</h1><p>"+ markers[i].address +"</p><p> until " + (markers[i]['end_time'].match(/\d\d:\d\d:\d\d/)) + "</p>",
           size: new google.maps.Size(50,50)
         });
       google.maps.event.addListener(m, 'mouseover', (function(marker, infowindow) {
