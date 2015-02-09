@@ -2,7 +2,21 @@ class MarkersController < ApplicationController
   
   def index
     markers = Marker.where("created_at >= ?", Time.now.beginning_of_day)
-    render json: markers
+
+    json_data = []
+
+    markers.each do |marker|
+      json_data << {
+        latitude: marker.latitude,
+        longitude: marker.longitude,
+        address: marker.address,
+        end_time: marker.end_time,
+        truck: marker.truck
+      }
+    end
+
+
+    render json: json_data
   end
 
 
