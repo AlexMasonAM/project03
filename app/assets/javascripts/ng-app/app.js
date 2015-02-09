@@ -17,16 +17,14 @@ angular
           .state('home.trucks', {
             url: '',
             templateUrl: 'trucks.html',
-            controller: function($scope) {
-              $scope.trucks = ['kogi', 'bbq', 'burgers'];
-            }
+            controller: 'TrucksController',
+            controllerAs: 'trucks'
           })
           .state('home.truck', {
-            url: '/truck/:truckid',
+            url: '/trucks/:truckid',
             templateUrl: 'truck-detail.html',
-            controller: function($scope, $stateParams) {
-              $scope.truckid = $stateParams.truckid;
-            }
+            controller: 'TruckDetailController',
+            controllerAs: 'truck'
           })
           .state('home.d3', {
             url: '/data',

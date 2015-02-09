@@ -1,5 +1,5 @@
 <div class='trucks'>
   <ul>
-    <li ng-repeat="truck in trucks">{{truck}}</li>
+    <li ng-repeat="truck in trucks.trucks"><a ui-sref="home.truck({truckid: truck.id})">{{truck.name}}</a></li>
   </ul>
 </div>
