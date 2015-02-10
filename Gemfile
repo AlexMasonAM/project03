@@ -39,6 +39,9 @@ gem 'bower-rails'
 # Gem pre-loads html partials
 gem 'angular-rails-templates'
 
+# Geocoder to get addresses from lat/long
+gem 'geocoder'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

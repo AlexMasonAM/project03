@@ -35,7 +35,6 @@ trucks.count.times do |i|
   Marker.create(
     latitude: rand(33.8..34.2), 
     longitude: rand(-118.4..-118.0), 
-    address: Faker::Address.street_address, 
     end_time: Time.now + rand(2..8).hours,
     truck_id: trucks[i].id
   )
