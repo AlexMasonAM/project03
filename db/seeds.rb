@@ -15,11 +15,12 @@ end
 accts = TruckAccount.all
 genres = ['Burgers', 'Mexican', 'American', 'Seafood', 'Barbeque', 'Korean', 'Fusion', 'Vegan']
 25.times do
-  name = Faker::App.name
+  genre = genres.sample
+  name = "#{Faker::App.name} #{genre}"
   truck = Truck.create(
     name: name,
-    genre: genres.sample,
-    twitter_handle: "@#{name}",
+    genre: genre,
+    twitter_handle: "@#{name+genre}",
     yelp_id: Faker::Lorem.characters(16),
     yelp_ratings: rand(1..5),
     tweet_most_recent: Faker::Lorem.sentence,
