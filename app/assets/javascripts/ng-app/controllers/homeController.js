@@ -21,7 +21,7 @@ angular
       for(var i = 0; i < markers.length; i++) {
         var loc = new google.maps.LatLng(markers[i].latitude, markers[i].longitude);
         var m = new google.maps.Marker({position: loc, map: self.map});
-        var content = "<h1>" + markers[i].truck['name'] + "</h1><p>"+ markers[i].address +"</p><p> until " + (markers[i]['end_time'].match(/\d\d:\d\d:\d\d/)) + "</p>";
+        var content = "<h1>" + markers[i].truck['name'] + "</h1>Near:<br><p>"+ markers[i].address +"</p><p> until " + (markers[i]['end_time'].match(/\d\d:\d\d:\d\d/)) + "</p>";
         var infowindow = new google.maps.InfoWindow({content: content});
 
         google.maps.event.addListener(m, 'mouseover', (function(marker, infowindow){
