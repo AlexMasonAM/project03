@@ -40,7 +40,7 @@ RSpec.describe Marker, :type => :model do
   #   expect(marker).to be_invalid
   # end
 
-    let(:marker){FactoryGirl.build(:marker)}
+  let(:marker){FactoryGirl.build(:marker)}
 
   it "has a latitude" do
     expect(marker).to respond_to(:latitude)
