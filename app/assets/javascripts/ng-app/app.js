@@ -1,5 +1,9 @@
 angular
   .module('truckApp', ['ngAnimate', 'ui.router', 'templates', 'ngResource'])
+  .config(function($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] =
+      $('meta[name=csrf-token]').attr('content');
+  })
   .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
       .state('home', {
@@ -26,7 +30,7 @@ angular
         templateUrl: 'truck-graph.html',
         controller: 'TruckGraphController',
         controllerAs: 'graph'
-      })
+      });
 
   $urlRouterProvider.otherwise('/');
   });
