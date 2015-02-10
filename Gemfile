@@ -18,7 +18,7 @@ gem 'bourbon'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -32,6 +32,12 @@ gem 'faker'
 
 # Figaro for hiding stuff
 gem 'figaro'
+
+# Bower gem to incorporate angular and js 
+gem 'bower-rails'
+
+# Gem pre-loads html partials
+gem 'angular-rails-templates'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
