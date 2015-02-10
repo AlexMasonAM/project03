@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+#map-canvas {
+  width: 100%;
+  height: 500px;
+}
+
+.map-fixed {
+  position: fixed;
+  top: 0;
+  height: 550px;
+  width: 100%;
+  z-index: -1;
+}
+
+.main-view {
+  margin-top: 550px;
+  height: 2000px;
+  background-color: white;
+  opacity: .95;
+}

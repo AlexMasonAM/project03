@@ -1,6 +1,8 @@
-<div id="map-canvas"></div>
+<div class="map-fixed"><div id="map-canvas"></div></div>
 <div class="filters"></div>
-<a ui-sref="home.trucks">trucks</a>
-<a ui-sref="home.truck-detail">truck-details</a>
-<a ui-sref="home.truck-graph">trucks-graph</a>
-<div ui-view></div>
+<div class="main-view">
+  <a ui-sref="home.trucks">trucks</a>
+  <a ui-sref="home.truck-detail">truck-details</a>
+  <a ui-sref="home.truck-graph">trucks-graph</a>
+  <div ui-view></div>
+</div>
