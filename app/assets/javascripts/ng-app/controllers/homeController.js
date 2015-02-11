@@ -15,13 +15,13 @@ angular
     });
 
     // Get markers and save and add them to map.  Also add info windows
-    Marker.query().$promise.then(function(markers) {
-      self.markers = markers;
+    Marker.query(function(data) {
+      self.markers = data;
 
-      for(var i = 0; i < markers.length; i++) {
-        var loc = new google.maps.LatLng(markers[i].latitude, markers[i].longitude);
+      for(var i = 0; i < data.length; i++) {
+        var loc = new google.maps.LatLng(data[i].latitude, data[i].longitude);
         var m = new google.maps.Marker({position: loc, map: self.map});
-        var content = "<h1>" + markers[i].truck['name'] + "</h1>Near:<br><p>"+ markers[i].address +"</p><p> until " + (markers[i]['end_time'].match(/\d\d:\d\d:\d\d/)) + "</p>";
+        var content = "<h1>" + data[i].truck.name + "</h1>Near:<br><p>"+ data[i].address +"</p><p> until " + (data[i]['end_time'].match(/\d\d:\d\d:\d\d/)) + "</p>";
         var infowindow = new google.maps.InfoWindow({content: content});
 
         google.maps.event.addListener(m, 'mouseover', (function(marker, infowindow){

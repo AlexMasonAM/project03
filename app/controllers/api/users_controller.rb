@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def create
-    user = User.new(post_params)
+    user = User.new(user_params)
     if user.save
       render json: user
     else
@@ -12,22 +12,18 @@ class Api::UsersController < ApplicationController
   def index
     users = User.all
     render json: users,
-           except: [:updated_at, :created_at, :password_digest, :id],
+           except: [:updated_at, :created_at, :password_digest],
            include: {
-                    # favorites: { except: []}, 
                     trucks: {except: [:created_at, :updated_at]},
-                    # preference_list: {except: []}
                     }
   end
 
   def show
     user = User.find(params[:id])
     render json: user,
-           except: [:updated_at, :created_at, :password_digest, :id],
+           except: [:updated_at, :created_at, :password_digest],
            include: {
-                    # favorites: { except: []}, 
                     trucks: {except: [:created_at, :updated_at]},
-                    # preference_list: {except: []}
                     }
   end
 
@@ -52,7 +48,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :first_name, :last_name, :email, :password_digest, :yelp_id)
+    params.require(:user).permit(:id, :first_name, :last_name, :email, :yelp_id, :password, :password_confirmation)
   end
 end
 
