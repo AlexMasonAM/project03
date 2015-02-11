@@ -1,18 +1,24 @@
 require 'rails_helper'
 
-RSpec.describe FavoritesController, :type => :controller do
-  # let!(:task1) { Task.create!(name: 'task1', complete: false) }
-  # let!(:task2) { Task.create!(name: 'task2', complete: true) }
+RSpec.describe Api::FavoritesController, :type => :controller do
+
+  it "has a valid factory" do
+    expect(FactoryGirl.build(:favorite)).to be_valid
+  end
 
   describe 'GET index' do
     before(:each) { get :index }  
     
-    it "successfully render index" do
-      expect( response ).to be_success
+    it "is successful" do
+      expect(response).to have_http_status 200
     end
 
-    it "renders the index view file" do
-      expect( response ).to render_template(:index)
+    it "returns a list of favorites as json" do
+      user = FactoryGirl.create(:user)
+      truck = FactoryGirl.create(:truck)
+      fav = FactoryGirl.create(:favorite, user_id: user.id, truck_id: truck.id)
+      get :index
+      expect(response.body).to eq [fav].to_json
     end
   end
 end
