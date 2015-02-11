@@ -15,7 +15,7 @@ class Api::TruckAccountsController < ApplicationController
     if truck_account.save
       render json: truck_account
     else
-      render {error: truck_account.errors}, status: 422
+      render json: {errors: truck_account.errors}, status: 422
     end
   end
 
@@ -24,7 +24,7 @@ class Api::TruckAccountsController < ApplicationController
     if truck_account.update(account_params)
       render json: truck_account
     else
-      render {error: truck_account.errors}, status: 422
+      render json: {errors: truck_account.errors}, status: 422
     end
   end
 
