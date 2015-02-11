@@ -19,7 +19,7 @@ class Api::MarkersController < ApplicationController
     if marker.save
       render json: marker
     else
-      render json: {errors, marker.errors}, status: 422
+      render json: {errors: marker.errors}, status: 422
     end
   end
 
