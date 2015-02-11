@@ -14,6 +14,7 @@ angular
       self.truckUsers = [];
       for(var i = 0; i < trucks.length; i++) {
         var tf = trucks[i].users.first_name;
+        console.log(trucks[i].users);
         self.truckUsers.push(tf);
       }
     });
