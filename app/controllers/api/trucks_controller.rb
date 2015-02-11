@@ -2,7 +2,8 @@ class Api::TrucksController < ApplicationController
 
   def index
     trucks = Truck.all
-    render json: trucks
+    render json: trucks,
+                 include: [:users]
   end
 end
 
