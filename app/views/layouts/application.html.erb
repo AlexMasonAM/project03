@@ -10,6 +10,11 @@
 </head>
 <body ng-app='truckApp'>
 <div class="container-fluid">
+<% if current_user %>
+  <%= link_to "Logout", logout_path %>
+<% else %>
+  <%= link_to "Login", login_path %> | <%= link_to "Sign-up", signup_path %> | <%= link_to "Sign-up truck", truck_signup_path %>
+<% end %>
 
 <%= yield %>
 
