@@ -1,7 +1,7 @@
 class Api::TrucksController < ApplicationController
 
   def create
-    truck = Truck.new(post_params)
+    truck = Truck.new(truck_params)
     if truck.save
       render json: truck
     else
@@ -15,7 +15,7 @@ class Api::TrucksController < ApplicationController
            except: [:updated_at, :created_at, :truck_account_id],
            include: {
                     users: { except: [:password_digest, :created_at, :updated_at]}
-                  } 
+                    } 
 
   end
 
@@ -25,7 +25,7 @@ class Api::TrucksController < ApplicationController
             except: [:updated_at, :created_at, :truck_account_id],
            include: {
                     users: { except: [:password_digest, :created_at, :updated_at]}
-                  } 
+                    } 
   end
 
   def update
