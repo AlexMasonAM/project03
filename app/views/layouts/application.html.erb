@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,9 @@
 <div class="navbar navbar-default navbar-fixed-top">
 <% if current_user %>
   <%= link_to "Logout", logout_path %>
+  <% if session[:truck_id] %>
+    <%= link_to "Dashboard", truck_account_path(current_user) %>
+  <% end %>
 <% else %>
   <%= link_to "Login", login_path %> | <%= link_to "Sign-up", signup_path %> | <%= link_to "Sign-up truck", truck_signup_path %>
 <% end %>
