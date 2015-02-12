@@ -18,6 +18,8 @@ angular
     Marker.query(function(data) {
       self.markers = data;
 
+      console.log('length', data.length);
+      console.log(data);
       for(var i = 0; i < data.length; i++) {
         var loc = new google.maps.LatLng(data[i].latitude, data[i].longitude);
         var m = new google.maps.Marker({position: loc, map: self.map});
@@ -36,6 +38,7 @@ angular
           };
         })(infowindow));
       }
+      console.log(self.map);
     });
 
   });
