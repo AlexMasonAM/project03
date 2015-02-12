@@ -9,8 +9,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body ng-app='truckApp'>
- 
+<div class="navbar navbar-default navbar-fixed-top">
+<% if current_user %>
+  <%= link_to "Logout", logout_path %>
+<% else %>
+  <%= link_to "Login", login_path %> | <%= link_to "Sign-up", signup_path %> | <%= link_to "Sign-up truck", truck_signup_path %>
+<% end %>
+</div>
+<div class="container-fluid">
+
 <%= yield %>
 
+</div>
 </body>
 </html>

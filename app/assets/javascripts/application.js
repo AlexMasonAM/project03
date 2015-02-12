@@ -11,11 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require angular
 //= require angular-animate
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require angular-resource
+//= require lodash
+//= require angular-google-maps
 //= require_tree .
 //= require_tree ../templates
