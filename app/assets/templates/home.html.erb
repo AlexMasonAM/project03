@@ -1,4 +1,17 @@
-<div class="map-fixed"><div id="map-canvas"></div></div>
+<div class="map-container-fixed">
+  <ui-gmap-google-map center='map.center' options='map.options' zoom='map.zoom'>
+    <ui-gmap-markers models="markers" coords="'self'" click="'onClick'">
+      <ui-gmap-windows show="show">
+        <div ng-non-bindable>
+          <h3><a href="#/trucks/{{truck.id}}">{{truck.name}}</a></h3>
+          <p>{{truck.genre}}</p>
+          Near:
+          <p>{{address}}</p>
+        </div>
+      </ui-gmap-windows>
+    </ui-gmap-markers>
+  </ui-gmap-google-map>
+</div>
 <div class="filters"></div>
 <div class="main-view">
   <a ui-sref="home.trucks">trucks</a>
