@@ -3,7 +3,7 @@
     <ui-gmap-markers models="markers" coords="'self'" click="'onClick'">
       <ui-gmap-windows show="show">
         <div ng-non-bindable>
-          <h3><a ui-sref="home.truck-detail({{truck.id}})">{{truck.name}}</a></h3>
+          <h3><a href="#/trucks/{{truck.id}}">{{truck.name}}</a></h3>
           <p>{{truck.genre}}</p>
           Near:
           <p>{{address}}</p>
