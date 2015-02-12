@@ -16,17 +16,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-#map-canvas {
+.angular-google-map-container {
   width: 100%;
   height: 500px;
 }
 
-.map-fixed {
+.map-container-fixed {
   position: fixed;
   top: 0;
   height: 550px;
   width: 100%;
-  z-index: -1;
 }
 
 .main-view {

@@ -1,8 +1,15 @@
 angular
-  .module('truckApp', ['ngAnimate', 'ui.router', 'templates', 'ngResource'])
+  .module('truckApp', ['ngAnimate', 'ui.router', 'templates', 'ngResource', 'uiGmapgoogle-maps'])
   .config(function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] =
       $('meta[name=csrf-token]').attr('content');
+  })
+  .config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: <%= "\"#{ENV['GMAP_KEY']}\"" %>,
+        v: '3.17',
+        libraries: 'weather,geometry,visualization'
+    });
   })
   .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
