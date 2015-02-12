@@ -8,32 +8,41 @@ angular
       query: {method:'GET', isArray:true}
     });
     
-    //filter through api/trucks index for favorites arranged by truck
+    //filter through api/trucks index for favorites arranged by trucks
     TruckFavorite.query(function(trucks) {
       self.trucks = trucks;
-      self.truckUsers = [];
-      for(var i = 0; i < trucks.length; i++) {
-        var tf = trucks[i].users.first_name;
-        console.log(trucks[i].users);
-        self.truckUsers.push(tf);
-      }
+
+      self.trucks.forEach(function(d) {
+        var users = d.users;
+        d.users = [];
+        users.forEach(function(u){
+          d.users.push(u.first_name + " " + u.last_name[0]);
+        });
+      });
+      console.log(self.trucks);
     });
 
-    // //filter through api/users index for favorites arranged by user
+    //filter through api/trucks index for favorites arranged by users
+    UserFavorite = $resource('/api/users', {}, {
+      query: {method:'GET', isArray:true}
+    });
 
+    UserFavorite.query(function(users) {
+      self.users = users;
 
+      self.users.forEach(function(d) {
+        var trucks = d.trucks;
+        d.trucks = [];
+        trucks.forEach(function(t){
+          d.trucks.push(t.name);
+        });
+      });
+      console.log(self.users);  
+    });
 
 
 
     //use filtered data in D3   
-    self.data = TruckFavorite.query();
+    // self.data = TruckFavorite.query();
   
   });
-
-        // @trucks.each do |truck|
-        // a = {name: truck.truck_name, users: []}
-        // json_array_truck_users << a
-
-        // truck.users.each do |user|
-        //   a[:users] << user.user_name
-        // end
