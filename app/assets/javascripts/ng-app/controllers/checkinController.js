@@ -3,7 +3,8 @@ angular.module('truckApp')
 
 function CheckinController($resource, $scope, $stateParams) {
 
-  $scope.marker = {};
+  // default of 4 hours for check-in form
+  $scope.hours = 4;
 
   Marker = $resource('/api' + window.location.pathname + '/markers'); 
 
@@ -14,12 +15,19 @@ function CheckinController($resource, $scope, $stateParams) {
         $scope.marker = new Marker({marker:{
           latitude: pos.coords.latitude,
           longitude: pos.coords.longitude,
-          end_time: new Date()
+          end_time: getEndTime()
         }});
         $scope.marker.$save();
         console.log($scope.marker);
       });
     }
   };
+
+  function getEndTime() {
+    d = new Date();
+    d.setHours(d.getHours()+$scope.hours);
+    console.log(d);
+    return d;
+  }
 
 }

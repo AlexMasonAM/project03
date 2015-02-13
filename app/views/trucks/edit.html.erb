@@ -1,1 +1,40 @@
-EDIT TRUCK
+<div class="row">
+
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-4">
+<h1>Edit truck (<%= @truck.name %>)</h1>
+
+<% flash.each do |key, value| %>
+  <div class='alert alert-<%= key %>' role='alert'>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <%= value %>
+  </div>
+<% end %>
+
+
+<%= form_for @truck, url: truck_account_truck_path do |f| %>
+  <div class="form-group">
+    <p>Truck name:</p>
+    <%= f.text_field :name, placeholder:"Truck name", class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <p>Genre:</p>
+    <%= f.text_field :genre, placeholder:"Genre", class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <p>Twitter account name:</p>
+    <%= f.text_field :twitter_handle, placeholder:"Twitter account name", class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <p>Yelp ID:</p>
+    <%= f.text_field :yelp_id, placeholder:"Yelp ID", class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Save changes", class:"btn btn-lg btn-primary" %>
+  </div>
+<% end %>
+</div>
+<div class="col-md-7">
+</div>
+</div>
