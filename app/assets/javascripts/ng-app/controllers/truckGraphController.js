@@ -12,15 +12,22 @@ angular
     TruckFavorite.query(function(trucks) {
       self.trucks = trucks;
 
-      self.trucks.forEach(function(d) {
+
+      self.trucks.forEach(function(d,i) {
+        var scale = d3.scale.linear()
+          .domain([0, trucks.length])
+          .range(["lightblue", "cyan"]);
+        d.color = scale(i);
+        // d.color = "lightblue";
         var users = d.users;
         d.users = [];
         users.forEach(function(u){
           d.users.push(u.first_name + " " + u.last_name[0]);
         });
       });
-      console.log(self.trucks);
+      TrucksGraphCreate(self.trucks);
     });
+
 
     //filter through api/trucks index for favorites arranged by users
     UserFavorite = $resource('/api/users', {}, {
@@ -39,7 +46,9 @@ angular
       });
       console.log(self.users);  
     });
+
+
     //use filtered data in D3   
-    // self.data = TruckFavorite.query();
+    self.data = TruckFavorite.query();
   
   });
