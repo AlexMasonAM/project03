@@ -1,4 +1,5 @@
-<div class="map-container-fixed">
+
+<div class="map-container-fixed container">
   <ui-gmap-google-map center='map.center' options='map.options' zoom='map.zoom'>
     <ui-gmap-markers models="markers" coords="'self'" click="'onClick'">
       <ui-gmap-windows show="show">
@@ -7,6 +8,8 @@
           <p>{{truck.genre}}</p>
           Near:
           <p>{{address}}</p>
+          Until:
+          <p>{{end_time | date:'shortTime'}}</p>
         </div>
       </ui-gmap-windows>
     </ui-gmap-markers>
