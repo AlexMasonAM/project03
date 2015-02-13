@@ -1,6 +1,9 @@
 <h2>Trucks.html.erb</h2>
 
-{{ 21 / 3 }}
+<p ng-repeat="t in truck.sixTrucks">{{t.name}}</p>
+
+
+<pagination total-items="truck.trucks.length" ng-model='truck.currentPage' items-per-page=6 ng-change="truck.pageChanged()">{{truck.trucks}} </pagination>
 
 
 
