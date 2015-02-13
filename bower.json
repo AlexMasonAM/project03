@@ -6,7 +6,8 @@
       "angular-ui-router": "latest",
       "angular-animate": "latest",
       "angular-resource": "latest",
-      "angular-google-maps": "latest"
+      "angular-google-maps": "latest",
+      "angular-bootstrap": "latest"
     }
   },
   "vendor": {
