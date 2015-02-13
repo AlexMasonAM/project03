@@ -39,9 +39,6 @@ angular
       });
       console.log(self.users);  
     });
-
-
-
     //use filtered data in D3   
     // self.data = TruckFavorite.query();
   
