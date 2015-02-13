@@ -28,7 +28,7 @@ class TruckAccountsController < ApplicationController
     @truck_account = TruckAccount.find(params[:id])
     if @truck_account.update(truck_account_params)
       flash[:success] = "Account updated successfully"
-      redirect_to truck_account_trucks_path(@truck_account)
+      redirect_to truck_account_path(@truck_account)
     else
       flash[:danger] = @truck_account.errors.full_messages.to_sentence
       render :edit

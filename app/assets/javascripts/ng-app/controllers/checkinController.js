@@ -3,6 +3,7 @@ angular.module('truckApp')
 
 function CheckinController($resource, $scope, $stateParams) {
 
+  // default of 4 hours for check-in form
   $scope.hours = 4;
 
   Marker = $resource('/api' + window.location.pathname + '/markers'); 

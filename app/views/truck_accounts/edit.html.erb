@@ -1,1 +1,51 @@
-EDIT truck account
+
+
+<div class="row">
+
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-4">
+<h1>Edit Profile</h1>
+
+<% flash.each do |key, value| %>
+  <div class='alert alert-<%= key %>' role='alert'>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <%= value %>
+  </div>
+<% end %>
+
+
+<%= form_for @truck_account, url: truck_account_path do |f| %>
+  <div class="form-group">
+    <p>First name:</p>
+    <%= f.text_field :first_name, placeholder:"First name", class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <p>Last name:</p>
+    <%= f.text_field :last_name, placeholder:"Last name", class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <p>Email:</p>
+    <%= f.text_field :email, placeholder:"Email ", class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <p>Company:</p>
+    <%= f.text_field :company, placeholder:"Company ", class: "form-control"%>
+  </div>
+  <div class="form-group">  
+    <p>Change Password:</p>
+    <%= f.password_field :password, placeholder:"Choose password", class: "form-control"%>
+  </div>
+  <div class="form-group">  
+    <p>Confirm password:</p>
+    <%= f.password_field :password_confirmation, placeholder:"Confirm password", class: "form-control"%>
+  </div>
+ 
+  <div class="form-group">
+    <%= f.submit "Save changes", class:"btn btn-lg btn-primary" %>
+  </div>
+<% end %>
+</div>
+<div class="col-md-7">
+</div>
+</div>

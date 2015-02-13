@@ -1,13 +1,9 @@
 <div ng-controller="CheckinController">
-
-<form ng-submit="createMarker()">
-We'll be at this location for
-<select ng-model="hours" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12]">
-</select>
-hours<br><br>
-<button type="submit">Check-in</button>
-</form>
-
-
+  <form ng-submit="createMarker()">
+    We'll be at this location for
+    <select ng-model="hours" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12]">
+    </select>
+    hours<br><br>
+    <button type="submit">Check-in</button>
+  </form>
 </div>
-  <!-- <option ng-class="{selected:{{o}}==4}" ng-repeat="o in options" value="{{o}}">{{o}}</option> -->

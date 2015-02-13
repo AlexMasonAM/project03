@@ -1,12 +1,19 @@
 <h1>Account Details</h1>
 
+<% flash.each do |key, value| %>
+  <div class='alert alert-<%= key %>' role='alert'>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <%= value %>
+  </div>
+<% end %>
+
 <p>Account holder: <%= @truck_account.first_name %> <%= @truck_account.last_name %></p> 
 <p>Company: <%= @truck_account.company %></p>
 <%= link_to "Edit account details", edit_truck_account_path(@truck_account) %>
 <h4>Trucks:</h4>
 <ul> 
 <% @truck_account.trucks.each do |t| %>
-  <li><%= link_to "#{t.name}", truck_account_truck_path(@truck_account, t) %> <%= link_to "edit", edit_truck_account_truck_path(@truck_account, t) %> <%= link_to "x", truck_account_truck_path(@truck_account, t), method: :delete %></li>
+  <li><%= link_to "#{t.name}", truck_account_truck_path(@truck_account, t) %> <%= link_to "edit", edit_truck_account_truck_path(@truck_account, t) %> <%= link_to "x", truck_account_truck_path(@truck_account, t), method: :delete, data: { confirm: "Are you sure?" } %></li>
 <% end %>
 </ul>
 <%= button_to "Add truck", new_truck_account_truck_path(@truck_account), method: :get, class: "btn btn-primary" %>
