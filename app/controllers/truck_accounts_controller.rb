@@ -1,5 +1,9 @@
 class TruckAccountsController < ApplicationController
 
+  def show
+    @truck_account = TruckAccount.find(params[:id])
+  end
+
   def new
     @truck_account = TruckAccount.new
   end
@@ -13,6 +17,21 @@ class TruckAccountsController < ApplicationController
     else
       flash.now[:danger] = @truck_account.errors.full_messages.to_sentence
       render :new
+    end
+  end
+
+  def edit
+    @truck_account = TruckAccount.find(params[:id])
+  end
+
+  def update
+    @truck_account = TruckAccount.find(params[:id])
+    if @truck_account.update(truck_account_params)
+      flash[:success] = "Account updated successfully"
+      redirect_to truck_account_path(@truck_account)
+    else
+      flash[:danger] = @truck_account.errors.full_messages.to_sentence
+      render :edit
     end
   end
 

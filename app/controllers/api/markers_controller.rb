@@ -16,6 +16,7 @@ class Api::MarkersController < ApplicationController
 
   def create
     marker = Marker.new(marker_params)
+    marker.truck_id = params[:truck_id]
     if marker.save
       render json: marker
     else

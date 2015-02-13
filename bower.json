@@ -2,10 +2,11 @@
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {
-      "angular"           : "latest",
-      "angular-ui-router" : "latest",
-      "angular-animate"   : "latest",
-      "angular-resource"  : "latest"
+      "angular": "latest",
+      "angular-ui-router": "latest",
+      "angular-animate": "latest",
+      "angular-resource": "latest",
+      "angular-google-maps": "latest"
     }
   },
   "vendor": {

@@ -18,5 +18,7 @@
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require angular-resource
+//= require lodash
+//= require angular-google-maps
 //= require_tree .
 //= require_tree ../templates
