@@ -5,7 +5,7 @@
   <title>Project03</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-  <script src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GMAP_KEY']}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=#{ENV['GMAP_KEY']}"></script>
 
   <%= csrf_meta_tags %>
 </head>
