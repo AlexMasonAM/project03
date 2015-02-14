@@ -1,4 +1,27 @@
 <h2>Trucks.html.erb</h2>
+<div class="row filters">
+<div class="col-xs-4">
+  Food type filter
+  <select ng-model="home.genre" ng-change="applyFilters()">
+    <option value="All">All</option>
+    <option value="American">American</option>
+    <option value="Asian Fusion">Asian Fusion</option>
+    <option value="Burgers">Burgers</option>
+  </select>
+</div>
+<div class="col-xs-4">
+  Distance filter
+  <select ng-model='home.distance' ng-change='applyFilters()'>
+    <option value="1">Within 1 mile</option>
+    <option value="5">Within 5 miles</option>
+    <option value="15">Within 15 miles</option>
+    <option value="100">Any distance</option>
+
+  </select>
+</div>
+<div class="col-xs-4"></div>
+</div>
+<br>
 
 <p ng-repeat="t in truck.sixTrucks">{{t.name}}</p>
 
