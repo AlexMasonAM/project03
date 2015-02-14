@@ -33,6 +33,7 @@ angular
         };
         $scope.markers.push(m);
       });
+
       $scope.allMarkers = $scope.markers.slice();
       $scope.sixMarkers = $scope.markers.slice(0,6);
     });

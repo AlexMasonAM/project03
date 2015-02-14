@@ -19,7 +19,11 @@
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require angular-resource
+//= require d3.v3
 //= require lodash
 //= require angular-google-maps
-//= require_tree .
 //= require_tree ../templates
+
+//= require ng-app/app
+
+//= require_tree .

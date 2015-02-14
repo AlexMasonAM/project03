@@ -1,4 +1,4 @@
-<h2>Trucks.html.erb</h2>
+<!-- This div contains the three filters -->
 <div class="row filters">
 <div class="col-xs-4 text-center">
   Food type filter
@@ -24,8 +24,10 @@
         <label class="btn btn-primary" ng-model="home.radioModel" ng-click="applyFilters()" btn-radio="'Favorites'">Only Favorites</label>
     </div>
 </div>
-<br>
 
+<h2>TRUCK RESULTS</h2>
+
+<!-- Row for the 6 trucks display -->
 <div class="row">
 <div class="col-md-4 text-center" ng-repeat="t in sixMarkers">
   <div class="truck-box">
@@ -35,9 +37,13 @@
 </div>
 </div>
 <div class="centered">
+
+<!-- Pagination controls -->
 <pagination total-items="markers.length" ng-model='home.currentPage' items-per-page=6 ng-change="home.pageChanged()"></pagination>
 </div>
 
+
+<!-- Styling for 6 trucks display -->
 <style>
 .truck-box {
   width: 150px;
