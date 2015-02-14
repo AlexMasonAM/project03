@@ -1,6 +1,8 @@
 angular
   .module('truckApp')
-  .controller('TruckController', function($scope, $resource){
+  .controller('TruckController', TruckController);
+    TruckController.$inject = ['$scope', '$resource'];
+    function TruckController($scope, $resource){
     var self = this;
     var Truck = $resource('/api/trucks/:id', {id: '@id'});
 
@@ -19,4 +21,4 @@ angular
     };
 
 
-  });
+  }
