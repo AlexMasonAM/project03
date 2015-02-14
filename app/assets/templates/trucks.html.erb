@@ -1,6 +1,6 @@
-<h2>Trucks.html.erb</h2>
+<!-- This div contains the three filters -->
 <div class="row filters">
-<div class="col-xs-4">
+<div class="col-xs-4 text-center">
   Food type filter
   <select ng-model="home.genre" ng-change="applyFilters()">
     <option value="All">All</option>
@@ -9,29 +9,50 @@
     <option value="Burgers">Burgers</option>
   </select>
 </div>
-<div class="col-xs-4">
+<div class="col-xs-4 text-center">
   Distance filter
   <select ng-model='home.distance' ng-change='applyFilters()'>
     <option value="1">Within 1 mile</option>
     <option value="5">Within 5 miles</option>
     <option value="15">Within 15 miles</option>
     <option value="100">Any distance</option>
-
   </select>
 </div>
-<div class="col-xs-4"></div>
+<div class="col-xs-4 text-center"></div>
+    <div class="btn-group">
+        <label class="btn btn-primary" ng-model="home.radioModel" ng-click="applyFilters()" btn-radio="'All'">Show All</label>
+        <label class="btn btn-primary" ng-model="home.radioModel" ng-click="applyFilters()" btn-radio="'Favorites'">Only Favorites</label>
+    </div>
 </div>
-<br>
 
-<p ng-repeat="t in truck.sixTrucks">{{t.name}}</p>
+<h2>TRUCK RESULTS</h2>
+
+<!-- Row for the 6 trucks display -->
+<div class="row">
+<div class="col-md-4 text-center" ng-repeat="t in sixMarkers">
+  <div class="truck-box">
+    <!-- set this divs background image to be the truck image we want -->
+  </div>  
+  {{t.truck.name}} - {{t.distance | number: 1}}
+</div>
+</div>
+<div class="centered">
+
+<!-- Pagination controls -->
+<pagination total-items="markers.length" ng-model='home.currentPage' items-per-page=6 ng-change="home.pageChanged()"></pagination>
+</div>
 
 
-<pagination total-items="truck.trucks.length" ng-model='truck.currentPage' items-per-page=6 ng-change="truck.pageChanged()">{{truck.trucks}} </pagination>
-
-ng repeat all the trucks
-
-  trucks name
-
-  link to truck detail page
-
-
+<!-- Styling for 6 trucks display -->
+<style>
+.truck-box {
+  width: 150px;
+  height: 100px;
+  background-color: red;
+  margin: auto;
+}
+.centered {
+  margin: auto;
+  text-align: center;
+}
+</style>
