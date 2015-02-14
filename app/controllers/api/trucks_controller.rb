@@ -7,6 +7,7 @@ class Api::TrucksController < ApplicationController
     else
       render json: {errors: truck.errors}, status: 422
     end
+
   end
 
   def index

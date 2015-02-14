@@ -1,12 +1,17 @@
 angular.module('truckApp')
   .controller('CheckinController', CheckinController);
 
-function CheckinController($resource, $scope, $stateParams) {
+CheckinController.$inject = ['$resource', '$stateParams', '$scope'];
+
+function CheckinController($resource, $stateParams, $scope) {
 
   // default of 4 hours for check-in form
   $scope.hours = 4;
 
-  Marker = $resource('/api' + window.location.pathname + '/markers'); 
+  var Marker = $resource('/api' + window.location.pathname + '/markers'); 
+  var Truck = $resource('/api' + window.location.pathname, {}, {
+    'update': {method: 'PATCH'}
+  });
 
   $scope.createMarker = function() {
     if(navigator.geolocation) {
@@ -17,6 +22,7 @@ function CheckinController($resource, $scope, $stateParams) {
           longitude: pos.coords.longitude,
           end_time: getEndTime()
         }});
+        Truck.update({tweet_most_recent: $scope.message});
         $scope.marker.$save();
         console.log($scope.marker);
       });

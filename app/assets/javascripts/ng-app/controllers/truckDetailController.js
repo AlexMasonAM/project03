@@ -1,6 +1,8 @@
 angular
   .module('truckApp')
-  .controller('TruckDetailController', function($resource, $stateParams, $http){
+  .controller('TruckDetailController', TruckDetailController);
+    TruckDetailController.$inject = ['$resource', '$stateParams', '$http'];
+    function TruckDetailController($resource, $stateParams, $http){
     var self = this;
     var Truck = $resource('/api/trucks/:id', {id: '@id'});
     // console.log("TRUCK ID:")
@@ -11,11 +13,7 @@ angular
       console.log(self.truck.name);
       $http.get("/api/yelp/search/" + "?term=" + self.truck.yelp_id).success( function(data,status) {
         self.yelpdata = data  
-        console.log(self.yelpdata)
       });
-      // self.getDate = function(date) {
-      //   var newDate = new Date(date*1000);
-      //   return newDate;
-      // };
+
     });
-  });
+  }

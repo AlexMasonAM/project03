@@ -1,17 +1,17 @@
 angular
-  .module('truckApp', ['ngAnimate', 'ui.router', 'templates', 'ngResource', 'uiGmapgoogle-maps'])
-  .config(function($httpProvider) {
+  .module('truckApp', ['ngAnimate', 'ui.router', 'ui.bootstrap', 'templates', 'ngResource', 'uiGmapgoogle-maps'])
+  .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] =
       $('meta[name=csrf-token]').attr('content');
-  })
-  .config(function(uiGmapGoogleMapApiProvider) {
+  }])
+  .config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: <%= "\"#{ENV['GMAP_KEY']}\"" %>,
         v: '3.17',
         libraries: 'weather,geometry,visualization'
     });
-  })
-  .config(function($stateProvider, $urlRouterProvider){
+  }])
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     $stateProvider
       .state('home', {
         url: '/',
@@ -36,8 +36,8 @@ angular
         url: 'truck-graph',
         templateUrl: 'truck-graph.html',
         controller: 'TruckGraphController',
-        controllerAs: 'graph'
+        controllerAs: 'truckGraph'
       });
 
   $urlRouterProvider.otherwise('/');
-  });
+  }]);

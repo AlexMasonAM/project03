@@ -14,10 +14,12 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require angular
+//= require angular-bootstrap
 //= require angular-animate
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require angular-resource
+//= require d3.v3
 //= require lodash
 //= require angular-google-maps
 //= require_tree ../templates

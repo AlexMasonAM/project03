@@ -1,7 +1,11 @@
 angular
   .module('truckApp')
-  .controller('HomeController', function($scope, $resource){
-
+  .controller('HomeController', HomeController);
+  
+  HomeController.$inject = ['$scope', '$resource'];
+  
+  function HomeController($scope, $resource){
+    var self = this;
     $scope.map = { center: { latitude: 34.031115, longitude: -118.266445 }, zoom: 11, options:{scrollwheel: false} };
     $scope.markers = [];
 
@@ -21,7 +25,8 @@ angular
         };
         $scope.markers.push(m);
       });
-      // console.log($scope.markers);
+
+      $scope.allMarkers = $scope.markers.slice();
     });
 
     // get user's current location and use it to calculate distance to each marker (for display in infowindows)
@@ -30,7 +35,6 @@ angular
         $scope.myLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         $scope.markers.forEach(function(m) {
           m.distance = $scope.distanceFrom(m.latitude, m.longitude);
-          // console.log(m.distance);
         });
       });
     }
@@ -43,4 +47,26 @@ angular
     };
 
 
-  });
+    self.genre = 'All';
+    self.distance = 100;
+
+    $scope.applyFilters = function() {
+      $scope.markers = $scope.allMarkers.filter(isGenreMatch);
+      $scope.markers = $scope.markers.filter(isDistanceMatch);
+    };
+
+    function isGenreMatch(marker) {
+      if(self.genre == 'All') {
+        return true;
+      } 
+      else {
+        console.log(marker.genre, self.genre);
+        return marker.truck.genre == self.genre;
+      }
+    }
+    function isDistanceMatch(marker) {
+      return marker.distance <= self.distance;
+    }
+
+
+}
