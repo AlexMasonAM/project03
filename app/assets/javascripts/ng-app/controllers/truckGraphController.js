@@ -1,6 +1,6 @@
 angular
   .module('truckApp')
-  .controller('TruckGraphController', function($resource){
+  .controller('TruckGraphController', function($resource, $scope){
     var self = this;
 
     //get all trucks from api/trucks
@@ -11,14 +11,16 @@ angular
     //filter through api/trucks index for favorites arranged by trucks
     TruckFavorite.query(function(trucks) {
       self.trucks = trucks;
+      window.trucks = trucks;
 
 
       self.trucks.forEach(function(d,i) {
+        //assigns color within a range
         var scale = d3.scale.linear()
           .domain([0, trucks.length])
-          .range(["lightblue", "cyan"]);
+          .range(["#2ECCFA", "#2E9AFE"]);
         d.color = scale(i);
-        // d.color = "lightblue";
+
         var users = d.users;
         d.users = [];
         users.forEach(function(u){
@@ -36,19 +38,23 @@ angular
 
     UserFavorite.query(function(users) {
       self.users = users;
+      window.users = users;
 
-      self.users.forEach(function(d) {
+      self.users.forEach(function(d,i) {
+        //assigns color within a range
+        var scale = d3.scale.linear()
+          .domain([0, users.length])
+          .range(["#2ECCFA", "#2E9AFE"]);
+        d.color = scale(i);
+
         var trucks = d.trucks;
         d.trucks = [];
         trucks.forEach(function(t){
           d.trucks.push(t.name);
         });
       });
-      console.log(self.users);  
+      console.log(self.users)
+      // UsersGraphCreate(self.users);  
     });
 
-
-    //use filtered data in D3   
-    self.data = TruckFavorite.query();
-  
   });
