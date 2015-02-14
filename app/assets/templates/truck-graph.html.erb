@@ -534,7 +534,7 @@
 
       // Create the main force layout.
 
-      var setCharge = -500;
+      var setCharge = -1500;
 
       var force = d3.layout.force()
           .size([width, height])
@@ -1070,6 +1070,7 @@
 
           srcNode.trucks.forEach(function(srcLink) {
 
+              var linkCounter = 0;
               // For each musican in the "src" album, iterate
               // through the remaining albums in the list.
 
@@ -1090,15 +1091,18 @@
                   if (tgtNode.trucks.some(function(tgtLink){
                       return tgtLink === srcLink;
                   })) {
-
                       // When we do find a match, add a new
-                      // link to the links array.
+                      // link to the links counter, create a link if the counte is more than 3.
+                      linkCounter++;
 
-                      links.push({
-                          source: srcIdx,
-                          target: tgtIdx,
-                          link: srcLink
-                      });
+                      if(linkCounter >= 4){
+                 
+                        links.push({
+                            source: srcIdx,
+                            target: tgtIdx,
+                            link: srcLink
+                        });
+                      }
                   }
               }
           });
