@@ -1,7 +1,7 @@
 class Api::MarkersController < ApplicationController
   
   def index
-    markers = Marker.all
+    markers = Marker.where("end_time >= ?", Time.now)
     render json: markers, 
            except: [:truck_id, :updated_at],
            include: {truck: {only: [:id, :name, :genre, :twitter_handle, :tweet_most_recent]}}

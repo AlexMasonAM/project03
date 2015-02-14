@@ -1,8 +1,8 @@
 angular
   .module('truckApp')
   .controller('TruckController', TruckController);
-    TruckController.$inject = ['$scope', '$resource'];
-    function TruckController($scope, $resource){
+    TruckController.$inject = ['$resource'];
+    function TruckController($resource){
     var self = this;
     var Truck = $resource('/api/trucks/:id', {id: '@id'});
 
