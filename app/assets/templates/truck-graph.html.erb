@@ -521,7 +521,9 @@
         connection.links.forEach(function(link){
             selection.append('li')
               .insert("a")
-              .attr("href", "www.google.com")
+              .on("click", function(){ 
+                graphTransition()
+              })
               .text(link);
         })
     })
@@ -851,7 +853,7 @@
     });
 
     graphTransition = function(){
-      if(setCharge == -1500) {
+      if(setCharge < 0) {
         force.stop();
         linkDistance = 0;
         setCharge = 0;
