@@ -375,6 +375,7 @@
           .append('line')
           .classed('edge', true)
           .style('stroke', edgeStroke)
+          .style("stroke-dasharray", ("1, 1"))
           .call(positionEdge, nodes);
 
       // Next up are the nodes.
@@ -589,11 +590,14 @@
               .selectAll('circle')
                   .transition()
                   .attr('r', nodeRadius)
-                  .style('fill', nodeFill);
+                  .style('fill', nodeFill)
+                  .duration(500);
+
 
           edgeSelection
               .transition()
-              .style('stroke', edgeStroke);
+              .style('stroke', edgeStroke)
+              .style('opacity', .5);
 
           labelSelection
               .transition()
@@ -899,6 +903,7 @@
       console.log("is this data", data);
 
 
+      
       var width = 586,
           height = 620;
           
@@ -925,6 +930,7 @@
 
       // Create the SVG container for the visualization and
       // define its dimensions.
+      // window.setTime(function (), 1000)      
 
       var svg = graph.append('svg')
           .attr('width', width)
@@ -1395,7 +1401,7 @@
           edgeSelection
               .transition()
               .style('stroke', edgeStroke)
-              .style('opacity', 0);
+              .style('opacity', .125);
 
           labelSelection
               .transition()
@@ -1697,6 +1703,7 @@
       // };
 
       // Start the layout computations.
+
       force.start();
       labelForce.start();
   }

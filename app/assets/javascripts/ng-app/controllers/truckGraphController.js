@@ -1,6 +1,9 @@
 angular
   .module('truckApp')
-  .controller('TruckGraphController', function($resource, $scope){
+  .controller('TruckGraphController', TruckGraphController);
+    
+    TruckGraphController.$inject = ['$resource', '$scope'];
+    function TruckGraphController($resource, $scope){
     var self = this;
 
     //get all trucks from api/trucks
@@ -57,4 +60,4 @@ angular
       // UsersGraphCreate(self.users);  
     });
 
-  });
+  }
