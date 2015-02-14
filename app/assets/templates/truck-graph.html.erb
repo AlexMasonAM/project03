@@ -103,7 +103,7 @@
   
   // Function that defines Trucks connection to User favorites
 
-  function TrucksGraphCreate(data){
+  function TrucksGraphCreate(data, selectedTruck){
       // Define the dimensions of the visualization. We're using
       // a size that's convenient for displaying the graphic on
       // http://jsDataV.is
@@ -123,6 +123,9 @@
       var selectedNodeRadius = 45;
 
       var linkDistance = Math.min(width,height)/4;
+
+      //variable for setting initial selected node
+      var savedTruckNode;
 
       // Find the main graph container.
 
@@ -241,14 +244,16 @@
           // arbitrarily, we start the nodes off in a
           // circle in the center of the container.
 
-          var radius = 0.4 * Math.min(height,width);
-          var theta = idx*2*Math.PI / list.length;
-          node.x = (width/2) + radius*Math.sin(theta);
-          node.y = (height/2) + radius*Math.cos(theta);
+            var radius = 0.4 * Math.min(height,width);
+            var theta = idx*2*Math.PI / list.length;
+            node.x = (width/2) + radius*Math.sin(theta);
+            node.y = (height/2) + radius*Math.cos(theta);
 
           // Return the newly created object so it can be
           // added to the nodes array.
 
+          if(node.name == selectedTruck)
+            savedTruckNode = node;
           return node;
       });
 
@@ -568,7 +573,7 @@
 
           // Ignore events based on dragging.
 
-          if (d3.event.defaultPrevented) return;
+          // if (d3.event.defaultPrevented) return;
 
           // Remember whether or not the clicked
           // node is currently selected.
@@ -891,7 +896,8 @@
       // Start the layout computations.
       force.start();
       labelForce.start();
-  } 
+      nodeClicked(savedTruckNode);
+  }
   
   // Function that defines Users connection to favorite Trucks
 
@@ -923,7 +929,7 @@
       var selectedNodeRadius = 30;
 
       var linkDistance = Math.min(width,height)/4;
-
+      //variable for setting initial selected node
       var savedUserNode;
       // Find the main graph container.
 
@@ -1048,10 +1054,10 @@
           // arbitrarily, we start the nodes off in a
           // circle in the center of the container.
 
-          var radius = 0.4 * Math.min(height,width);
-          var theta = idx*2*Math.PI / list.length;
-          node.x = (width/2) + radius*Math.sin(theta);
-          node.y = (height/2) + radius*Math.cos(theta);
+            var radius = 0.4 * Math.min(height,width);
+            var theta = idx*2*Math.PI / list.length;
+            node.x = (width/2) + radius*Math.sin(theta);
+            node.y = (height/2) + radius*Math.cos(theta);
 
           // Return the newly created object so it can be
           // added to the nodes array.
@@ -1103,7 +1109,7 @@
                       // link to the links counter, create a link if the counte is more than 3.
                       linkCounter++;
 
-                      if(linkCounter >= 4){
+                      if(linkCounter >= 5){
                  
                         links.push({
                             source: srcIdx,
@@ -1332,7 +1338,7 @@
               selection.append('li')
                   .insert("a")
                   .on("click", function(){ 
-                    graphTransition()
+                    graphTransition(link)
                   })
                   .text(link);
           })
@@ -1373,7 +1379,7 @@
       var nodeClicked = function(node) {
           selectedNode = node;
           // Ignore events based on dragging.
-          // uncomment to prevent dragging again
+          // uncomment to prevent dragging
           // if (d3.event.defaultPrevented) return;
 
           // Remember whether or not the clicked
@@ -1672,7 +1678,7 @@
           labelLinkSelection.call(positionEdge);
 
       });
-      graphTransition = function(){
+      graphTransition = function(link){
         force.stop();
         linkDistance = 0;
         setCharge = 0;
@@ -1681,7 +1687,7 @@
         d3.selectAll('svg')
           .remove();
         console.log(trucks); 
-        TrucksGraphCreate(trucks);}, 1000)
+        TrucksGraphCreate(trucks, link);}, 1000)
       };
       // graphTransition = function(){
       //   if(setCharge == -2000) {
