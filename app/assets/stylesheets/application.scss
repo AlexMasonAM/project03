@@ -16,9 +16,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@font-face {
+  font-family: 'duckhunt';
+  src:url('duckhunt.ttf');
+}
+
 .angular-google-map-container {
   width: 100%;
-  height: 500px;
+  height: 450px;
 }
 
 .container-fluid {
@@ -26,8 +31,8 @@
 }
 .map-container-fixed {
   position: fixed;
-  top: 0;
-  height: 550px;
+  top: -50;
+  height: 500px;
   width: 100%;
   padding-top: 50px;
   margin-left: -15px;
@@ -40,7 +45,22 @@
   opacity: .95;
 }
 
-@font-face {
-  font-family: 'duckhunt';
-  src:url('duckhunt.ttf');
+.jumbotron {
+  background-color: 'black';
 }
+.font-secondary {
+  font-family: 'Arial';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
