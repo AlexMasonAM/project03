@@ -1,6 +1,6 @@
 <h2>Trucks.html.erb</h2>
 <div class="row filters">
-<div class="col-xs-4">
+<div class="col-xs-4 text-center">
   Food type filter
   <select ng-model="home.genre" ng-change="applyFilters()">
     <option value="All">All</option>
@@ -9,17 +9,20 @@
     <option value="Burgers">Burgers</option>
   </select>
 </div>
-<div class="col-xs-4">
+<div class="col-xs-4 text-center">
   Distance filter
   <select ng-model='home.distance' ng-change='applyFilters()'>
     <option value="1">Within 1 mile</option>
     <option value="5">Within 5 miles</option>
     <option value="15">Within 15 miles</option>
     <option value="100">Any distance</option>
-
   </select>
 </div>
-<div class="col-xs-4"></div>
+<div class="col-xs-4 text-center"></div>
+    <div class="btn-group">
+        <label class="btn btn-primary" ng-model="home.radioModel" ng-click="applyFilters()" btn-radio="'All'">Show All</label>
+        <label class="btn btn-primary" ng-model="home.radioModel" ng-click="applyFilters()" btn-radio="'Favorites'">Only Favorites</label>
+    </div>
 </div>
 <br>
 
@@ -27,6 +30,5 @@
 
 
 <pagination total-items="truck.trucks.length" ng-model='truck.currentPage' items-per-page=6 ng-change="truck.pageChanged()">{{truck.trucks}} </pagination>
-
 
 

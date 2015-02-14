@@ -25,5 +25,17 @@
 <%= yield %>
 
 </div>
+
+<script>
+// Global variable to track of current user
+<% if current_user %>
+var currentUser = {
+  id: <%= current_user.id %>,
+  type: "<%= current_user.class %>"
+}
+<% else %>
+var currentUser = null;
+<% end %>
+</script>
 </body>
 </html>
