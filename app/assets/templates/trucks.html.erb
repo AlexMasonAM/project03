@@ -23,7 +23,9 @@
 </div>
 <br>
 
-<p ng-repeat="t in truck.sixTrucks">{{t.name}}</p>
+<!-- <p ng-repeat="t in truck.sixTrucks"> {{t.name}} {{t.yelp_id}} </p> -->
+<p ng-repeat="t in truck.sixTrucks"><a ng-href="#/trucks/{{t.name}}"> {{t.name}} </a></p><br>
+
 
 
 <pagination total-items="truck.trucks.length" ng-model='truck.currentPage' items-per-page=6 ng-change="truck.pageChanged()">{{truck.trucks}} </pagination>
