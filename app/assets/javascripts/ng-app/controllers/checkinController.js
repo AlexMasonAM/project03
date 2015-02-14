@@ -1,7 +1,7 @@
 angular.module('truckApp')
   .controller('CheckinController', CheckinController);
 CheckinController.$inject = ['$resource', '$stateParams', '$scope'];
-function CheckinController($resource, $scope, $stateParams) {
+function CheckinController($resource, $stateParams, $scope) {
 
   // default of 4 hours for check-in form
   $scope.hours = 4;
