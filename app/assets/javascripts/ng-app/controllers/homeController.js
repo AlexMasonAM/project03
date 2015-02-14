@@ -1,6 +1,8 @@
 angular
   .module('truckApp')
-  .controller('HomeController', function($scope, $resource){
+  .controller('HomeController', HomeController);
+    HomeController.$inject = ['$scope', '$resource'];
+    function HomeController($scope, $resource){
 
     $scope.map = { center: { latitude: 34.031115, longitude: -118.266445 }, zoom: 11, options:{scrollwheel: false} };
     $scope.markers = [];
@@ -43,4 +45,4 @@ angular
     };
 
 
-  });
+  }
