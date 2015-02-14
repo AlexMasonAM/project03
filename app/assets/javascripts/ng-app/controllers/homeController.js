@@ -21,7 +21,7 @@ angular
         };
         $scope.markers.push(m);
       });
-      console.log($scope.markers);
+      // console.log($scope.markers);
     });
 
     // get user's current location and use it to calculate distance to each marker (for display in infowindows)
@@ -30,7 +30,7 @@ angular
         $scope.myLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         $scope.markers.forEach(function(m) {
           m.distance = $scope.distanceFrom(m.latitude, m.longitude);
-          console.log(m.distance);
+          // console.log(m.distance);
         });
       });
     }

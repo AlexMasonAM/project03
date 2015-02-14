@@ -20,5 +20,8 @@
 //= require angular-resource
 //= require lodash
 //= require angular-google-maps
-//= require_tree .
 //= require_tree ../templates
+
+//= require ng-app/app
+
+//= require_tree .
