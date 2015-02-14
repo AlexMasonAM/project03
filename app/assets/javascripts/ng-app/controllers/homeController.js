@@ -13,7 +13,6 @@ angular
     if(currentUser && currentUser.type == 'User') {
       User.get({id: currentUser.id}, function(data) {
         self.loggedInUser = data;
-        console.log("User data", data);
       });
     }
 
@@ -35,7 +34,10 @@ angular
         $scope.markers.push(m);
       });
       $scope.allMarkers = $scope.markers.slice();
+      $scope.sixMarkers = $scope.markers.slice(0,6);
     });
+
+
 
     // get user's current location and use it to calculate distance to each marker (for display in infowindows)
     if(navigator.geolocation) {
@@ -65,6 +67,7 @@ angular
       $scope.markers = $scope.allMarkers.filter(isFavoriteMatch);
       $scope.markers = $scope.markers.filter(isGenreMatch);
       $scope.markers = $scope.markers.filter(isDistanceMatch);
+      self.pageChanged();
     };
 
     function isFavoriteMatch(marker) {
@@ -91,6 +94,27 @@ angular
     function isDistanceMatch(marker) {
       return marker.distance <= self.distance;
     }
+
+    /*   Old Trucks controller.  moving it in here */
+
+    var Truck = $resource('/api/trucks/:id', {id: '@id'});
+
+    Truck.query(function(data){
+      self.trucks = data;
+
+      self.sixTrucks = self.trucks.slice(0, 6);
+
+    });
+
+    self.pageChanged = function() {
+
+
+      // console.log(self.trucks);
+      var start = (self.currentPage - 1)*6;
+      $scope.sixMarkers = $scope.markers.slice(start, start+6);
+      // self.sixTrucks = self.trucks.slice(start, start+6);
+      // console.log(self.sixTrucks);
+    };
 
 
 }

@@ -26,9 +26,27 @@
 </div>
 <br>
 
-<p ng-repeat="t in truck.sixTrucks">{{t.name}}</p>
+<div class="row">
+<div class="col-md-4 text-center" ng-repeat="t in sixMarkers">
+  <div class="truck-box">
+    <!-- set this divs background image to be the truck image we want -->
+  </div>  
+  {{t.truck.name}} - {{t.distance | number: 1}}
+</div>
+</div>
+<div class="centered">
+<pagination total-items="markers.length" ng-model='home.currentPage' items-per-page=6 ng-change="home.pageChanged()"></pagination>
+</div>
 
-
-<pagination total-items="truck.trucks.length" ng-model='truck.currentPage' items-per-page=6 ng-change="truck.pageChanged()">{{truck.trucks}} </pagination>
-
-
+<style>
+.truck-box {
+  width: 150px;
+  height: 100px;
+  background-color: red;
+  margin: auto;
+}
+.centered {
+  margin: auto;
+  text-align: center;
+}
+</style>
