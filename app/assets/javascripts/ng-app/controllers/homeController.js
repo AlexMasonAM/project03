@@ -25,6 +25,7 @@ angular
         };
         $scope.markers.push(m);
       });
+
       $scope.allMarkers = $scope.markers.slice();
     });
 

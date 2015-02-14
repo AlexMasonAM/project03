@@ -1,2 +1,25 @@
-<h2>truck-detail.html.erb</h2>
-{{ detail.data }}
+<div class="container fluid"> 
+  <h1 class="jumbotron text-center">Truck Details</h1>
+
+  <div class="row">
+
+    <img ng-src="{{detail.yelpdata.image_url}}" alt="Mountain View" style="width:304px;height:228px"><br>
+
+
+    <h1>Name of truck: {{ detail.truck.name }}</h1>
+    <a href="{{ detail.yelpdata.url }}">Yelp details page</a>
+    <img ng-src="{{detail.yelpdata.rating_img_url}}"><br>
+   <h3>More Truck Info:</h3>
+    Yelp ID: {{ detail.yelpdata.id }}<br>
+    Business Phone number: {{ detail.yelpdata.display_phone }}<br>
+    Food genre: <span class="label label-primary" ng-repeat="i in detail.yelpdata.categories">    {{ i[0] }}   </span>
+
+    <h3>Latest review:</h3>
+    Rating: {{ detail.yelpdata.reviews[0].rating }}<br>
+   "{{ detail.yelpdata.reviews[0].excerpt }}"<br>
+
+   <!-- Date: {{ detail.yelpdata.reviews[0].time_created*1000 | date: 'MMM dd yyyy' }} -->
+    Date: {{ detail.yelpdata.reviews[0].time_created | date: 'MMM dd yyyy' }}
+
+  </div>
+</div>
