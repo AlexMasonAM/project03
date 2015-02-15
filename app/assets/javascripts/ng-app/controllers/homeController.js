@@ -68,6 +68,11 @@ angular
       $scope.markers = $scope.allMarkers.filter(isFavoriteMatch);
       $scope.markers = $scope.markers.filter(isGenreMatch);
       $scope.markers = $scope.markers.filter(isDistanceMatch);
+      if ($scope.markers.length === 0) {
+        $scope.flash = "No trucks match your filter criteria";
+      } else {
+        $scope.flash = '';
+      }
       self.pageChanged();
     };
 
@@ -96,25 +101,22 @@ angular
       return marker.distance <= self.distance;
     }
 
-    /*   Old Trucks controller.  moving it in here */
+    // /*   Old Trucks controller.  moving it in here */
 
-    var Truck = $resource('/api/trucks/:id', {id: '@id'});
+    // var Truck = $resource('/api/trucks/:id', {id: '@id'});
 
-    Truck.query(function(data){
-      self.trucks = data;
+    // Truck.query(function(data){
+    //   self.trucks = data;
 
-      self.sixTrucks = self.trucks.slice(0, 6);
+    //   self.sixTrucks = self.trucks.slice(0, 6);
 
-    });
+    // });
 
     self.pageChanged = function() {
 
-
-      // console.log(self.trucks);
       var start = (self.currentPage - 1)*6;
       $scope.sixMarkers = $scope.markers.slice(start, start+6);
-      // self.sixTrucks = self.trucks.slice(start, start+6);
-      // console.log(self.sixTrucks);
+
     };
 
 
