@@ -19,9 +19,9 @@
       </a>
     </div>
     <div class="navbar-right">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav font-secondary">
         <% if current_user %>
-          <li><%= link_to "Logout", logout_path %></li>
+          <li ><%= link_to "Logout", logout_path %></li>
           <% if session[:truck_id] %>
             <li><%= link_to "Dashboard", truck_account_path(current_user) %></li>
           <% end %>
@@ -30,12 +30,16 @@
           <li><%= link_to "Sign-up", signup_path %></li>
           <li><%= link_to "Sign-up truck", truck_signup_path %></li>
         <% end %>
-      </ul>  
+      </ul> 
+      <a>
+        <img alt="Food Truck Hunt tagline" src="assets/tagline-02.png" width="600">
+      </a>       
     </div>
   </div>
 
 <%= yield %>
-
+<div class="font-primary">Truck Hunt</div>
+<div class="font-secondary">the truck stops here</div>
 </div>
 </body>
 </html>

@@ -20,9 +20,15 @@
 @import "bootstrap";
 
 @font-face {
-  font-family: "duckhunt";
+  font-family: "Duckhunt";
   src:url('assets/duckhunt.ttf');
 }
+@font-face {
+  font-family: "Haettenschweiler";
+  src:url('assets/Haettenschweiler.ttf');
+}
+
+
 
 .angular-google-map-container {
   width: 100%;
@@ -57,11 +63,15 @@ ul.nav {
   padding-left:25px;
 }
 .font-primary {
-  font-family: "duckhunt";
+  font-family: "Duckhunt";
 }
-// .font-secondary {
-//   font-family: 'Arial';
-// }
+.font-secondary {
+  font-family: "Haettenschweiler";
+}
+img.navbar-nav {
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
 
 
 
