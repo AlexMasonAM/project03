@@ -3,7 +3,7 @@
     <ui-gmap-markers models="markers" coords="'self'" click="'onClick'">
       <ui-gmap-windows show="'show'">
         <div ng-non-bindable>
-            <a class="infowindow" href="#/trucks/{{truck.id}}">
+            <a class="infowindow font-secondary" href="#/trucks/{{truck.id}}">
               <%= image_tag 'truck-blue.png' %>
               <h4>{{truck.name}} | {{distance | number: 1}} miles</h4>
               <p>Near: {{address}}</p>

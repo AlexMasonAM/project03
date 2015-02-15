@@ -1,4 +1,6 @@
-<a class="btn btn-info btn-lg x" ui-sref="home.trucks"><span class="glyphicon glyphicon-remove"></span></a>
+
+  <a class="btn btn-info btn-lg x" ui-sref="home.trucks"><span class="glyphicon glyphicon-remove"></span></a>
+
 <!-- Style and Div shared by  -->
 
 <div>
@@ -103,7 +105,7 @@
 
 <script>
   var graphTransition;
-  
+    
   // Function that defines Trucks connection to User favorites
 
   function TrucksGraphCreate(data, selectedTruck){
@@ -111,8 +113,11 @@
       // a size that's convenient for displaying the graphic on
       // http://jsDataV.is
 
-      var width = 586,
-          height = 620;
+      var width = 520,
+          height = 440;
+
+      // var width = 586,
+      //     height = 620;
 
       // Visual properties of the graph are next. We need to make
       // those that are going to be animated accessible to the
@@ -304,7 +309,7 @@
                       // link to the links counter, create a link if the counte is more than 3.
                       linkCounter++;
 
-                      if(linkCounter >= 3){
+                      if(linkCounter >= 1){
                  
                         links.push({
                             source: srcIdx,
@@ -543,7 +548,7 @@
 
       // Create the main force layout.
 
-      var setCharge = -1500;
+      var setCharge = -1000;
 
       var force = d3.layout.force()
           .size([width, height])
@@ -911,10 +916,11 @@
 
       console.log("is this data", data);
 
-
+      var width = 520,
+          height = 440;
       
-      var width = 586,
-          height = 620;
+      // var width = 586,
+      //     height = 620;
           
       //larger svg    
       // var width = 1000,
@@ -1112,7 +1118,7 @@
                       // link to the links counter, create a link if the counte is more than 3.
                       linkCounter++;
 
-                      if(linkCounter >= 5){
+                      if(linkCounter >= 2){
                  
                         links.push({
                             source: srcIdx,
@@ -1348,7 +1354,7 @@
       })
 
       // Create the main force layout.
-      var setCharge = -2000;
+      var setCharge = -500;
 
       var force = d3.layout.force()
           .size([width, height])

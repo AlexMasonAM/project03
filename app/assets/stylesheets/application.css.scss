@@ -57,7 +57,10 @@
   height: 175px;
 }
 ul.nav {
-  padding-right: 25px; 
+  padding-right: 25px;
+  float: right;
+  display: inline-block;
+  clear: both; 
 }
 .navbar-brand {
   padding-left:25px;
@@ -72,11 +75,27 @@ img.navbar-nav {
   margin-right: 25px;
   margin-bottom: 25px;
 }
+a.navbar-nav-rgiht {
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
 
 /* For X button on truck detail and graph pages */
 a.btn.btn-info.x {
   float:right;
+  margin-right: 5px;
+  margin-top: 25px;
 }
+
+a.tagline {
+  margin-right: 25px;
+  margin-top: 85px;
+  position: relative;
+  display: inline-block;
+  clear: both; 
+}
+
+
 
 
 
