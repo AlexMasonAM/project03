@@ -3,31 +3,56 @@
 
 <!-- Style and Div shared by  -->
 
-<div>
+<div class="fluid-container">
 <style>
-
-  body, h1, h2 {
-      color: #444;
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  
+  body, h1 {
+      color: #05dbfc;
+      font-family: 'Duckhunt', Helvetica, sans-serif;
+      font-weight: 500;
+  }
+  h2 {
+      color: #bd876f;
+      font-family: 'Haettenschwieler', Helvetica, sans-serif;
       font-weight: 300;
+  }
+  h3 {
+      color: #05dbfc;
+      font-family: 'Haettenschwieler', Helvetica, sans-serif;
+      font-weight: 300;
+      font-size: 2em;
   }
   #graph {
       float: left;
       position: relative;
+      border-radius: 10px;
   }
   #notes {
       float: left;
       margin-left: 20px;
+      background-color: lightgrey;
+      border-radius: 25px;
+      text-align: center;
+  }
+  #notes li {
+    color: #bd876f;
+    font-family: 'Haettenschwieler', Helvetica, sans-serif;
+    font-size: 1.7em;
+    font-weight: 200;
+    color: black;
+    font-style: italic;
+    line-height: 1em;   
   }
   h1, h2 {
       margin: 0;
   }
   h1 {
-      font-size: 1.4em;
-      margin-bottom: 0.2em;
+      font-size: 3.6em;
+      margin-top: .8em;
+      margin-bottom: 0.4em;
   }
   h2 {
-      font-size: 1.1em;
+      font-size: 2.2em;
       margin-bottom: 1em;
   }
   .artwork img {
@@ -145,13 +170,14 @@
       var svg = graph.append('svg')
           .attr('width', width)
           .attr('height', height)
-          .style('background-color', "black");
+          .style('background-color', "black")
+          .style('border-radius', 25);
 
       // Select the container for the notes and dimension it.
 
       var notes = d3.select('#notes')
           .style({
-              'width': 620-width + 'px',
+              'width': 620-width/6 + 'px',
               'height': height + 'px'
           });
 
@@ -687,7 +713,7 @@
               // Now add the notes content.
 
               notes.append('h1').text(node.name);
-              notes.append('h2').text(node.subtitle);
+              notes.append('h2').text("@" + node.subtitle);
               if (node.url && node.image) {
                   notes.append('div')
                       .classed('artwork',true)
@@ -696,7 +722,12 @@
                       .append('img')
                           .attr('src', node.image);
               }
+              notes.append('h3').text(node.name + "'s Favorite Users:")          
               var list = notes.append('ul');
+              if (node.links == 0){
+              list.append('li')
+                .text("there are no Favorite User's..yet")
+              }
               node.links.forEach(function(link){
                   list.append('li')
                       .text(link);
@@ -957,7 +988,7 @@
 
       var notes = d3.select('#notes')
           .style({
-              'width': 620-width + 'px',
+              'width': 620-width/6 + 'px',
               'height': height + 'px'
           });
 
