@@ -3,15 +3,12 @@
     <ui-gmap-markers models="markers" coords="'self'" click="'onClick'">
       <ui-gmap-windows show="'show'">
         <div ng-non-bindable>
-          <h3><a href="#/trucks/{{truck.id}}">{{truck.name}}</a></h3>
-          <p>{{truck.genre}}</p>
-          Near:
-          <p>{{address}}</p>
-          Until:
-          <p>{{end_time | date:'shortTime'}}</p>
-          Distance:
-          <p>{{distance | number: 1 }}</p>
-          Message: {{truck.tweet_most_recent}}
+            <a class="infowindow" href="#/trucks/{{truck.id}}">
+              <%= image_tag 'truck-blue.png' %>
+              <h4>{{truck.name}} | {{distance | number: 1}} miles</h4>
+              <p>Near: {{address}}</p>
+              <p>Until: {{end_time | date:'shortTime'}}</p>
+            </a>
         </div>
       </ui-gmap-windows>
     </ui-gmap-markers>
@@ -19,9 +16,14 @@
 </div>
 <div class="filters"></div>
 <div class="main-view">
-  <a ui-sref="home.trucks">trucks</a>
-  <a ui-sref="home.truck-detail">truck-details</a>
-  <a ui-sref="home.truck-graph">trucks-graph</a>
-
   <div ui-view></div>
 </div>
+
+<style>
+a.infowindow,
+a.infowindow:hover {
+  text-decoration: none;
+  color: black;
+}
+
+</style>

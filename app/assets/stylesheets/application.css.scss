@@ -48,8 +48,8 @@
 }
 
 .main-view {
-  margin-top: 500px;
-  background-color: gray;
+  margin-top: 450px;
+  background-color: white;
   opacity: .95;
   height: 2000px;
 }
@@ -73,7 +73,10 @@ img.navbar-nav {
   margin-bottom: 25px;
 }
 
-
+/* For X button on truck detail and graph pages */
+a.btn.btn-info.x {
+  float:right;
+}
 
 
 
