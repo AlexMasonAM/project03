@@ -21,11 +21,11 @@
 
 @font-face {
   font-family: "Duckhunt";
-  src:url('duckhunt.ttf');
+  src:font-url('duckhunt.ttf');
 }
 @font-face {
   font-family: "Haettenschweiler";
-  src:url('Haettenschweiler.ttf');
+  src:font-url('Haettenschweiler.ttf');
 }
 
 
@@ -72,9 +72,6 @@ img.navbar-nav {
   margin-right: 25px;
   margin-bottom: 25px;
 }
-
-
-
 
 
 
