@@ -27,7 +27,7 @@ angular
         var users = d.users;
         d.users = [];
         users.forEach(function(u){
-          d.users.push(u.first_name + " " + u.last_name[0]);
+          d.users.push(u.first_name + " " + u.last_name[0] + ".");
         });
       });
       TrucksGraphCreate(self.trucks);

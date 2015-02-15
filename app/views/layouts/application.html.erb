@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Project03</title>
+  <title>Truck Hunt</title>
+  <%= favicon_link_tag 'truck-blue-256.png' %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=#{ENV['GMAP_KEY']}"></script>
@@ -9,20 +10,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body ng-app='truckApp'>
-<div class="navbar navbar-default navbar-fixed-top">
-<% if current_user %>
-  <%= link_to "Logout", logout_path %>
-  <% if session[:truck_id] %>
-    <%= link_to "Dashboard", truck_account_path(current_user) %>
-  <% end %>
-<% else %>
-  <%= link_to "Login", login_path %> | <%= link_to "Sign-up", signup_path %> | <%= link_to "Sign-up truck", truck_signup_path %>
-<% end %>
-</div>
+
 <div class="container-fluid">
+  <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="navbar-left">
+      <a class="navbar-brand" href="#">
+        <img alt="Food Truck Hunt Logo" src="assets/logo-stacked.png" height="150">
+      </a>
+    </div>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav font-secondary">
+        <% if current_user %>
+          <li ><%= link_to "Logout", logout_path %></li>
+          <% if session[:truck_id] %>
+            <li><%= link_to "Dashboard", truck_account_path(current_user) %></li>
+          <% end %>
+        <% else %>
+          <li><%= link_to "Login", login_path %></li> 
+          <li><%= link_to "Sign-up", signup_path %></li>
+          <li><%= link_to "Sign-up truck", truck_signup_path %></li>
+        <% end %>
+      </ul> 
+      <a>
+        <img alt="Food Truck Hunt tagline" src="assets/tagline-02.png" width="600">
+      </a>       
+    </div>
+  </div>
 
 <%= yield %>
-
+<div class="font-primary">Truck Hunt</div>
+<div class="font-secondary">the truck stops here</div>
 </div>
 
 <script>
