@@ -52,14 +52,41 @@
   </div>
 
 <!-- Pagination controls -->
+<pager total-items="markers.length" previous-text="<" next-text=">" items-per-page=6 ng-model="home.currentPage"></pager>
   <br>
   <div class="centered">
     <pagination total-items="markers.length" ng-model='home.currentPage' items-per-page=6 ng-change="home.pageChanged()"></pagination>
   </div>
 
+
 </div>
 
 <style>
+  ul.pager {
+    position: relative;
+    bottom: 275px;
+  }
+
+  li.previous {
+    font-family: 'Duckhunt';
+    font-size: 72px;
+    float: left;
+    z-index: -1;
+  }
+  li.next {
+    font-family: 'Duckhunt';
+    font-size: 72px;
+    float: right;
+    z-index: -1;
+  }
+  li.previous > a,
+  li.next > a {
+    background-color: rgba(0,0,0,0) !important;
+    border: none !important;
+    color: #03D9FD;
+    z-index: 1;
+
+  }
   .truck-box {
     width: 300px;
     height: 155px;
@@ -67,6 +94,7 @@
     margin-top: 20px;
     background-image:url("assets/truck-white.png");
     background-size:contain;
+    z-index: 1;
   }
   .truck-box:active {
       width: 300px;
