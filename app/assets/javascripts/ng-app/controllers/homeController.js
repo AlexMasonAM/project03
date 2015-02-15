@@ -6,8 +6,16 @@ angular
   
   function HomeController($scope, $resource){
     var self = this;
-    $scope.map = { center: { latitude: 34.031115, longitude: -118.266445 }, zoom: 11, options:{scrollwheel: false} };
+    $scope.map = { center: { latitude: 34.031115, longitude: -118.266445 }, zoom: 10, options:{scrollwheel: false} };
     $scope.markers = [];
+
+    User = $resource('/api/users/:id', {id: '@id'});
+    if(currentUser && currentUser.type == 'User') {
+      User.get({id: currentUser.id}, function(data) {
+        self.loggedInUser = data;
+      });
+    }
+
 
     Marker = $resource('/api/markers');
     Marker.query(function(markers) {
@@ -27,7 +35,10 @@ angular
       });
 
       $scope.allMarkers = $scope.markers.slice();
+      $scope.sixMarkers = $scope.markers.slice(0,6);
     });
+
+
 
     // get user's current location and use it to calculate distance to each marker (for display in infowindows)
     if(navigator.geolocation) {
@@ -49,24 +60,62 @@ angular
 
     self.genre = 'All';
     self.distance = 100;
+    self.radioModel = 'All';
+
 
     $scope.applyFilters = function() {
-      $scope.markers = $scope.allMarkers.filter(isGenreMatch);
+
+      $scope.markers = $scope.allMarkers.filter(isFavoriteMatch);
+      $scope.markers = $scope.markers.filter(isGenreMatch);
       $scope.markers = $scope.markers.filter(isDistanceMatch);
+      self.pageChanged();
     };
+
+    function isFavoriteMatch(marker) {
+      if(self.radioModel == 'All' || !self.loggedInUser) {
+        return true;
+      }
+      else {
+        var tmp = self.loggedInUser.trucks;
+        for(var i = 0; i < tmp.length; i++) {
+          if(tmp[i].id == marker.truck.id) return true;
+        }
+        return false;
+      }
+    }
 
     function isGenreMatch(marker) {
       if(self.genre == 'All') {
         return true;
       } 
       else {
-        console.log(marker.genre, self.genre);
         return marker.truck.genre == self.genre;
       }
     }
     function isDistanceMatch(marker) {
       return marker.distance <= self.distance;
     }
+
+    /*   Old Trucks controller.  moving it in here */
+
+    var Truck = $resource('/api/trucks/:id', {id: '@id'});
+
+    Truck.query(function(data){
+      self.trucks = data;
+
+      self.sixTrucks = self.trucks.slice(0, 6);
+
+    });
+
+    self.pageChanged = function() {
+
+
+      // console.log(self.trucks);
+      var start = (self.currentPage - 1)*6;
+      $scope.sixMarkers = $scope.markers.slice(start, start+6);
+      // self.sixTrucks = self.trucks.slice(start, start+6);
+      // console.log(self.sixTrucks);
+    };
 
 
 }
