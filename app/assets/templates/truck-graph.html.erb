@@ -21,6 +21,7 @@
       font-family: 'Haettenschwieler', Helvetica, sans-serif;
       font-weight: 300;
       font-size: 2em;
+      line-height: 1em;
   }
   #graph {
       float: left;
@@ -982,7 +983,8 @@
       var svg = graph.append('svg')
           .attr('width', width)
           .attr('height', height)
-          .style('background-color', "darkgrey");
+          .style('background-color', "darkgrey")
+          .style('border-radius', 25);          
 
       // Select the container for the notes and dimension it.
 
@@ -1069,7 +1071,8 @@
         
          // // We retain some of the truck's properties.
 
-          node.name    = entry.first_name + " " + entry.last_name[0] + ".";
+          node.name     = entry.first_name + " " + entry.last_name[0] + ".";
+          node.first_na = entry.first_name;
           node.subtitle = entry.email;
           node.image    = entry.cover;
           node.url      = entry.twitter_handle;
@@ -1477,6 +1480,14 @@
                   .transition()
                   .attr('r', nodeRadius)
                   .style('fill', node.color);
+                  // Add Name to Selected and Adjacent Nodes
+                  // .append('text')
+                  //   .text(function(d, i) {
+                  //       return i % 2 == 0 ? '' : d.node.first_na;
+                  //   })
+                  //   .attr('data-node-index', function(d, i){
+                  //       return i % 2 == 0 ? 'none' : Math.floor(i/2);
+                  //   });
 
               labelSelection
                   .filter(function(label) {
@@ -1537,10 +1548,16 @@
                       .append('img')
                           .attr('src', node.image);
               }
+              notes.append('h3').text(node.name + "'s Favorite Trucks:")          
               var list = notes.append('ul');
+              if (node.links == 0){
+              list.append('li')
+                .text(node.first_na + " doesn't have any Favorite Trucks.")
+              }
               node.links.forEach(function(link){
                   list.append('li')
-                      .text(link);
+                      .text(link)
+                      .attr('href', node.truck_id);
               })
 
               // With the content in place, transition
