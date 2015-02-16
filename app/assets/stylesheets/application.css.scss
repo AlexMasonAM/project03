@@ -56,11 +56,12 @@ body {
   // height: 1150px;
 }
 .empty-division {
-  height: 500px;
+  height: 550px;
   width: 100%;
   position: relative;
   clear: both;
-  opacity: 0;
+  background-color: white;
+  opacity: 0.5;
 }
 #tagline {
   margin-right: 40px;
@@ -310,10 +311,10 @@ p.h1.font-secondary {
   margin-left: -68px;
 }
 /* Footer Styling */
-.empty-division {
-  height: 550px;
-  opacity: 0;
-} 
+.big-font * {
+  font-size: 12em;
+  padding-top: 225px;
+}
 .footer {
   z-index: 1000;
   width: 100px;
