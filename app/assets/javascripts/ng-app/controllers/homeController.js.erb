@@ -6,7 +6,7 @@ angular
   
   function HomeController($scope, $resource){
     var self = this;
-    $scope.map = { center: { latitude: 34.031115, longitude: -118.266445 }, zoom: 10, options:{scrollwheel: false} };
+    $scope.map = { center: { latitude: 34.031115, longitude: -118.266445 }, zoom: 11, options:{scrollwheel: false} };
     $scope.markers = [];
 
     User = $resource('/api/users/:id', {id: '@id'});
@@ -24,6 +24,7 @@ angular
         m.show = false;
         m.title = 'test';
         m.distance = 0;
+        m.icon = "<%= image_url('marker-blue.png') %>";
         m.onClick = function() {
           console.log("Clicked!");
           m.show  = !m.show;
@@ -117,6 +118,7 @@ angular
       var start = (self.currentPage - 1)*6;
       $scope.sixMarkers = $scope.markers.slice(start, start+6);
 
+      // adjust the page changer arrow position depending on how many rows of trucks are present
       if ($scope.sixMarkers.length === 0) {
         d3.select('ul.pager').style({bottom: 0});
       } else if ($scope.sixMarkers.length <= 3) {
