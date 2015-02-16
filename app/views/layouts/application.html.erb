@@ -23,7 +23,7 @@
         <% if current_user %>
           <li ><%= link_to "Logout", logout_path %></li>
           <li>
-            <a ui-sref='home.truck-graph'>Truck Chart</a>
+            <a ui-sref='home.truck-graph'>Truck Graph</a>
           </li>          
           <% if session[:truck_id] %>
             <li><%= link_to "Dashboard", truck_account_path(current_user) %></li>
@@ -33,7 +33,7 @@
           <li><%= link_to "Sign-up", signup_path %></li>
           <li><%= link_to "Sign-up truck", truck_signup_path %></li>
           <li>
-            <a ui-sref='home.truck-graph'>Truck Chart</a>
+            <a ui-sref='home.truck-graph'>Truck Graph</a>
           </li>
         <% end %>
       </ul> 
