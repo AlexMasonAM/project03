@@ -53,8 +53,20 @@ body {
   margin-top: 450px;
   background-color: rgb(0,0,0);
   opacity: .95;
-  height: 1150px;
+  // height: 1150px;
 }
+.empty-division {
+  height: 500px;
+  width: 100%;
+  position: relative;
+  clear: both;
+  opacity: 0;
+}
+#tagline {
+  margin-right: 40px;
+  margin-top: 25px;
+  display: block;
+} 
 .navbar-fixed-top {
   height: 175px;
 }
@@ -289,6 +301,14 @@ p.h1.font-secondary {
   padding-right: 10px;
   padding-left: 40px;
 }
+
+.graph-button {
+  font-size: 1.125em;
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px 0 25px 0;
+  margin-left: -68px;
+}
 /* Footer Styling */
 .empty-division {
   height: 550px;
@@ -318,7 +338,13 @@ p.h1.font-secondary {
 .logo-set img{
   margin-top: 25px;
 }
-
+.basic-graph{
+  width: 400px;
+  height: 220px;
+  background-color: white;
+  border-radius: 5px;
+  background-image: url('/truck-graph-01.png');
+}
 .large-title {
   font-size: 8em;
   margin-top: 25px;
@@ -373,4 +399,8 @@ p.h1.font-secondary {
   text-align: center;
   margin-left: 1em;
   margin-top: 5px;
+}
+
+#footer {
+  font-family: arial black;
 }
