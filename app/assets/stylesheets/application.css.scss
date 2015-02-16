@@ -87,6 +87,9 @@ a.btn.btn-info.x {
   margin-top: 25px;
   background-color: #05dbfc;
 }
+a.btn.btn-info.btn-lg.x {
+  margin-top: 5px;
+}
 
 a.tagline {
   margin-right: 25px;
@@ -178,6 +181,9 @@ ul.pagination > li > a {
 .gray {
   color: gray;
 }
+.white {
+  color: white;
+}
 .black-bg {
   background-color: black;
 }
@@ -227,5 +233,53 @@ p.h1.font-secondary {
   background-color: black;
   bottom: 0;
 }
+/* Truck Detail Styling */
+.darkgrey-bg {
+  background-color: darkgrey;
+  display: inline-block;
+  float: right;
+  width: 100%;
+  margin: 0;
+  border-radius: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 25px;
 
+}
 
+.logo-set img{
+  margin-top: 25px;
+}
+
+.large-title {
+  font-size: 8em;
+  margin-top: 25px;
+  margin-left: 25px;
+  line-height: .75em;
+}
+
+.line-brown {
+  height: 5px; 
+  width: 75%;
+  color: #bd876f;
+  background-color: #bd876f;
+  text-align: center;
+  margin-left: 25px;
+  margin-top: -1px;
+  margin-bottom: 10px; 
+}
+.large-subtitles {
+  font-size: 3.5em;
+  margin-top: 5px;
+  margin-left: 25px;
+  text-decoration: none;
+  display: inline-block;
+} 
+.medium-subtitles {
+  font-size: 2.25em;
+  margin-top: 5px;
+  margin-left: 25px;
+  text-decoration: none;
+  display: inline-block;
+}

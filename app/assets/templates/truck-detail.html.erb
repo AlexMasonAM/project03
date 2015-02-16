@@ -1,25 +1,46 @@
-<div class="container fluid">
-  <a class="btn btn-info btn-lg x" ui-sref="home.trucks"><span class="glyphicon glyphicon-remove"></span></a>
-  <h1 class="jumbotron text-center clearfix">Truck Details</h1>
+<div class="darkgrey-bg">
+    
+    <a class="btn btn-info btn-lg x" ui-sref="home.trucks"><span class="glyphicon glyphicon-remove"></span></a>
+    <!-- <h1 class="jumbotron text-center clearfix">Truck Details</h1> -->
+    <div class="row">
+      <div class="col-md-4 logo-set">
+        <img src="assets/logo-details.png" alt="Truck Details" width="275">
+      </div>
+<!--  IMAGE from yelp
+      <div class="col-md-6 col-md-offset-2">
+        <img ng-src="{{detail.yelpdata.image_url}}" alt="Mountain View" style="width:304px;height:228px">
+      </div> -->    
+    </div>  
 
-  <div class="row">
 
-    <img ng-src="{{detail.yelpdata.image_url}}" alt="Mountain View" style="width:304px;height:228px"><br>
+    <div class="row">
+      <h1 class="font-secondary blue large-title">
+        {{ detail.truck.name }}:
+      </h1>
+      <p class="line-brown"></p>
+    </div> 
+    <div class="row">  
+      <div class="font-secondary large-subtitles white">
+        <a href="{{ detail.yelpdata.url }}" class="white">Yelp ID : <span class="gray">{{ detail.yelpdata.id }}</span>  | </a>
+         <img ng-src="{{detail.yelpdata.rating_img_url}}" alt ="Yelp Supplied Photo" height="25">
+      </div>  
+    </div>
+    <div class="row">  
+     <h3 class="font-secondary medium-subtitles white">More Truck Info:</h3>
+     <h3 class="font-secondary medium-subtitles white">Latest review:</h3>
+     <h3 class="font-secondary medium-subtitles white">Genres</h3>
+    </div>
+    <div>
+      <br>
+      Business Phone number: {{ detail.yelpdata.display_phone }}<br>
+      Food genre: <span class="label label-info" ng-repeat="i in detail.yelpdata.categories">    {{ i[0] }}   </span>
 
+      <h3>Latest review:</h3>
+      Rating: {{ detail.yelpdata.reviews[0].rating }}<br>
+     "{{ detail.yelpdata.reviews[0].excerpt }}"<br>
 
-    <h1>Name of truck: {{ detail.truck.name }}</h1>
-    <a href="{{ detail.yelpdata.url }}">Yelp details page</a>
-    <img ng-src="{{detail.yelpdata.rating_img_url}}"><br>
-   <h3>More Truck Info:</h3>
-    Yelp ID: {{ detail.yelpdata.id }}<br>
-    Business Phone number: {{ detail.yelpdata.display_phone }}<br>
-    Food genre: <span class="label label-primary" ng-repeat="i in detail.yelpdata.categories">    {{ i[0] }}   </span>
-
-    <h3>Latest review:</h3>
-    Rating: {{ detail.yelpdata.reviews[0].rating }}<br>
-   "{{ detail.yelpdata.reviews[0].excerpt }}"<br>
-
-   <!-- Date: {{ detail.yelpdata.reviews[0].time_created*1000 | date: 'MMM dd yyyy' }} -->
-    Date: {{ detail.yelpdata.reviews[0].time_created | date: 'MMM dd yyyy' }} 
-  </div>
+     <!-- Date: {{ detail.yelpdata.reviews[0].time_created*1000 | date: 'MMM dd yyyy' }} -->
+      Date: {{ detail.yelpdata.reviews[0].time_created | date: 'MMM dd yyyy' }} 
+    </div>
+ 
 </div>
