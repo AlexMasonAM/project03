@@ -1,5 +1,12 @@
-<div class="black-bg">
 <!-- This div contains the three filters -->
+  <div class="container-fluid">
+  <div class="row filters">
+    <a href="" ng-click="home.filter='genre'"><div ng-class="{active:(home.filter=='genre')}"class="circle font-secondary" id="genre">genre</div></a>
+    <a href="" ng-click="home.filter='location'"><div ng-class="{active:(home.filter=='location')}"class="circle font-secondary" id="location">location</div></a>
+    <a href="" ng-click="home.filter='favorites'"><div ng-class="{active:(home.filter=='favorites')}"class="circle font-secondary" id="favorites">favorites</div></a>
+  </div>
+  </div>
+<div class="black-bg">
   <div class="row filters">
     <div class="col-xs-4 text-center">
       Food type filter
@@ -62,4 +69,22 @@
   </div>
 </div>
 
-
+<style>
+  .circle {
+    float: left;
+    margin: 15px 25px 10px 25px;
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    background-color: rgba(0, 226, 255, 1);
+    text-align: center;
+    font-size: 48px;
+    padding-top: 35px;
+    color: white;
+    opacity: 1 !important;
+  }
+  .circle.active {
+    color: #9D6854;
+  }
+</style>
