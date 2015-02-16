@@ -170,10 +170,10 @@ ul.pagination > li > a {
   background-color: gray;
 }
 .blue {
-  color: #03D9FD;
+  color: #05dbfc;
 }
 .brown {
-  color: brown;
+  color: #bd876f;
 }
 .gray {
   color: gray;
@@ -213,11 +213,19 @@ p.h1.font-secondary {
   float: right;
   width: 100%;
   margin: 0;
-  border-radius: 10px;
+  border-radius: 5px;
   padding-right: 10px;
   padding-left: 40px;
 }
-
-
+/* Footer Styling */
+.empty-division {
+  height: 500px;
+}
+.footer {
+  z-index: 1000;
+  width: 100px;
+  background-color: black;
+  bottom: 0;
+}
 
 
