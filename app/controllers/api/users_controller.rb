@@ -24,6 +24,7 @@ class Api::UsersController < ApplicationController
            except: [:updated_at, :created_at, :password_digest],
            include: {
                     trucks: {except: [:created_at, :updated_at]},
+                    favorites: {except: [:created_at, :updated_at]}
                     }
   end
 

@@ -1,34 +1,49 @@
-<div class="black-bg">
 <!-- This div contains the three filters -->
+<div class="container-fluid">
   <div class="row filters">
-    <div class="col-xs-4 text-center">
-      Food type filter
-      <select ng-model="home.genre" ng-change="applyFilters()">
-        <option value="All">All</option>
-        <option value="American">American</option>
-        <option value="Asian Fusion">Asian Fusion</option>
-        <option value="Burgers">Burgers</option>
-      </select>
+    <div class="col-xs-6">
+      <a href="" ng-click="home.filter='genre'"><div ng-class="{active:(home.filter=='genre')}"class="circle font-secondary" id="genre">genre</div></a>
+      <a href="" ng-click="home.filter='distance'"><div ng-class="{active:(home.filter=='distance')}"class="circle font-secondary" id="distance">distance</div></a>
+      <a href="" ng-click="home.filter='favorites'"><div ng-class="{active:(home.filter=='favorites')}"class="circle font-secondary" id="favorites">favorites</div></a>
     </div>
+    <div class="col-xs-6">
+      <div class="filter-display text-center">
+        <h1 class="font-secondary white">FILTER BY: <span class="blue">{{home.filter | uppercase}}</span></h1>
+        <button class="btn btn-default btn-sm font-primary reset" ng-click="resetFilters()">Reset All</button>
 
-    <div class="col-xs-4 text-center">
-      Distance filter
-      <select ng-model='home.distance' ng-change='applyFilters()'>
-        <option value="1">Within 1 mile</option>
-        <option value="5">Within 5 miles</option>
-        <option value="15">Within 15 miles</option>
-        <option value="100">Any distance</option>
-      </select>
-    </div>
-    <div class="col-xs-4 text-center">
-        <div class="btn-group">
-            <label class="btn btn-primary btn-sm" ng-model="home.radioModel" ng-click="applyFilters()" btn-radio="'All'">Show All</label>
-            <label class="btn btn-primary btn-sm" ng-model="home.radioModel" ng-click="applyFilters()" btn-radio="'Favorites'">Only Favorites</label>
+        <div ng-show="home.filter=='genre'">
+          <div class="btn-group">
+            <label class="btn btn-default font-primary genre" ng-change="applyFilters()" ng-model="home.genre" btn-radio="'All'">All</label>
+            <label class="btn btn-default font-primary genre" ng-change="applyFilters()" ng-model="home.genre" btn-radio="'American'">American</label>
+            <label class="btn btn-default font-primary genre" ng-change="applyFilters()" ng-model="home.genre" btn-radio="'Asian Fusion'">Asian Fusion</label>
+            <label class="btn btn-default font-primary genre" ng-change="applyFilters()" ng-model="home.genre" btn-radio="'Burgers'">Burgers</label>
+            <label class="btn btn-default font-primary genre" ng-change="applyFilters()" ng-model="home.genre" btn-radio="'Mexican'">Mexican</label>
+            <label class="btn btn-default font-primary genre" ng-change="applyFilters()" ng-model="home.genre" btn-radio="'Vegan'">Vegan</label>
+            <label class="btn btn-default font-primary genre" ng-change="applyFilters()" ng-model="home.genre" btn-radio="'Dessert'">Dessert</label>
+          </div>
         </div>
+        <div ng-show="home.filter=='distance'">
+          <div class="btn-group">
+            <label class="btn btn-default font-primary distance" ng-change="applyFilters()" ng-model="home.distance" btn-radio="100">Any Distance</label>
+            <label class="btn btn-default font-primary distance" ng-change="applyFilters()" ng-model="home.distance" btn-radio="15">15 Miles</label>
+            <label class="btn btn-default font-primary distance" ng-change="applyFilters()" ng-model="home.distance" btn-radio="10">10 Miles</label>
+            <label class="btn btn-default font-primary distance" ng-change="applyFilters()" ng-model="home.distance" btn-radio="5">5 Miles</label>
+            <label class="btn btn-default font-primary distance" ng-change="applyFilters()" ng-model="home.distance" btn-radio="1">1 Mile</label>
+          </div>
+        </div>
+        <div ng-show="home.filter=='favorites'">
+          <div class="btn-group">
+            <label class="btn btn-default font-primary favorites" ng-model="home.favorites" ng-click="applyFilters()" btn-radio="'All'">Show All</label>
+            <label class="btn btn-default font-primary favorites" ng-model="home.favorites" ng-click="applyFilters()" btn-radio="'Favorites'">Only Favorites</label>
+          </div>        
+        </div>
+        <%= image_tag "truck-white.png", width: 100, class:"filter-image" %>
+      </div>
     </div>
-  <br>
   </div>
-
+</div>
+<div class="black-bg">
+  
   <div class="row">
     <div class="col-md-4 col-md-offset-4 centered-results">
       <p class="font-primary h1 blue"><strong>TRUCK</strong></p> 
@@ -40,91 +55,26 @@
     </div>
   </div>
 <!-- Row for the 6 trucks display -->
-  <h3 class="font-primary">{{flash}}</h3>
+  <h3 class="font-primary text-center">{{flash}}</h3>
   <div class="row">
-    <div class="col-md-4 text-center" ng-repeat="t in sixMarkers">
+    <div class="truck col-md-4 text-center" ng-repeat="t in sixMarkers">
       <a href="#/trucks/{{t.truck.id}}">
         <div class="truck-box">
         <!-- set this divs background image to be the truck image we want -->
         </div> 
       </a> 
-        <span class="font-secondary blue h3"><a href="#/trucks/{{t.truck.id}}">{{t.truck.name}}</a></span>
+        <a href="#/trucks/{{t.truck.id}}"><span class="font-secondary blue h3">{{t.truck.name}}</span></a>
         <span class="brown h3">|</span>
         <span class="font-secondary gray h3"> {{t.distance | number: 1}} miles</span>
     </div>
   </div>
 
 <!-- Pagination controls -->
+<pager total-items="markers.length" previous-text="<" next-text=">" items-per-page=6 ng-model="home.currentPage" ng-change="home.pageChanged()"></pager>
   <br>
   <div class="centered">
     <pagination total-items="markers.length" ng-model='home.currentPage' items-per-page=6 ng-change="home.pageChanged()"></pagination>
   </div>
-
 </div>
 
-<style>
-  .truck-box {
-    width: 300px;
-    height: 155px;
-    margin: auto;
-    margin-top: 20px;
-    background-image:url("assets/truck-white.png");
-    background-size:contain;
-  }
-  .truck-box:active {
-      width: 300px;
-    height: 155px;
-    margin: auto;
-    margin-top: 20px;
-    background-image:url("assets/truck-blue.png");
-    background-size:contain;
 
-  }
-  .centered {
-    margin: auto;
-    text-align: center;
-  }
-
-  .filters {
-    padding: 20px 0;
-    margin: 10px 0 !important;
-    background-color: gray;
-  }
-  .blue {
-    color: #03D9FD;
-  }
-  .brown {
-    color: brown;
-  }
-  .gray {
-    color: gray;
-  }
-  .black-bg {
-    background-color: black;
-  }
-  p.font-primary > strong {
-    font-size: 65px;
-  }
-
-  .centered-results {
-    text-align: center;
-    line-height: 1px;
-    margin-bottom: -125px;
-  }
-  p.h1.brown {
-    margin-top: -56px;
-  }
-  p.h1.font-secondary {
-    margin-top: -25px;
-    font-size: 80px;
-    color: white;
-    padding-left: 5px;
-  }
-  .marker-count {
-    display: inline-block;
-    position: relative;
-    top: -161px;
-    right: -155px;
-  }
-
-</style>

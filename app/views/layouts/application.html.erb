@@ -22,6 +22,9 @@
       <ul class="nav navbar-nav font-secondary">
         <% if current_user %>
           <li ><%= link_to "Logout", logout_path %></li>
+          <li>
+            <a ui-sref='home.truck-graph'>Truck Graph</a>
+          </li>          
           <% if session[:truck_id] %>
             <li><%= link_to "Dashboard", truck_account_path(current_user) %></li>
           <% end %>
@@ -29,9 +32,12 @@
           <li><%= link_to "Login", login_path %></li> 
           <li><%= link_to "Sign-up", signup_path %></li>
           <li><%= link_to "Sign-up truck", truck_signup_path %></li>
+          <li>
+            <a ui-sref='home.truck-graph'>Truck Graph</a>
+          </li>
         <% end %>
       </ul> 
-      <a>
+      <a id="tagline">
         <%= image_tag "tagline-02.png", width:'600' %>
       </a>       
     </div>
@@ -41,8 +47,9 @@
 <div class="navbar navbar-default"></div>
 
 
-<div class="font-primary">Truck Hunt</div>
-<div class="font-secondary">the truck stops here</div>
+<div class="empty-division">
+</div>
+   
 </div>
 
 <script>
