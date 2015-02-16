@@ -1,1780 +1,1784 @@
-
+<div class="fluid-container truck-graph">
+ 
   <a class="btn btn-info btn-lg x" ui-sref="home.trucks"><span class="glyphicon glyphicon-remove"></span></a>
 
-<!-- Style and Div shared by  -->
+  <!-- Style and Div shared by  -->
 
-<div class="fluid-container">
-<style>
-  
-  body, h1 {
-      color: #05dbfc;
-      font-family: 'Duckhunt', Helvetica, sans-serif;
-      font-weight: 500;
-  }
-  h2 {
+
+  <style>
+    
+    body, h1 {
+        color: #05dbfc;
+        font-family: 'Duckhunt', Helvetica, sans-serif;
+        font-weight: 500;
+    }
+    h2 {
+        color: #bd876f;
+        font-family: 'Haettenschwieler', Helvetica, sans-serif;
+        font-weight: 300;
+    }
+    h3 {
+        color: #05dbfc;
+        font-family: 'Haettenschwieler', Helvetica, sans-serif;
+        font-weight: 300;
+        font-size: 2em;
+        line-height: 1em;
+    }
+    #graph {
+        float: left;
+        position: relative;
+        border-radius: 10px;
+    }
+    #notes {
+        float: left;
+        margin-left: 20px;
+        background-color: lightgrey;
+        border-radius: 25px;
+        text-align: center;
+    }
+    #notes li {
       color: #bd876f;
       font-family: 'Haettenschwieler', Helvetica, sans-serif;
-      font-weight: 300;
-  }
-  h3 {
-      color: #05dbfc;
-      font-family: 'Haettenschwieler', Helvetica, sans-serif;
-      font-weight: 300;
-      font-size: 2em;
-      line-height: 1em;
-  }
-  #graph {
-      float: left;
-      position: relative;
-      border-radius: 10px;
-  }
-  #notes {
-      float: left;
-      margin-left: 20px;
-      background-color: lightgrey;
-      border-radius: 25px;
-      text-align: center;
-  }
-  #notes li {
-    color: #bd876f;
-    font-family: 'Haettenschwieler', Helvetica, sans-serif;
-    font-size: 1.7em;
-    font-weight: 200;
-    color: black;
-    font-style: italic;
-    line-height: 1em;   
-  }
-  h1, h2 {
-      margin: 0;
-  }
-  h1 {
-      font-size: 3.6em;
-      margin-top: .8em;
-      margin-bottom: 0.4em;
-  }
-  h2 {
-      font-size: 2.2em;
-      margin-bottom: 1em;
-  }
-  .artwork img {
-      border: 1px solid #fff;
-      -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
-      -moz-box-shadow: rgba(0,0,0,.3) 0 3px 5px;
-      border-color: #a2a2a2    9;
-  }
-  ul {
-      list-style: none;
-      padding-left: 0;
-  }
-  li {
-      padding-top: 0.2em;
-  }
-  .node circle, circle.node {
-      cursor:       pointer;
-      fill:         #ccc;
-      stroke:       #fff;
-      stroke-width: 3px;
-  }
-  .edge line, line.edge {
-      cursor:       pointer;
-      stroke:       #aaa;
-      stroke-width: 1.5px;
-  }
-  .labelNode text, text.labelNode {
-      cursor:       pointer;
-      fill:        #444;
-      font-size:   11px;
-      font-weight: normal;
-  }
-  ul.connection {
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: normal;
-      padding: 10px;
-      position: absolute;
-  }
-  ul.connection:before,
-  ul.connection:after {
-      border: 10px solid transparent;
-      content: '';
-      position: absolute;
-  }
-  ul.connection:before {
-      border-bottom-color: #f0f0f0;
-      top: -19px;
-      left: 20px;
-      z-index: 2;
-  }
-  ul.connection:after {
-      border-bottom-color: rgba(0, 0, 0, 0.2);
-      top: -21px;
-      left: 20px;
-      z-index: 1;
-  }
+      font-size: 1.7em;
+      font-weight: 200;
+      color: black;
+      font-style: italic;
+      line-height: 1em;   
+    }
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-size: 3.6em;
+        margin-top: .8em;
+        margin-bottom: 0.4em;
+    }
+    h2 {
+        font-size: 2.2em;
+        margin-bottom: 1em;
+    }
+    .artwork img {
+        border: 1px solid #fff;
+        -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
+        -moz-box-shadow: rgba(0,0,0,.3) 0 3px 5px;
+        border-color: #a2a2a2    9;
+    }
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    li {
+        padding-top: 0.2em;
+    }
+    .node circle, circle.node {
+        cursor:       pointer;
+        fill:         #ccc;
+        stroke:       #fff;
+        stroke-width: 3px;
+    }
+    .edge line, line.edge {
+        cursor:       pointer;
+        stroke:       #aaa;
+        stroke-width: 1.5px;
+    }
+    .labelNode text, text.labelNode {
+        cursor:       pointer;
+        fill:        #444;
+        font-size:   11px;
+        font-weight: normal;
+    }
+    ul.connection {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: normal;
+        padding: 10px;
+        position: absolute;
+    }
+    ul.connection:before,
+    ul.connection:after {
+        border: 10px solid transparent;
+        content: '';
+        position: absolute;
+    }
+    ul.connection:before {
+        border-bottom-color: #f0f0f0;
+        top: -19px;
+        left: 20px;
+        z-index: 2;
+    }
+    ul.connection:after {
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        top: -21px;
+        left: 20px;
+        z-index: 1;
+    }
 
-  ul.connection.hidden {
-      display: none;
-  }
-</style>
+    ul.connection.hidden {
+        display: none;
+    }
+  </style>
 
-<div id='container'>
-    <div id='graph'></div>
-    <div id='notes'></div>
-    <h2><%#= link_to "User's Favorites", "/force06", class: 'button' %></h2>
-    <h2><button onclick="graphTransition()">GRAPHSWAP</button></h2>    
-</div>
-<!-- Trucks connected by user favorites --> 
+  <div id='container'>
+      <div id='graph-name'>
+        <h1>Favorites Graph</h1>
+      <div>
+      <div id='graph'></div>
+      <div id='notes'></div>
+      <h2><%#= link_to "User's Favorites", "/force06", class: 'button' %></h2>
+      <h2><button onclick="graphTransition()">GRAPHSWAP</button></h2>    
+  </div>
 
-<script>
-  var graphTransition;
-    
-  // Function that defines Trucks connection to User favorites
+  <!-- Trucks connected by user favorites --> 
 
-  function TrucksGraphCreate(data, selectedTruck){
-      // Define the dimensions of the visualization. We're using
-      // a size that's convenient for displaying the graphic on
-      // http://jsDataV.is
-
-      var width = 520,
-          height = 440;
-
-      // var width = 586,
-      //     height = 620;
-
-      // Visual properties of the graph are next. We need to make
-      // those that are going to be animated accessible to the
-      // JavaScript.
-
-      var labelFill = '#444';
-      var adjLabelFill = '#aaa';
-      var edgeStroke = '#bd876f';
-      var nodeFill = '#ccc';
-      var nodeRadius = 15;
-      var selectedNodeRadius = 45;
-
-      var linkDistance = Math.min(width,height)/4;
-
-      //variable for setting initial selected node
-      var savedTruckNode;
-
-      // Find the main graph container.
-
-      var graph = d3.select('#graph');
-
-      // Create the SVG container for the visualization and
-      // define its dimensions.
-
-      var svg = graph.append('svg')
-          .attr('width', width)
-          .attr('height', height)
-          .style('background-color', "black")
-          .style('border-radius', 25);
-
-      // Select the container for the notes and dimension it.
-
-      var notes = d3.select('#notes')
-          .style({
-              'width': 620-width/6 + 'px',
-              'height': height + 'px'
-          });
-
-      // Utility function to update the position properties
-      // of an arbtrary edge that's part of a D3 selection.
-      // The optional parameter is the array of nodes for
-      // the edges. If present, the source and target properties
-      // are assumed to be indices in this array rather than
-      // direct references.
-
-      var positionEdge = function(edge, nodes) {
-          edge.attr('x1', function(d) {
-              return nodes ? nodes[d.source].x : d.source.x;
-          }).attr('y1', function(d) {
-              return nodes ? nodes[d.source].y : d.source.y;
-          }).attr('x2', function(d) {
-              return nodes ? nodes[d.target].x : d.target.x;
-          }).attr('y2', function(d) {
-              return nodes ? nodes[d.target].y : d.target.y;
-          });
-      };
-
-      // Utility function to update the position properties
-      // of an arbitrary node that's part of a D3 selection.
-
-      var positionNode = function(node) {
-          node.attr('transform', function(d) {
-              return 'translate(' + d.x + ',' + d.y + ')';
-          });
-      };
-
-      // Utility function to position text associated with
-      // a label pseudo-node. The optional third parameter
-      // requests transition to the specified fill color.
-
-      var positionLabelText = function(text, pseudonode, fillColor) {
-
-          // What's the width of the text element?
-
-          var textWidth = text.getBBox().width;
-
-          // How far is the pseudo-node from the real one?
-
-          var diffX = pseudonode.x - pseudonode.node.x;
-          var diffY = pseudonode.y - pseudonode.node.y;
-          var dist = Math.sqrt(diffX * diffX + diffY * diffY);
-
-          // Shift in the x-direction a fraction of the text width
-
-          var shiftX = textWidth * (diffX - dist) / (dist * 2);
-          shiftX = Math.max(-textWidth, Math.min(0, shiftX));
-
-          var shiftY = pseudonode.node.selected ? selectedNodeRadius : nodeRadius;
-          shiftY = 0.5 * shiftY * diffY/Math.abs(diffY);
-
-          var select = d3.select(text);
-          if (fillColor) {
-              select = select.transition().style('fill', fillColor);
-          }
-          select.attr('transform', 'translate(' + shiftX + ',' + shiftY + ')');
-      };
+  <script>
+    var graphTransition;
       
-      // Find the graph nodes from the data set. Each
-      // album is a separate node.
+    // Function that defines Trucks connection to User favorites
 
-      var nodes = data.map(function(entry, idx, list) {
+    function TrucksGraphCreate(data, selectedTruck){
+        // Define the dimensions of the visualization. We're using
+        // a size that's convenient for displaying the graphic on
+        // http://jsDataV.is
 
-          // This iteration returns a new object for
-          // each node.
+        var width = 520,
+            height = 440;
 
-          var node = {};
+        // var width = 586,
+        //     height = 620;
 
-         // // We retain some of the truck's properties.
+        // Visual properties of the graph are next. We need to make
+        // those that are going to be animated accessible to the
+        // JavaScript.
 
-          node.name    = entry.name;
-          node.subtitle = entry.genre;
-          node.subtitle = entry.twitter_handle;
-          node.image    = entry.cover;
-          node.url      = entry.website;
-          node.color    = entry.color;
-          node.text     = entry.text;
+        var labelFill = '#444';
+        var adjLabelFill = '#aaa';
+        var edgeStroke = '#bd876f';
+        var nodeFill = '#ccc';
+        var nodeRadius = 15;
+        var selectedNodeRadius = 45;
 
-          // We'll also copy the users, again using
-          // a more neutral property. At the risk of
-          // some confusion, we're going to use the term
-          // "link" to refer to an individual connection
-          // between nodes, and we'll use the more
-          // mathematically correct term "edge" to refer
-          // to a line drawn between nodes on the graph.
-          // (This may be confusing because D3 refers to
-          // the latter as "links."
+        var linkDistance = Math.min(width,height)/4;
 
-          node.links = entry.users.slice(0);
+        //variable for setting initial selected node
+        var savedTruckNode;
 
-          // As long as we're iterating through the nodes
-          // array, take the opportunity to create an
-          // initial position for the nodes. Somewhat
-          // arbitrarily, we start the nodes off in a
-          // circle in the center of the container.
+        // Find the main graph container.
 
-            var radius = 0.4 * Math.min(height,width);
-            var theta = idx*2*Math.PI / list.length;
-            node.x = (width/2) + radius*Math.sin(theta);
-            node.y = (height/2) + radius*Math.cos(theta);
+        var graph = d3.select('#graph');
 
-          // Return the newly created object so it can be
-          // added to the nodes array.
+        // Create the SVG container for the visualization and
+        // define its dimensions.
 
-          if(node.name == selectedTruck)
-            savedTruckNode = node;
-          return node;
-      });
+        var svg = graph.append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .style('background-color', "black")
+            .style('border-radius', 25);
 
-      // Identify all the indivual links between nodes on
-      // the graph. As noted above, we're using the term
-      // "link" to refer to a single connection. As we'll
-      // see below, we'll call lines drawn on the graph
-      // (which may represent a combination of multiple
-      // links) "edges" in a nod to the more mathematically
-      // minded.
+        // Select the container for the notes and dimension it.
 
-      var links = [];
+        var notes = d3.select('#notes')
+            .style({
+                'width': 620-width/6 + 'px',
+                'height': height + 'px'
+            });
 
-      // Start by iterating through the trucks.
+        // Utility function to update the position properties
+        // of an arbtrary edge that's part of a D3 selection.
+        // The optional parameter is the array of nodes for
+        // the edges. If present, the source and target properties
+        // are assumed to be indices in this array rather than
+        // direct references.
 
-      data.forEach(function(srcNode, srcIdx, srcList) {
+        var positionEdge = function(edge, nodes) {
+            edge.attr('x1', function(d) {
+                return nodes ? nodes[d.source].x : d.source.x;
+            }).attr('y1', function(d) {
+                return nodes ? nodes[d.source].y : d.source.y;
+            }).attr('x2', function(d) {
+                return nodes ? nodes[d.target].x : d.target.x;
+            }).attr('y2', function(d) {
+                return nodes ? nodes[d.target].y : d.target.y;
+            });
+        };
 
-          // For each truck, iterate through the users.
+        // Utility function to update the position properties
+        // of an arbitrary node that's part of a D3 selection.
 
-          srcNode.users.forEach(function(srcLink) {
+        var positionNode = function(node) {
+            node.attr('transform', function(d) {
+                return 'translate(' + d.x + ',' + d.y + ')';
+            });
+        };
 
-              // For each user in the "src" truck, iterate
-              // through the remaining trucks in the list.
+        // Utility function to position text associated with
+        // a label pseudo-node. The optional third parameter
+        // requests transition to the specified fill color.
 
-              var linkCounter = 0;
+        var positionLabelText = function(text, pseudonode, fillColor) {
 
-              for (var tgtIdx = srcIdx + 1;
-                       tgtIdx < srcList.length;
-                       tgtIdx++) {
+            // What's the width of the text element?
 
-                  // Use a variable to refer to the "tgt"
-                  // truck for convenience.
+            var textWidth = text.getBBox().width;
 
-                  var tgtNode = srcList[tgtIdx];
+            // How far is the pseudo-node from the real one?
 
-                  // Is there any user in the "tgt"
-                  // truck that matches the user we're
-                  // currently considering from the "src"
-                  // truck?
+            var diffX = pseudonode.x - pseudonode.node.x;
+            var diffY = pseudonode.y - pseudonode.node.y;
+            var dist = Math.sqrt(diffX * diffX + diffY * diffY);
 
-                  if (tgtNode.users.some(function(tgtLink){
-                      return tgtLink === srcLink;
-                  })) {
-                      // When we do find a match, add a new
-                      // link to the links counter, create a link if the counte is more than 3.
-                      linkCounter++;
+            // Shift in the x-direction a fraction of the text width
 
-                      if(linkCounter >= 1){
-                 
-                        links.push({
-                            source: srcIdx,
-                            target: tgtIdx,
-                            link: srcLink
-                        });
-                      }
-                  }
-              }
-          });
-      });
+            var shiftX = textWidth * (diffX - dist) / (dist * 2);
+            shiftX = Math.max(-textWidth, Math.min(0, shiftX));
 
-      // Now create the edges for our graph. We do that by
-      // eliminating duplicates from the links array.
-
-      var edges = [];
-
-      // Iterate through the links array.
-
-      links.forEach(function(link) {
-
-          // Assume for now that the current link is
-          // unique.
-
-          var existingEdge = false;
-
-          // Look through the edges we've collected so
-          // far to see if the current link is already
-          // present.
-
-          for (var idx = 0; idx < edges.length; idx++) {
-
-              // A duplicate link has the same source
-              // and target values.
-
-              if ((link.source === edges[idx].source) &&
-                  (link.target === edges[idx].target)) {
-
-                  // When we find an existing link, remember
-                  // it.
-                  existingEdge = edges[idx];
-
-                  // And stop looking.
-
-                  break;
-              }
-          }
-
-          // If we found an existing edge, all we need
-          // to do is add the current link to it.
-
-          if (existingEdge) {
-
-              existingEdge.links.push(link.link);
-
-          } else {
-
-              // If there was no existing edge, we can
-              // create one now.
-
-              edges.push({
-                  source: link.source,
-                  target: link.target,
-                  links: [link.link]
-              });
-          }
-      });
-
-      // Start the creation of the graph by adding the edges.
-      // We add these first so they'll appear "underneath"
-      // the nodes.
-
-      var edgeSelection = svg.selectAll('.edge')
-          .data(edges)
-          .enter()
-          .append('line')
-          .classed('edge', true)
-          .style('stroke', edgeStroke)
-          .style("stroke-dasharray", ("1, 1"))
-          .call(positionEdge, nodes);
-
-      // Next up are the nodes.
-
-      var nodeSelection = svg.selectAll('.node')
-          .data(nodes)
-          .enter()
-          .append('g')
-          .classed('node', true)
-          .call(positionNode);
-
-      nodeSelection.append('circle')
-          .attr('r', nodeRadius)
-          .attr('data-node-index', function(d,i) { return i;})
-          .style('fill', nodeFill)
-
-      // Now that we have our main selections (edges and
-      // nodes), we can create some subsets of those
-      // selections that will be helpful. Those subsets
-      // will be tied to individual nodes, so we'll
-      // start by iterating through them. We do that
-      // in two separate passes.
-
-      nodeSelection.each(function(node){
-
-          // First let's identify all edges that are
-          // incident to the node. We collect those as
-          // a D3 selection so we can manipulate the
-          // set easily with D3 utilities.
-
-          node.incidentEdgeSelection = edgeSelection
-              .filter(function(edge) {
-                  return nodes[edge.source] === node ||
-                         nodes[edge.target] === node;
-              });
-      });
-
-      // Now make a second pass through the nodes.
-
-      nodeSelection.each(function(node){
-
-          // For this pass we want to find all adjacencies.
-          // An adjacent node shares an edge with the
-          // current node.
-
-          node.adjacentNodeSelection = nodeSelection
-              .filter(function(otherNode){
-
-                  // Presume that the nodes are not adjacent.
-                  var isAdjacent = false;
-
-                  // We can't be adjacent to ourselves.
-
-                  if (otherNode !== node) {
-
-                      // Look the incident edges of both nodes to
-                      // see if there are any in common.
-
-                      node.incidentEdgeSelection.each(function(edge){
-                          otherNode.incidentEdgeSelection.each(function(otherEdge){
-                              if (edge === otherEdge) {
-                                  isAdjacent = true;
-                              }
-                          });
-                      });
-
-                  }
-
-                  return isAdjacent;
-              });
-
-      });
-
-      // Next we create a array for the node labels.
-      // We're going to use a "hidden" force layout to
-      // position the labels so they don't overlap
-      // each other. ("Hidden" because the links won't
-      // be visible.)
-
-      var labels = [];
-      var labelLinks = [];
-
-      nodes.forEach(function(node, idx){
-
-          // For each node on the graph we create
-          // two pseudo-nodes for its label. Once
-          // pseudo-node will be anchored to the
-          // center of the real node, while the
-          // second will be linked to that node.
-
-          // Add the pseudo-nodes to their array.
-
-          labels.push({node: node});
-          labels.push({node: node});
-
-          // And create a link between them.
-
-          labelLinks.push({
-              source: idx * 2,
-              target: idx * 2 + 1
-          });
-      });
-
-      // Construct the selections for the label layout.
-
-      // There's no need to add any markup for the
-      // pseudo-links between the label nodes, but
-      // we do need a selection so we can run the
-      // force layout.
-
-      var labelLinkSelection = svg.selectAll('line.labelLink')
-          .data(labelLinks);
-
-      // The label pseud-nodes themselves are just
-      // `<g>` containers.
-
-      var labelSelection = svg.selectAll('g.labelNode')
-          .data(labels)
-          .enter()
-          .append('g')
-              .classed('labelNode',true);
-
-      // Now add the text itself. Of the paired
-      // pseudo-nodes, only odd ones get the text
-      // elements.
-
-      labelSelection.append('text')
-          .text(function(d, i) {
-              return i % 2 == 0 ? '' : d.node.name;
-          })
-          .attr('data-node-index', function(d, i){
-              return i % 2 == 0 ? 'none' : Math.floor(i/2);
-          });
-
-      // The last bit of markup are the lists of
-      // connections for each link.
-
-      var connectionSelection = graph.selectAll('ul.connection')
-          .data(edges)
-          .enter()
-          .append('ul')
-          .classed('connection hidden', true)
-          .attr('data-edge-index', function(d,i) {return i;});
-
-      //adds  
-      connectionSelection.each(function(connection){
-          var selection = d3.select(this);
-          connection.links.forEach(function(link){
-              selection.append('li')
-                .insert("a")
-                .on("click", function(){ 
-                  graphTransition(link)
-                })
-                .text(link);
-          })
-      })
-
-      // Create the main force layout.
-
-      var setCharge = -1000;
-
-      var force = d3.layout.force()
-          .size([width, height])
-          .nodes(nodes)
-          .links(edges)
-          .linkDistance(function(){
-            return linkDistance
-          })
-          .charge(function(){
-            return setCharge
-          });
-      // Create the force layout for the labels.
-
-      var labelForce = d3.layout.force()
-          .size([width, height])
-          .nodes(labels)
-          .links(labelLinks)
-          .gravity(0)
-          .linkDistance(0)
-          .linkStrength(0.8)
-          .charge(-100);
-
-      // Let users drag the nodes.
-
-      nodeSelection.call(force.drag);
-
-      // Function to handle clicks on node elements
-
-      var nodeClicked = function(node) {
-
-          // Ignore events based on dragging.
-
-          // if (d3.event.defaultPrevented) return;
-
-          // Remember whether or not the clicked
-          // node is currently selected.
-
-          var selected = node.selected;
-
-          // Keep track of the desired text color.
-
-          var fillColor;
-
-          // In all cases we start by resetting
-          // all the nodes and edges to their
-          // de-selected state. We may override
-          // this transition for some nodes and
-          // edges later.
-
-          nodeSelection
-              .each(function(node) { node.selected = false; })
-              .selectAll('circle')
-                  .transition()
-                  .attr('r', nodeRadius)
-                  .style('fill', nodeFill)
-                  .duration(500);
-
-
-          edgeSelection
-              .transition()
-              .style('stroke', edgeStroke)
-              .style('opacity', .5);
-
-          labelSelection
-              .transition()
-              .style('opacity', 0);
-
-          // Now see if the node wasn't previously selected.
-
-          if (!selected) {
-
-              // This node wasn't selected before, so
-              // we want to select it now. That means
-              // changing the styles of some of the
-              // elements in the graph.
-
-              // First we transition the incident edges.
-
-              node.incidentEdgeSelection
-                  .transition()
-                  .style('stroke', node.color);
-
-              // Now we transition the adjacent nodes.
-
-              node.adjacentNodeSelection.selectAll('circle')
-                  .transition()
-                  .attr('r', nodeRadius)
-                  .style('fill', node.color);
-
-              labelSelection
-                  .filter(function(label) {
-                      var adjacent = false;
-                      node.adjacentNodeSelection.each(function(d){
-                          if (label.node === d) {
-                              adjacent = true;
-                          }
-                      })
-                      return adjacent;
-                  })
-                  .transition()
-                  .style('opacity', 1)
-                  .selectAll('text')
-                      .style('fill', adjLabelFill);
-
-              // And finally, transition the node itself.
-
-              d3.selectAll('circle[data-node-index="'+node.index+'"]')
-                  .transition()
-                  .attr('r', selectedNodeRadius)
-                  .style('fill', node.color);
-
-              // Make sure the node's label is visible
-
-              labelSelection
-                  .filter(function(label) {return label.node === node;})
-                  .transition()
-                  .style('opacity', 1);
-
-              // And note the desired color for bundling with
-              // the transition of the label position.
-
-              fillColor = node.text;
-
-              // Delete the current notes section to prepare
-              // for new information.
-
-              notes.selectAll('*').remove();
-
-              // Fill in the notes section with informationm
-              // from the node. Because we want to transition
-              // this to match the transitions on the graph,
-              // we first set it's opacity to 0.
-
-              notes.style({'opacity': 0});
-
-              // Now add the notes content.
-
-              notes.append('h1').text(node.name);
-              notes.append('h2').text("@" + node.subtitle);
-              if (node.url && node.image) {
-                  notes.append('div')
-                      .classed('artwork',true)
-                      .append('a')
-                      .attr('href', node.url)
-                      .append('img')
-                          .attr('src', node.image);
-              }
-              notes.append('h3').text(node.name + "'s Favorite Users:")          
-              var list = notes.append('ul');
-              if (node.links == 0){
-              list.append('li')
-                .text("there are no Favorite User's..yet")
-              }
-              node.links.forEach(function(link){
-                  list.append('li')
-                      .text(link);
-              })
-
-              // With the content in place, transition
-              // the opacity to make it visible.
-
-              notes.transition().style({'opacity': 1});
-
-          } else {
-
-              // Since we're de-selecting the current
-              // node, transition the notes section
-              // and then remove it.
-
-              notes.transition()
-                  .style({'opacity': 0})
-                  .each('end', function(){
-                      notes.selectAll('*').remove();
-                  });
-
-              // Transition all the labels to their
-              // default styles.
-
-              labelSelection
-                  .transition()
-                  .style('opacity', 1)
-                  .selectAll('text')
-                      .style('fill', labelFill);
-
-              // The fill color for the current node's
-              // label must also be bundled with its
-              // position transition.
-
-              fillColor = labelFill;
-          }
-
-          // Toggle the selection state for the node.
-
-          node.selected = !selected;
-
-          // Update the position of the label text.
-
-          var text = d3.select('text[data-node-index="'+node.index+'"]').node();
-          var label = null;
-          labelSelection.each(function(d){
-              if (d.node === node) { label = d; }
-          })
-
-          if (text && label) {
-              positionLabelText(text, label, fillColor);
-          }
-
-      };
-
-      // Function to handle click on edges.
-
-      var edgeClicked = function(edge, idx) {
-
-          // Remember the current selection state of the edge.
-
-          var selected = edge.selected;
-
-          // Transition all connections to hidden. If the
-          // current edge needs to be displayed, it's transition
-          // will be overridden shortly.
-
-          connectionSelection
-              .each(function(edge) { edge.selected = false; })
-              .transition()
-              .style('opacity', 0)
-              .each('end', function(){
-                  d3.select(this).classed('hidden', true);
-              });
-
-          // If the current edge wasn't selected before, we
-          // want to transition it to the selected state now.
-
-          if (!selected) {
-              d3.select('ul.connection[data-edge-index="'+idx+'"]')
-                  .classed('hidden', false)
-                  .style('opacity', 0)
-                  .transition()
-                  .style('opacity', 1);
-          }
-
-          // Toggle the resulting selection state for the edge.
-
-          edge.selected = !selected;
-
-      };
-
-      // Handle clicks on the nodes.
-
-      nodeSelection.on('click', nodeClicked);
-
-      labelSelection.on('click', function(pseudonode) {
-          nodeClicked(pseudonode.node);
-      });
-
-      // Handle clicks on the edges.
-
-      edgeSelection.on('click', edgeClicked);
-      connectionSelection.on('click', edgeClicked);
-
-      // Animate the force layout.
-
-      force.on('tick', function() {
-
-          // Constrain all the nodes to remain in the
-          // graph container.
-
-          nodeSelection.each(function(node) {
-              node.x = Math.max(node.x, 2*selectedNodeRadius);
-              node.y = Math.max(node.y, 2*selectedNodeRadius);
-              node.x = Math.min(node.x, width-2*selectedNodeRadius);
-              node.y = Math.min(node.y, height-2*selectedNodeRadius);
-          });
-
-          // Kick the label layout to make sure it doesn't
-          // finish while the main layout is still running.
-
-          labelForce.start();
-
-          // Calculate the positions of the label nodes.
-
-          labelSelection.each(function(label, idx) {
-
-              // Label pseudo-nodes come in pairs. We
-              // treat odd and even nodes differently.
-
-              if(idx % 2) {
-
-                  // Odd pseudo-nodes have the actual text.
-                  // That text needs a real position. The
-                  // pseudo-node itself we leave to the
-                  // force layout to position.
-
-                  positionLabelText(this.childNodes[0], label);
-
-              } else {
-
-                  // Even pseudo-nodes (which have no text)
-                  // are fixed to the center of the
-                  // corresponding real node. This will
-                  // override the position calculated by
-                  // the force layout.
-
-                  label.x = label.node.x;
-                  label.y = label.node.y;
-
-              }
-          });
-
-          // Calculate the position for the connection lists.
-
-          connectionSelection.each(function(connection){
-              var x = (connection.source.x + connection.target.x)/2 - 27;
-              var y = (connection.source.y + connection.target.y)/2;
-              d3.select(this)
-                  .style({
-                      'top':  y + 'px',
-                      'left': x + 'px'
-                  });
-          });
-
-          // Update the positions of the nodes and edges.
-
-          nodeSelection.call(positionNode);
-          labelSelection.call(positionNode);
-          edgeSelection.call(positionEdge);
-          labelLinkSelection.call(positionEdge);
-
-      });
-
-      graphTransition = function(link){
-        force.stop();
-        linkDistance = 0;
-        setCharge = 0;
-        force.start();
-        window.setTimeout(function (){
-        d3.selectAll('svg')
-          .remove();
-        console.log(users); 
-        UsersGraphCreate(users,link);}, 1000)
-      };
-      // graphTransition = function(){
-      //   if(setCharge < 0) {
-      //     force.stop();
-      //     linkDistance = 0;
-      //     setCharge = 0;
-      //     force.start();
-      //     console.log(force);
-      //   } 
-      //   else {  
-      //     force.stop();
-      //     linkDistance = Math.min(width,height)/3;
-      //     setCharge = -1500;
-      //     force.start()
-      //     console.log(force);
-      //   }
-      // };
-   
-      // Start the layout computations.
-      force.start();
-      labelForce.start();
-      nodeClicked(savedTruckNode);
-  }
-  
-  // Function that defines Users connection to favorite Trucks
-
-  function UsersGraphCreate(data, selectedUser){
-      // Define the dimensions of the visualization. We're using
-      // a size that's convenient for displaying the graphic on
-      // http://jsDataV.is
-
-      console.log("is this data", data);
-
-      var width = 520,
-          height = 440;
-      
-      // var width = 586,
-      //     height = 620;
-          
-      //larger svg    
-      // var width = 1000,
-      //     height = 620;
-
-      // Visual properties of the graph are next. We need to make
-      // those that are going to be animated accessible to the
-      // JavaScript.
-
-      var labelFill = '#444';
-      var adjLabelFill = '#aaa';
-      var edgeStroke = '#bd876f';
-      var nodeFill = '#ccc';
-      var nodeRadius = 10;
-      var selectedNodeRadius = 30;
-
-      var linkDistance = Math.min(width,height)/4;
-      //variable for setting initial selected node
-      var savedUserNode;
-      // Find the main graph container.
-
-      var graph = d3.select('#graph');
-
-      // Create the SVG container for the visualization and
-      // define its dimensions.
-      // window.setTime(function (), 1000)      
-
-      var svg = graph.append('svg')
-          .attr('width', width)
-          .attr('height', height)
-          .style('background-color', "darkgrey")
-          .style('border-radius', 25);          
-
-      // Select the container for the notes and dimension it.
-
-      var notes = d3.select('#notes')
-          .style({
-              'width': 620-width/6 + 'px',
-              'height': height + 'px'
-          });
-
-      // Utility function to update the position properties
-      // of an arbtrary edge that's part of a D3 selection.
-      // The optional parameter is the array of nodes for
-      // the edges. If present, the source and target properties
-      // are assumed to be indices in this array rather than
-      // direct references.
-
-      var positionEdge = function(edge, nodes) {
-          edge.attr('x1', function(d) {
-              return nodes ? nodes[d.source].x : d.source.x;
-          }).attr('y1', function(d) {
-              return nodes ? nodes[d.source].y : d.source.y;
-          }).attr('x2', function(d) {
-              return nodes ? nodes[d.target].x : d.target.x;
-          }).attr('y2', function(d) {
-              return nodes ? nodes[d.target].y : d.target.y;
-          });
-      };
-
-      // Utility function to update the position properties
-      // of an arbitrary node that's part of a D3 selection.
-
-      var positionNode = function(node) {
-          node.attr('transform', function(d) {
-              return 'translate(' + d.x + ',' + d.y + ')';
-          });
-      };
-
-      // Utility function to position text associated with
-      // a label pseudo-node. The optional third parameter
-      // requests transition to the specified fill color.
-
-      var positionLabelText = function(text, pseudonode, fillColor) {
-
-          // What's the width of the text element?
-
-          var textWidth = text.getBBox().width;
-
-          // How far is the pseudo-node from the real one?
-
-          var diffX = pseudonode.x - pseudonode.node.x;
-          var diffY = pseudonode.y - pseudonode.node.y;
-          var dist = Math.sqrt(diffX * diffX + diffY * diffY);
-
-          // Shift in the x-direction a fraction of the text width
-
-          var shiftX = textWidth * (diffX - dist) / (dist * 2);
-          shiftX = Math.max(-textWidth, Math.min(0, shiftX));
-
-          var shiftY = pseudonode.node.selected ? selectedNodeRadius : nodeRadius;
-          shiftY = 0.5 * shiftY * diffY/Math.abs(diffY);
-
-          var select = d3.select(text);
-          if (fillColor) {
-              select = select.transition().style('fill', fillColor);
-          }
-          select.attr('transform', 'translate(' + shiftX + ',' + shiftY + ')');
-      };
-
-      // Define the data.
-
-      // data brought in from external source
-
+            var shiftY = pseudonode.node.selected ? selectedNodeRadius : nodeRadius;
+            shiftY = 0.5 * shiftY * diffY/Math.abs(diffY);
+
+            var select = d3.select(text);
+            if (fillColor) {
+                select = select.transition().style('fill', fillColor);
+            }
+            select.attr('transform', 'translate(' + shiftX + ',' + shiftY + ')');
+        };
         
-      // Find the graph nodes from the data set. Each
-      // album is a separate node.
+        // Find the graph nodes from the data set. Each
+        // album is a separate node.
 
-      var nodes = data.map(function(entry, idx, list) {
+        var nodes = data.map(function(entry, idx, list) {
 
-          // This iteration returns a new object for
-          // each node.
+            // This iteration returns a new object for
+            // each node.
 
-          var node = {};
+            var node = {};
 
-        
-         // // We retain some of the truck's properties.
+           // // We retain some of the truck's properties.
 
-          node.name     = entry.first_name + " " + entry.last_name[0] + ".";
-          node.first_na = entry.first_name;
-          node.subtitle = entry.email;
-          node.image    = entry.cover;
-          node.url      = entry.twitter_handle;
-          node.color    = entry.color;
-          node.text     = entry.text;
+            node.name    = entry.name;
+            node.subtitle = entry.genre;
+            node.subtitle = entry.twitter_handle;
+            node.image    = entry.cover;
+            node.url      = entry.website;
+            node.color    = entry.color;
+            node.text     = entry.text;
 
-          // We'll also copy the trucks, again using
-          // a more neutral property. At the risk of
-          // some confusion, we're going to use the term
-          // "link" to refer to an individual connection
-          // between nodes, and we'll use the more
-          // mathematically correct term "edge" to refer
-          // to a line drawn between nodes on the graph.
-          // (This may be confusing because D3 refers to
-          // the latter as "links."
+            // We'll also copy the users, again using
+            // a more neutral property. At the risk of
+            // some confusion, we're going to use the term
+            // "link" to refer to an individual connection
+            // between nodes, and we'll use the more
+            // mathematically correct term "edge" to refer
+            // to a line drawn between nodes on the graph.
+            // (This may be confusing because D3 refers to
+            // the latter as "links."
 
-          node.links = entry.trucks.slice(0);
+            node.links = entry.users.slice(0);
 
-          // As long as we're iterating through the nodes
-          // array, take the opportunity to create an
-          // initial position for the nodes. Somewhat
-          // arbitrarily, we start the nodes off in a
-          // circle in the center of the container.
+            // As long as we're iterating through the nodes
+            // array, take the opportunity to create an
+            // initial position for the nodes. Somewhat
+            // arbitrarily, we start the nodes off in a
+            // circle in the center of the container.
 
-            var radius = 0.4 * Math.min(height,width);
-            var theta = idx*2*Math.PI / list.length;
-            node.x = (width/2) + radius*Math.sin(theta);
-            node.y = (height/2) + radius*Math.cos(theta);
+              var radius = 0.4 * Math.min(height,width);
+              var theta = idx*2*Math.PI / list.length;
+              node.x = (width/2) + radius*Math.sin(theta);
+              node.y = (height/2) + radius*Math.cos(theta);
 
-          // Return the newly created object so it can be
-          // added to the nodes array.
-          if(node.name == selectedUser)
-            savedUserNode = node;
-          return node;
-      });
+            // Return the newly created object so it can be
+            // added to the nodes array.
 
-      // Identify all the indivual links between nodes on
-      // the graph. As noted above, we're using the term
-      // "link" to refer to a single connection. As we'll
-      // see below, we'll call lines drawn on the graph
-      // (which may represent a combination of multiple
-      // links) "edges" in a nod to the more mathematically
-      // minded.
+            if(node.name == selectedTruck)
+              savedTruckNode = node;
+            return node;
+        });
 
-      var links = [];
+        // Identify all the indivual links between nodes on
+        // the graph. As noted above, we're using the term
+        // "link" to refer to a single connection. As we'll
+        // see below, we'll call lines drawn on the graph
+        // (which may represent a combination of multiple
+        // links) "edges" in a nod to the more mathematically
+        // minded.
 
-      // Start by iterating through the albums.
+        var links = [];
 
-      data.forEach(function(srcNode, srcIdx, srcList) {
+        // Start by iterating through the trucks.
 
-          // For each album, iterate through the trucks.
+        data.forEach(function(srcNode, srcIdx, srcList) {
 
-          srcNode.trucks.forEach(function(srcLink) {
+            // For each truck, iterate through the users.
 
-              var linkCounter = 0;
-              // For each musican in the "src" album, iterate
-              // through the remaining albums in the list.
+            srcNode.users.forEach(function(srcLink) {
 
-              for (var tgtIdx = srcIdx + 1;
-                       tgtIdx < srcList.length;
-                       tgtIdx++) {
+                // For each user in the "src" truck, iterate
+                // through the remaining trucks in the list.
 
-                  // Use a variable to refer to the "tgt"
-                  // album for convenience.
+                var linkCounter = 0;
 
-                  var tgtNode = srcList[tgtIdx];
+                for (var tgtIdx = srcIdx + 1;
+                         tgtIdx < srcList.length;
+                         tgtIdx++) {
 
-                  // Is there any musician in the "tgt"
-                  // album that matches the musican we're
-                  // currently considering from the "src"
-                  // album?
+                    // Use a variable to refer to the "tgt"
+                    // truck for convenience.
 
-                  if (tgtNode.trucks.some(function(tgtLink){
-                      return tgtLink === srcLink;
-                  })) {
-                      // When we do find a match, add a new
-                      // link to the links counter, create a link if the counte is more than 3.
-                      linkCounter++;
+                    var tgtNode = srcList[tgtIdx];
 
-                      if(linkCounter >= 2){
-                 
-                        links.push({
-                            source: srcIdx,
-                            target: tgtIdx,
-                            link: srcLink
-                        });
-                      }
-                  }
-              }
-          });
-      });
+                    // Is there any user in the "tgt"
+                    // truck that matches the user we're
+                    // currently considering from the "src"
+                    // truck?
 
-      // Now create the edges for our graph. We do that by
-      // eliminating duplicates from the links array.
+                    if (tgtNode.users.some(function(tgtLink){
+                        return tgtLink === srcLink;
+                    })) {
+                        // When we do find a match, add a new
+                        // link to the links counter, create a link if the counte is more than 3.
+                        linkCounter++;
 
-      var edges = [];
-
-      // Iterate through the links array.
-
-      links.forEach(function(link) {
-
-          // Assume for now that the current link is
-          // unique.
-
-          var existingEdge = false;
-
-          // Look through the edges we've collected so
-          // far to see if the current link is already
-          // present.
-
-          for (var idx = 0; idx < edges.length; idx++) {
-
-              // A duplicate link has the same source
-              // and target values.
-
-              if ((link.source === edges[idx].source) &&
-                  (link.target === edges[idx].target)) {
-
-                  // When we find an existing link, remember
-                  // it.
-                  existingEdge = edges[idx];
-
-                  // And stop looking.
-
-                  break;
-              }
-          }
-
-          // If we found an existing edge, all we need
-          // to do is add the current link to it.
-
-          if (existingEdge) {
-
-              existingEdge.links.push(link.link);
-
-          } else {
-
-              // If there was no existing edge, we can
-              // create one now.
-
-              edges.push({
-                  source: link.source,
-                  target: link.target,
-                  links: [link.link]
-              });
-          }
-      });
-
-      // Start the creation of the graph by adding the edges.
-      // We add these first so they'll appear "underneath"
-      // the nodes.
-
-      var edgeSelection = svg.selectAll('.edge')
-          .data(edges)
-          .enter()
-          .append('line')
-          .classed('edge', true)
-          .style('stroke', edgeStroke)
-          .call(positionEdge, nodes);
-
-      // Next up are the nodes.
-
-      var nodeSelection = svg.selectAll('.node')
-          .data(nodes)
-          .enter()
-          .append('g')
-          .classed('node', true)
-          .call(positionNode);
-
-      nodeSelection.append('circle')
-          .attr('r', nodeRadius)
-          .attr('data-node-index', function(d,i) { return i;})
-          .style('fill', nodeFill)
-
-      // Now that we have our main selections (edges and
-      // nodes), we can create some subsets of those
-      // selections that will be helpful. Those subsets
-      // will be tied to individual nodes, so we'll
-      // start by iterating through them. We do that
-      // in two separate passes.
-
-      nodeSelection.each(function(node){
-
-          // First let's identify all edges that are
-          // incident to the node. We collect those as
-          // a D3 selection so we can manipulate the
-          // set easily with D3 utilities.
-
-          node.incidentEdgeSelection = edgeSelection
-              .filter(function(edge) {
-                  return nodes[edge.source] === node ||
-                         nodes[edge.target] === node;
-              });
-      });
-
-      // Now make a second pass through the nodes.
-
-      nodeSelection.each(function(node){
-
-          // For this pass we want to find all adjacencies.
-          // An adjacent node shares an edge with the
-          // current node.
-
-          node.adjacentNodeSelection = nodeSelection
-              .filter(function(otherNode){
-
-                  // Presume that the nodes are not adjacent.
-                  var isAdjacent = false;
-
-                  // We can't be adjacent to ourselves.
-
-                  if (otherNode !== node) {
-
-                      // Look the incident edges of both nodes to
-                      // see if there are any in common.
-
-                      node.incidentEdgeSelection.each(function(edge){
-                          otherNode.incidentEdgeSelection.each(function(otherEdge){
-                              if (edge === otherEdge) {
-                                  isAdjacent = true;
-                              }
+                        if(linkCounter >= 1){
+                   
+                          links.push({
+                              source: srcIdx,
+                              target: tgtIdx,
+                              link: srcLink
                           });
-                      });
+                        }
+                    }
+                }
+            });
+        });
 
-                  }
+        // Now create the edges for our graph. We do that by
+        // eliminating duplicates from the links array.
 
-                  return isAdjacent;
-              });
+        var edges = [];
 
-      });
+        // Iterate through the links array.
 
-      // Next we create a array for the node labels.
-      // We're going to use a "hidden" force layout to
-      // position the labels so they don't overlap
-      // each other. ("Hidden" because the links won't
-      // be visible.)
+        links.forEach(function(link) {
 
-      var labels = [];
-      var labelLinks = [];
+            // Assume for now that the current link is
+            // unique.
 
-      nodes.forEach(function(node, idx){
+            var existingEdge = false;
 
-          // For each node on the graph we create
-          // two pseudo-nodes for its label. Once
-          // pseudo-node will be anchored to the
-          // center of the real node, while the
-          // second will be linked to that node.
+            // Look through the edges we've collected so
+            // far to see if the current link is already
+            // present.
 
-          // Add the pseudo-nodes to their array.
+            for (var idx = 0; idx < edges.length; idx++) {
 
-          labels.push({node: node});
-          labels.push({node: node});
+                // A duplicate link has the same source
+                // and target values.
 
-          // And create a link between them.
+                if ((link.source === edges[idx].source) &&
+                    (link.target === edges[idx].target)) {
 
-          labelLinks.push({
-              source: idx * 2,
-              target: idx * 2 + 1
-          });
-      });
+                    // When we find an existing link, remember
+                    // it.
+                    existingEdge = edges[idx];
 
-      // Construct the selections for the label layout.
+                    // And stop looking.
 
-      // There's no need to add any markup for the
-      // pseudo-links between the label nodes, but
-      // we do need a selection so we can run the
-      // force layout.
+                    break;
+                }
+            }
 
-      var labelLinkSelection = svg.selectAll('line.labelLink')
-          .data(labelLinks);
+            // If we found an existing edge, all we need
+            // to do is add the current link to it.
 
-      // The label pseud-nodes themselves are just
-      // `<g>` containers.
+            if (existingEdge) {
 
-      var labelSelection = svg.selectAll('g.labelNode')
-          .data(labels)
-          .enter()
-          .append('g')
-              .classed('labelNode',true);
+                existingEdge.links.push(link.link);
 
-      // Now add the text itself. Of the paired
-      // pseudo-nodes, only odd ones get the text
-      // elements.
+            } else {
 
-      labelSelection.append('text')
-          .text(function(d, i) {
-              return i % 2 == 0 ? '' : d.node.title;
-          })
-          .attr('data-node-index', function(d, i){
-              return i % 2 == 0 ? 'none' : Math.floor(i/2);
-          });
+                // If there was no existing edge, we can
+                // create one now.
 
-      // The last bit of markup are the lists of
-      // connections for each link.
+                edges.push({
+                    source: link.source,
+                    target: link.target,
+                    links: [link.link]
+                });
+            }
+        });
 
-      var connectionSelection = graph.selectAll('ul.connection')
-          .data(edges)
-          .enter()
-          .append('ul')
-          .classed('connection hidden', true)
-          .attr('data-edge-index', function(d,i) {return i;});
+        // Start the creation of the graph by adding the edges.
+        // We add these first so they'll appear "underneath"
+        // the nodes.
 
-      connectionSelection.each(function(connection){
-          var selection = d3.select(this);
-          connection.links.forEach(function(link){
-              selection.append('li')
+        var edgeSelection = svg.selectAll('.edge')
+            .data(edges)
+            .enter()
+            .append('line')
+            .classed('edge', true)
+            .style('stroke', edgeStroke)
+            .style("stroke-dasharray", ("1, 1"))
+            .call(positionEdge, nodes);
+
+        // Next up are the nodes.
+
+        var nodeSelection = svg.selectAll('.node')
+            .data(nodes)
+            .enter()
+            .append('g')
+            .classed('node', true)
+            .call(positionNode);
+
+        nodeSelection.append('circle')
+            .attr('r', nodeRadius)
+            .attr('data-node-index', function(d,i) { return i;})
+            .style('fill', nodeFill)
+
+        // Now that we have our main selections (edges and
+        // nodes), we can create some subsets of those
+        // selections that will be helpful. Those subsets
+        // will be tied to individual nodes, so we'll
+        // start by iterating through them. We do that
+        // in two separate passes.
+
+        nodeSelection.each(function(node){
+
+            // First let's identify all edges that are
+            // incident to the node. We collect those as
+            // a D3 selection so we can manipulate the
+            // set easily with D3 utilities.
+
+            node.incidentEdgeSelection = edgeSelection
+                .filter(function(edge) {
+                    return nodes[edge.source] === node ||
+                           nodes[edge.target] === node;
+                });
+        });
+
+        // Now make a second pass through the nodes.
+
+        nodeSelection.each(function(node){
+
+            // For this pass we want to find all adjacencies.
+            // An adjacent node shares an edge with the
+            // current node.
+
+            node.adjacentNodeSelection = nodeSelection
+                .filter(function(otherNode){
+
+                    // Presume that the nodes are not adjacent.
+                    var isAdjacent = false;
+
+                    // We can't be adjacent to ourselves.
+
+                    if (otherNode !== node) {
+
+                        // Look the incident edges of both nodes to
+                        // see if there are any in common.
+
+                        node.incidentEdgeSelection.each(function(edge){
+                            otherNode.incidentEdgeSelection.each(function(otherEdge){
+                                if (edge === otherEdge) {
+                                    isAdjacent = true;
+                                }
+                            });
+                        });
+
+                    }
+
+                    return isAdjacent;
+                });
+
+        });
+
+        // Next we create a array for the node labels.
+        // We're going to use a "hidden" force layout to
+        // position the labels so they don't overlap
+        // each other. ("Hidden" because the links won't
+        // be visible.)
+
+        var labels = [];
+        var labelLinks = [];
+
+        nodes.forEach(function(node, idx){
+
+            // For each node on the graph we create
+            // two pseudo-nodes for its label. Once
+            // pseudo-node will be anchored to the
+            // center of the real node, while the
+            // second will be linked to that node.
+
+            // Add the pseudo-nodes to their array.
+
+            labels.push({node: node});
+            labels.push({node: node});
+
+            // And create a link between them.
+
+            labelLinks.push({
+                source: idx * 2,
+                target: idx * 2 + 1
+            });
+        });
+
+        // Construct the selections for the label layout.
+
+        // There's no need to add any markup for the
+        // pseudo-links between the label nodes, but
+        // we do need a selection so we can run the
+        // force layout.
+
+        var labelLinkSelection = svg.selectAll('line.labelLink')
+            .data(labelLinks);
+
+        // The label pseud-nodes themselves are just
+        // `<g>` containers.
+
+        var labelSelection = svg.selectAll('g.labelNode')
+            .data(labels)
+            .enter()
+            .append('g')
+                .classed('labelNode',true);
+
+        // Now add the text itself. Of the paired
+        // pseudo-nodes, only odd ones get the text
+        // elements.
+
+        labelSelection.append('text')
+            .text(function(d, i) {
+                return i % 2 == 0 ? '' : d.node.name;
+            })
+            .attr('data-node-index', function(d, i){
+                return i % 2 == 0 ? 'none' : Math.floor(i/2);
+            });
+
+        // The last bit of markup are the lists of
+        // connections for each link.
+
+        var connectionSelection = graph.selectAll('ul.connection')
+            .data(edges)
+            .enter()
+            .append('ul')
+            .classed('connection hidden', true)
+            .attr('data-edge-index', function(d,i) {return i;});
+
+        //adds  
+        connectionSelection.each(function(connection){
+            var selection = d3.select(this);
+            connection.links.forEach(function(link){
+                selection.append('li')
                   .insert("a")
                   .on("click", function(){ 
                     graphTransition(link)
                   })
                   .text(link);
-          })
-      })
-
-      // Create the main force layout.
-      var setCharge = -500;
-
-      var force = d3.layout.force()
-          .size([width, height])
-          .nodes(nodes)
-          .links(edges)
-          //controls link and node distance
-          .linkDistance(function(){
-            return linkDistance
-          })
-          .charge(function(){
-            return setCharge
-          });
-
-      // Create the force layout for the labels.
-
-      var labelForce = d3.layout.force()
-          .size([width, height])
-          .nodes(labels)
-          .links(labelLinks)
-          .gravity(0)
-          .linkDistance(0)
-          .linkStrength(0.8)
-          .charge(-100);
-
-      // Let trucks drag the nodes.
-
-      nodeSelection.call(force.drag);
-
-      // Function to handle clicks on node elements
-      var selectedNode ;
-      var nodeClicked = function(node) {
-          selectedNode = node;
-          // Ignore events based on dragging.
-          // uncomment to prevent dragging
-          // if (d3.event.defaultPrevented) return;
-
-          // Remember whether or not the clicked
-          // node is currently selected.
-
-          var selected = node.selected;
-
-          // Keep track of the desired text color.
-
-          var fillColor;
-
-          // In all cases we start by resetting
-          // all the nodes and edges to their
-          // de-selected state. We may override
-          // this transition for some nodes and
-          // edges later.
-
-          nodeSelection
-              .each(function(node) { node.selected = false; })
-              .selectAll('circle')
-                  .transition()
-                  .attr('r', nodeRadius)
-                  .style('fill', nodeFill)
-                  .duration(500)
-                  ;
-
-          edgeSelection
-              .transition()
-              .style('stroke', edgeStroke)
-              .style('opacity', .125);
-
-          labelSelection
-              .transition()
-              .style('opacity', 0);
-
-          // Now see if the node wasn't previously selected.
-          console.log(nodeSelection);
-          if (!selected) {
-
-              // This node wasn't selected before, so
-              // we want to select it now. That means
-              // changing the styles of some of the
-              // elements in the graph.
-
-              // First we transition the incident edges.
-
-              node.incidentEdgeSelection
-                  .transition()
-                  .style('stroke', node.color)
-                  .style('opacity', 1);
-
-              // Now we transition the adjacent nodes.
-
-              node.adjacentNodeSelection.selectAll('circle')
-                  .transition()
-                  .attr('r', nodeRadius)
-                  .style('fill', node.color);
-                  // Add Name to Selected and Adjacent Nodes
-                  // .append('text')
-                  //   .text(function(d, i) {
-                  //       return i % 2 == 0 ? '' : d.node.first_na;
-                  //   })
-                  //   .attr('data-node-index', function(d, i){
-                  //       return i % 2 == 0 ? 'none' : Math.floor(i/2);
-                  //   });
-
-              labelSelection
-                  .filter(function(label) {
-                      var adjacent = false;
-                      node.adjacentNodeSelection.each(function(d){
-                          if (label.node === d) {
-                              adjacent = true;
-                          }
-                      })
-                      return adjacent;
-                  })
-                  .transition()
-                  .style('opacity', 1)
-                  .selectAll('text')
-                      .style('fill', adjLabelFill);
-
-              // And finally, transition the node itself.
-
-              d3.selectAll('circle[data-node-index="'+node.index+'"]')
-                  .transition()
-                  .attr('r', selectedNodeRadius)
-                  .style('fill', node.color);
-
-              // Make sure the node's label is visible
-
-              labelSelection
-                  .filter(function(label) {return label.node === node;})
-                  .transition()
-                  .attr("xlink:href", "http://www.google.com")
-                  .style('opacity', 1);
-
-              // And note the desired color for bundling with
-              // the transition of the label position.
-
-              fillColor = node.text;
-
-              // Delete the current notes section to prepare
-              // for new information.
-
-              notes.selectAll('*').remove();
-
-              // Fill in the notes section with informationm
-              // from the node. Because we want to transition
-              // this to match the transitions on the graph,
-              // we first set it's opacity to 0.
-
-              notes.style({'opacity': 0});
-
-              // Now add the notes content.
-
-              notes.append('h1').text(node.name);
-              notes.append('h2').text(node.subtitle);
-              if (node.url && node.image) {
-                  notes.append('div')
-                      .classed('artwork',true)
-                      .append('a')
-                      .attr('href', node.url)
-                      .append('img')
-                          .attr('src', node.image);
-              }
-              notes.append('h3').text(node.name + "'s Favorite Trucks:")          
-              var list = notes.append('ul');
-              if (node.links == 0){
-              list.append('li')
-                .text(node.first_na + " doesn't have any Favorite Trucks.")
-              }
-              node.links.forEach(function(link){
-                  list.append('li')
-                      .text(link)
-                      .attr('href', node.truck_id);
-              })
-
-              // With the content in place, transition
-              // the opacity to make it visible.
-
-              notes.transition().style({'opacity': 1});
-
-          } else {
-
-              // Since we're de-selecting the current
-              // node, transition the notes section
-              // and then remove it.
-              edgeSelection
-                  .transition()
-                  .style('stroke', edgeStroke)
-                  .style('opacity', 1)
-                  .duration(750);
+            })
+        })
 
-              notes.transition()
-                  .style({'opacity': 0})
-                  .each('end', function(){
-                      notes.selectAll('*').remove();
-                  });
-
-              // Transition all the labels to their
-              // default styles.
+        // Create the main force layout.
 
-              labelSelection
-                  .transition()
-                  .style('opacity', 1)
-                  .selectAll('text')
-                      .style('fill', labelFill);
+        var setCharge = -1000;
 
-              // The fill color for the current node's
-              // label must also be bundled with its
-              // position transition.
+        var force = d3.layout.force()
+            .size([width, height])
+            .nodes(nodes)
+            .links(edges)
+            .linkDistance(function(){
+              return linkDistance
+            })
+            .charge(function(){
+              return setCharge
+            });
+        // Create the force layout for the labels.
 
-              fillColor = labelFill;
-          }
+        var labelForce = d3.layout.force()
+            .size([width, height])
+            .nodes(labels)
+            .links(labelLinks)
+            .gravity(0)
+            .linkDistance(0)
+            .linkStrength(0.8)
+            .charge(-100);
 
-          // Toggle the selection state for the node.
+        // Let users drag the nodes.
 
-          node.selected = !selected;
+        nodeSelection.call(force.drag);
 
-          // Update the position of the label text.
+        // Function to handle clicks on node elements
 
-          var text = d3.select('text[data-node-index="'+node.index+'"]').node();
-          var label = null;
-          labelSelection.each(function(d){
-              if (d.node === node) { label = d; }
-          })
+        var nodeClicked = function(node) {
 
-          if (text && label) {
-              positionLabelText(text, label, fillColor);
-          }
+            // Ignore events based on dragging.
 
-      };
+            // if (d3.event.defaultPrevented) return;
 
-      // Function to handle click on edges.
+            // Remember whether or not the clicked
+            // node is currently selected.
 
-      var edgeClicked = function(edge, idx) {
+            var selected = node.selected;
 
-          // Remember the current selection state of the edge.
+            // Keep track of the desired text color.
 
-          var selected = edge.selected;
+            var fillColor;
 
-          // Transition all connections to hidden. If the
-          // current edge needs to be displayed, it's transition
-          // will be overridden shortly.
+            // In all cases we start by resetting
+            // all the nodes and edges to their
+            // de-selected state. We may override
+            // this transition for some nodes and
+            // edges later.
 
-          connectionSelection
-              .each(function(edge) { edge.selected = false; })
-              .transition()
-              .style('opacity', 0)
-              .each('end', function(){
-                  d3.select(this).classed('hidden', true);
-              });
+            nodeSelection
+                .each(function(node) { node.selected = false; })
+                .selectAll('circle')
+                    .transition()
+                    .attr('r', nodeRadius)
+                    .style('fill', nodeFill)
+                    .duration(500);
+
+
+            edgeSelection
+                .transition()
+                .style('stroke', edgeStroke)
+                .style('opacity', .5);
+
+            labelSelection
+                .transition()
+                .style('opacity', 0);
 
-          // If the current edge wasn't selected before, we
-          // want to transition it to the selected state now.
+            // Now see if the node wasn't previously selected.
+
+            if (!selected) {
 
-          if (!selected) {
-              d3.select('ul.connection[data-edge-index="'+idx+'"]')
-                  .classed('hidden', false)
-                  .style('opacity', 0)
-                  .transition()
-                  .style('opacity', 1);
-          }
+                // This node wasn't selected before, so
+                // we want to select it now. That means
+                // changing the styles of some of the
+                // elements in the graph.
+
+                // First we transition the incident edges.
+
+                node.incidentEdgeSelection
+                    .transition()
+                    .style('stroke', node.color);
+
+                // Now we transition the adjacent nodes.
+
+                node.adjacentNodeSelection.selectAll('circle')
+                    .transition()
+                    .attr('r', nodeRadius)
+                    .style('fill', node.color);
+
+                labelSelection
+                    .filter(function(label) {
+                        var adjacent = false;
+                        node.adjacentNodeSelection.each(function(d){
+                            if (label.node === d) {
+                                adjacent = true;
+                            }
+                        })
+                        return adjacent;
+                    })
+                    .transition()
+                    .style('opacity', 1)
+                    .selectAll('text')
+                        .style('fill', adjLabelFill);
+
+                // And finally, transition the node itself.
+
+                d3.selectAll('circle[data-node-index="'+node.index+'"]')
+                    .transition()
+                    .attr('r', selectedNodeRadius)
+                    .style('fill', node.color);
+
+                // Make sure the node's label is visible
+
+                labelSelection
+                    .filter(function(label) {return label.node === node;})
+                    .transition()
+                    .style('opacity', 1);
 
-          // Toggle the resulting selection state for the edge.
+                // And note the desired color for bundling with
+                // the transition of the label position.
 
-          edge.selected = !selected;
+                fillColor = node.text;
 
-      };
+                // Delete the current notes section to prepare
+                // for new information.
 
-      // Handle clicks on the nodes.
+                notes.selectAll('*').remove();
+
+                // Fill in the notes section with informationm
+                // from the node. Because we want to transition
+                // this to match the transitions on the graph,
+                // we first set it's opacity to 0.
 
-      nodeSelection.on('click', nodeClicked);
+                notes.style({'opacity': 0});
 
-      labelSelection.on('click', function(pseudonode) {
-          nodeClicked(pseudonode.node);
-      });
+                // Now add the notes content.
+
+                notes.append('h1').text(node.name);
+                notes.append('h2').text("@" + node.subtitle);
+                if (node.url && node.image) {
+                    notes.append('div')
+                        .classed('artwork',true)
+                        .append('a')
+                        .attr('href', node.url)
+                        .append('img')
+                            .attr('src', node.image);
+                }
+                notes.append('h3').text(node.name + "'s Favorite Users:")          
+                var list = notes.append('ul');
+                if (node.links == 0){
+                list.append('li')
+                  .text("there are no Favorite User's..yet")
+                }
+                node.links.forEach(function(link){
+                    list.append('li')
+                        .text(link);
+                })
 
-      // Handle clicks on the edges.
+                // With the content in place, transition
+                // the opacity to make it visible.
 
-      edgeSelection.on('click', edgeClicked);
-      connectionSelection.on('click', edgeClicked);
+                notes.transition().style({'opacity': 1});
 
-      // Animate the force layout.
+            } else {
 
-      force.on('tick', function() {
+                // Since we're de-selecting the current
+                // node, transition the notes section
+                // and then remove it.
 
-          // Constrain all the nodes to remain in the
-          // graph container.
+                notes.transition()
+                    .style({'opacity': 0})
+                    .each('end', function(){
+                        notes.selectAll('*').remove();
+                    });
 
-          nodeSelection.each(function(node) {
-              node.x = Math.max(node.x, 2*selectedNodeRadius);
-              node.y = Math.max(node.y, 2*selectedNodeRadius);
-              node.x = Math.min(node.x, width-2*selectedNodeRadius);
-              node.y = Math.min(node.y, height-2*selectedNodeRadius);
-          });
+                // Transition all the labels to their
+                // default styles.
 
-          // Kick the label layout to make sure it doesn't
-          // finish while the main layout is still running.
+                labelSelection
+                    .transition()
+                    .style('opacity', 1)
+                    .selectAll('text')
+                        .style('fill', labelFill);
 
-          labelForce.start();
+                // The fill color for the current node's
+                // label must also be bundled with its
+                // position transition.
 
-          // Calculate the positions of the label nodes.
+                fillColor = labelFill;
+            }
 
-          labelSelection.each(function(label, idx) {
+            // Toggle the selection state for the node.
 
-              // Label pseudo-nodes come in pairs. We
-              // treat odd and even nodes differently.
+            node.selected = !selected;
 
-              if(idx % 2) {
+            // Update the position of the label text.
 
-                  // Odd pseudo-nodes have the actual text.
-                  // That text needs a real position. The
-                  // pseudo-node itself we leave to the
-                  // force layout to position.
+            var text = d3.select('text[data-node-index="'+node.index+'"]').node();
+            var label = null;
+            labelSelection.each(function(d){
+                if (d.node === node) { label = d; }
+            })
 
-                  positionLabelText(this.childNodes[0], label);
+            if (text && label) {
+                positionLabelText(text, label, fillColor);
+            }
 
-              } else {
+        };
 
-                  // Even pseudo-nodes (which have no text)
-                  // are fixed to the center of the
-                  // corresponding real node. This will
-                  // override the position calculated by
-                  // the force layout.
+        // Function to handle click on edges.
 
-                  label.x = label.node.x;
-                  label.y = label.node.y;
+        var edgeClicked = function(edge, idx) {
 
-              }
-          });
+            // Remember the current selection state of the edge.
 
-          // Calculate the position for the connection lists.
+            var selected = edge.selected;
 
-          connectionSelection.each(function(connection){
-              var x = (connection.source.x + connection.target.x)/2 - 27;
-              var y = (connection.source.y + connection.target.y)/2;
-              d3.select(this)
-                  .style({
-                      'top':  y + 'px',
-                      'left': x + 'px'
-                  });
-          });
+            // Transition all connections to hidden. If the
+            // current edge needs to be displayed, it's transition
+            // will be overridden shortly.
 
-          // Update the posistions of the nodes and edges.
+            connectionSelection
+                .each(function(edge) { edge.selected = false; })
+                .transition()
+                .style('opacity', 0)
+                .each('end', function(){
+                    d3.select(this).classed('hidden', true);
+                });
 
-          nodeSelection.call(positionNode).transition().duration(250);
-          labelSelection.call(positionNode);
-          edgeSelection.call(positionEdge);
-          labelLinkSelection.call(positionEdge);
+            // If the current edge wasn't selected before, we
+            // want to transition it to the selected state now.
 
-      });
-      graphTransition = function(link){
-        force.stop();
-        linkDistance = 0;
-        setCharge = 0;
+            if (!selected) {
+                d3.select('ul.connection[data-edge-index="'+idx+'"]')
+                    .classed('hidden', false)
+                    .style('opacity', 0)
+                    .transition()
+                    .style('opacity', 1);
+            }
+
+            // Toggle the resulting selection state for the edge.
+
+            edge.selected = !selected;
+
+        };
+
+        // Handle clicks on the nodes.
+
+        nodeSelection.on('click', nodeClicked);
+
+        labelSelection.on('click', function(pseudonode) {
+            nodeClicked(pseudonode.node);
+        });
+
+        // Handle clicks on the edges.
+
+        edgeSelection.on('click', edgeClicked);
+        connectionSelection.on('click', edgeClicked);
+
+        // Animate the force layout.
+
+        force.on('tick', function() {
+
+            // Constrain all the nodes to remain in the
+            // graph container.
+
+            nodeSelection.each(function(node) {
+                node.x = Math.max(node.x, 2*selectedNodeRadius);
+                node.y = Math.max(node.y, 2*selectedNodeRadius);
+                node.x = Math.min(node.x, width-2*selectedNodeRadius);
+                node.y = Math.min(node.y, height-2*selectedNodeRadius);
+            });
+
+            // Kick the label layout to make sure it doesn't
+            // finish while the main layout is still running.
+
+            labelForce.start();
+
+            // Calculate the positions of the label nodes.
+
+            labelSelection.each(function(label, idx) {
+
+                // Label pseudo-nodes come in pairs. We
+                // treat odd and even nodes differently.
+
+                if(idx % 2) {
+
+                    // Odd pseudo-nodes have the actual text.
+                    // That text needs a real position. The
+                    // pseudo-node itself we leave to the
+                    // force layout to position.
+
+                    positionLabelText(this.childNodes[0], label);
+
+                } else {
+
+                    // Even pseudo-nodes (which have no text)
+                    // are fixed to the center of the
+                    // corresponding real node. This will
+                    // override the position calculated by
+                    // the force layout.
+
+                    label.x = label.node.x;
+                    label.y = label.node.y;
+
+                }
+            });
+
+            // Calculate the position for the connection lists.
+
+            connectionSelection.each(function(connection){
+                var x = (connection.source.x + connection.target.x)/2 - 27;
+                var y = (connection.source.y + connection.target.y)/2;
+                d3.select(this)
+                    .style({
+                        'top':  y + 'px',
+                        'left': x + 'px'
+                    });
+            });
+
+            // Update the positions of the nodes and edges.
+
+            nodeSelection.call(positionNode);
+            labelSelection.call(positionNode);
+            edgeSelection.call(positionEdge);
+            labelLinkSelection.call(positionEdge);
+
+        });
+
+        graphTransition = function(link){
+          force.stop();
+          linkDistance = 0;
+          setCharge = 0;
+          force.start();
+          window.setTimeout(function (){
+          d3.selectAll('svg')
+            .remove();
+          console.log(users); 
+          UsersGraphCreate(users,link);}, 1000)
+        };
+        // graphTransition = function(){
+        //   if(setCharge < 0) {
+        //     force.stop();
+        //     linkDistance = 0;
+        //     setCharge = 0;
+        //     force.start();
+        //     console.log(force);
+        //   } 
+        //   else {  
+        //     force.stop();
+        //     linkDistance = Math.min(width,height)/3;
+        //     setCharge = -1500;
+        //     force.start()
+        //     console.log(force);
+        //   }
+        // };
+     
+        // Start the layout computations.
         force.start();
-        window.setTimeout(function (){
-        d3.selectAll('svg')
-          .remove();
-        console.log(trucks); 
-        TrucksGraphCreate(trucks, link);}, 1000)
-      };
-      // graphTransition = function(){
-      //   if(setCharge == -2000) {
-      //     force.stop();
-      //     linkDistance = 0;
-      //     setCharge = 0;
-      //     force.start();
-      //     console.log(force);
-      //         // circles = d3.selectAll("circle")
-      //         // .transition().delay(0).duration(2500)
-      //         //         .attr("y", 200)
-      //         //         .attr("x", 200);
-      //   } 
-      //   else {  
-      //     force.stop();
-      //     linkDistance = Math.min(width,height)/4;
-      //     setCharge = -2000;
-      //     force.start()
-      //     console.log(force);
-      //   }
-      // };
+        labelForce.start();
+        nodeClicked(savedTruckNode);
+    }
+    
+    // Function that defines Users connection to favorite Trucks
 
-      // Start the layout computations.
+    function UsersGraphCreate(data, selectedUser){
+        // Define the dimensions of the visualization. We're using
+        // a size that's convenient for displaying the graphic on
+        // http://jsDataV.is
 
-      force.start();
-      labelForce.start();
-      nodeClicked(savedUserNode);
-  }
-</script> 
+        console.log("is this data", data);
 
-<!-- Users connected by trucks in common -->
+        var width = 520,
+            height = 440;
+        
+        // var width = 586,
+        //     height = 620;
+            
+        //larger svg    
+        // var width = 1000,
+        //     height = 620;
 
+        // Visual properties of the graph are next. We need to make
+        // those that are going to be animated accessible to the
+        // JavaScript.
+
+        var labelFill = '#444';
+        var adjLabelFill = '#aaa';
+        var edgeStroke = '#bd876f';
+        var nodeFill = '#ccc';
+        var nodeRadius = 10;
+        var selectedNodeRadius = 30;
+
+        var linkDistance = Math.min(width,height)/4;
+        //variable for setting initial selected node
+        var savedUserNode;
+        // Find the main graph container.
+
+        var graph = d3.select('#graph');
+
+        // Create the SVG container for the visualization and
+        // define its dimensions.
+        // window.setTime(function (), 1000)      
+
+        var svg = graph.append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .style('background-color', "darkgrey")
+            .style('border-radius', 25);          
+
+        // Select the container for the notes and dimension it.
+
+        var notes = d3.select('#notes')
+            .style({
+                'width': 620-width/6 + 'px',
+                'height': height + 'px'
+            });
+
+        // Utility function to update the position properties
+        // of an arbtrary edge that's part of a D3 selection.
+        // The optional parameter is the array of nodes for
+        // the edges. If present, the source and target properties
+        // are assumed to be indices in this array rather than
+        // direct references.
+
+        var positionEdge = function(edge, nodes) {
+            edge.attr('x1', function(d) {
+                return nodes ? nodes[d.source].x : d.source.x;
+            }).attr('y1', function(d) {
+                return nodes ? nodes[d.source].y : d.source.y;
+            }).attr('x2', function(d) {
+                return nodes ? nodes[d.target].x : d.target.x;
+            }).attr('y2', function(d) {
+                return nodes ? nodes[d.target].y : d.target.y;
+            });
+        };
+
+        // Utility function to update the position properties
+        // of an arbitrary node that's part of a D3 selection.
+
+        var positionNode = function(node) {
+            node.attr('transform', function(d) {
+                return 'translate(' + d.x + ',' + d.y + ')';
+            });
+        };
+
+        // Utility function to position text associated with
+        // a label pseudo-node. The optional third parameter
+        // requests transition to the specified fill color.
+
+        var positionLabelText = function(text, pseudonode, fillColor) {
+
+            // What's the width of the text element?
+
+            var textWidth = text.getBBox().width;
+
+            // How far is the pseudo-node from the real one?
+
+            var diffX = pseudonode.x - pseudonode.node.x;
+            var diffY = pseudonode.y - pseudonode.node.y;
+            var dist = Math.sqrt(diffX * diffX + diffY * diffY);
+
+            // Shift in the x-direction a fraction of the text width
+
+            var shiftX = textWidth * (diffX - dist) / (dist * 2);
+            shiftX = Math.max(-textWidth, Math.min(0, shiftX));
+
+            var shiftY = pseudonode.node.selected ? selectedNodeRadius : nodeRadius;
+            shiftY = 0.5 * shiftY * diffY/Math.abs(diffY);
+
+            var select = d3.select(text);
+            if (fillColor) {
+                select = select.transition().style('fill', fillColor);
+            }
+            select.attr('transform', 'translate(' + shiftX + ',' + shiftY + ')');
+        };
+
+        // Define the data.
+
+        // data brought in from external source
+
+          
+        // Find the graph nodes from the data set. Each
+        // album is a separate node.
+
+        var nodes = data.map(function(entry, idx, list) {
+
+            // This iteration returns a new object for
+            // each node.
+
+            var node = {};
+
+          
+           // // We retain some of the truck's properties.
+
+            node.name     = entry.first_name + " " + entry.last_name[0] + ".";
+            node.first_na = entry.first_name;
+            node.subtitle = entry.email;
+            node.image    = entry.cover;
+            node.url      = entry.twitter_handle;
+            node.color    = entry.color;
+            node.text     = entry.text;
+
+            // We'll also copy the trucks, again using
+            // a more neutral property. At the risk of
+            // some confusion, we're going to use the term
+            // "link" to refer to an individual connection
+            // between nodes, and we'll use the more
+            // mathematically correct term "edge" to refer
+            // to a line drawn between nodes on the graph.
+            // (This may be confusing because D3 refers to
+            // the latter as "links."
+
+            node.links = entry.trucks.slice(0);
+
+            // As long as we're iterating through the nodes
+            // array, take the opportunity to create an
+            // initial position for the nodes. Somewhat
+            // arbitrarily, we start the nodes off in a
+            // circle in the center of the container.
+
+              var radius = 0.4 * Math.min(height,width);
+              var theta = idx*2*Math.PI / list.length;
+              node.x = (width/2) + radius*Math.sin(theta);
+              node.y = (height/2) + radius*Math.cos(theta);
+
+            // Return the newly created object so it can be
+            // added to the nodes array.
+            if(node.name == selectedUser)
+              savedUserNode = node;
+            return node;
+        });
+
+        // Identify all the indivual links between nodes on
+        // the graph. As noted above, we're using the term
+        // "link" to refer to a single connection. As we'll
+        // see below, we'll call lines drawn on the graph
+        // (which may represent a combination of multiple
+        // links) "edges" in a nod to the more mathematically
+        // minded.
+
+        var links = [];
+
+        // Start by iterating through the albums.
+
+        data.forEach(function(srcNode, srcIdx, srcList) {
+
+            // For each album, iterate through the trucks.
+
+            srcNode.trucks.forEach(function(srcLink) {
+
+                var linkCounter = 0;
+                // For each musican in the "src" album, iterate
+                // through the remaining albums in the list.
+
+                for (var tgtIdx = srcIdx + 1;
+                         tgtIdx < srcList.length;
+                         tgtIdx++) {
+
+                    // Use a variable to refer to the "tgt"
+                    // album for convenience.
+
+                    var tgtNode = srcList[tgtIdx];
+
+                    // Is there any musician in the "tgt"
+                    // album that matches the musican we're
+                    // currently considering from the "src"
+                    // album?
+
+                    if (tgtNode.trucks.some(function(tgtLink){
+                        return tgtLink === srcLink;
+                    })) {
+                        // When we do find a match, add a new
+                        // link to the links counter, create a link if the counte is more than 3.
+                        linkCounter++;
+
+                        if(linkCounter >= 2){
+                   
+                          links.push({
+                              source: srcIdx,
+                              target: tgtIdx,
+                              link: srcLink
+                          });
+                        }
+                    }
+                }
+            });
+        });
+
+        // Now create the edges for our graph. We do that by
+        // eliminating duplicates from the links array.
+
+        var edges = [];
+
+        // Iterate through the links array.
+
+        links.forEach(function(link) {
+
+            // Assume for now that the current link is
+            // unique.
+
+            var existingEdge = false;
+
+            // Look through the edges we've collected so
+            // far to see if the current link is already
+            // present.
+
+            for (var idx = 0; idx < edges.length; idx++) {
+
+                // A duplicate link has the same source
+                // and target values.
+
+                if ((link.source === edges[idx].source) &&
+                    (link.target === edges[idx].target)) {
+
+                    // When we find an existing link, remember
+                    // it.
+                    existingEdge = edges[idx];
+
+                    // And stop looking.
+
+                    break;
+                }
+            }
+
+            // If we found an existing edge, all we need
+            // to do is add the current link to it.
+
+            if (existingEdge) {
+
+                existingEdge.links.push(link.link);
+
+            } else {
+
+                // If there was no existing edge, we can
+                // create one now.
+
+                edges.push({
+                    source: link.source,
+                    target: link.target,
+                    links: [link.link]
+                });
+            }
+        });
+
+        // Start the creation of the graph by adding the edges.
+        // We add these first so they'll appear "underneath"
+        // the nodes.
+
+        var edgeSelection = svg.selectAll('.edge')
+            .data(edges)
+            .enter()
+            .append('line')
+            .classed('edge', true)
+            .style('stroke', edgeStroke)
+            .call(positionEdge, nodes);
+
+        // Next up are the nodes.
+
+        var nodeSelection = svg.selectAll('.node')
+            .data(nodes)
+            .enter()
+            .append('g')
+            .classed('node', true)
+            .call(positionNode);
+
+        nodeSelection.append('circle')
+            .attr('r', nodeRadius)
+            .attr('data-node-index', function(d,i) { return i;})
+            .style('fill', nodeFill)
+
+        // Now that we have our main selections (edges and
+        // nodes), we can create some subsets of those
+        // selections that will be helpful. Those subsets
+        // will be tied to individual nodes, so we'll
+        // start by iterating through them. We do that
+        // in two separate passes.
+
+        nodeSelection.each(function(node){
+
+            // First let's identify all edges that are
+            // incident to the node. We collect those as
+            // a D3 selection so we can manipulate the
+            // set easily with D3 utilities.
+
+            node.incidentEdgeSelection = edgeSelection
+                .filter(function(edge) {
+                    return nodes[edge.source] === node ||
+                           nodes[edge.target] === node;
+                });
+        });
+
+        // Now make a second pass through the nodes.
+
+        nodeSelection.each(function(node){
+
+            // For this pass we want to find all adjacencies.
+            // An adjacent node shares an edge with the
+            // current node.
+
+            node.adjacentNodeSelection = nodeSelection
+                .filter(function(otherNode){
+
+                    // Presume that the nodes are not adjacent.
+                    var isAdjacent = false;
+
+                    // We can't be adjacent to ourselves.
+
+                    if (otherNode !== node) {
+
+                        // Look the incident edges of both nodes to
+                        // see if there are any in common.
+
+                        node.incidentEdgeSelection.each(function(edge){
+                            otherNode.incidentEdgeSelection.each(function(otherEdge){
+                                if (edge === otherEdge) {
+                                    isAdjacent = true;
+                                }
+                            });
+                        });
+
+                    }
+
+                    return isAdjacent;
+                });
+
+        });
+
+        // Next we create a array for the node labels.
+        // We're going to use a "hidden" force layout to
+        // position the labels so they don't overlap
+        // each other. ("Hidden" because the links won't
+        // be visible.)
+
+        var labels = [];
+        var labelLinks = [];
+
+        nodes.forEach(function(node, idx){
+
+            // For each node on the graph we create
+            // two pseudo-nodes for its label. Once
+            // pseudo-node will be anchored to the
+            // center of the real node, while the
+            // second will be linked to that node.
+
+            // Add the pseudo-nodes to their array.
+
+            labels.push({node: node});
+            labels.push({node: node});
+
+            // And create a link between them.
+
+            labelLinks.push({
+                source: idx * 2,
+                target: idx * 2 + 1
+            });
+        });
+
+        // Construct the selections for the label layout.
+
+        // There's no need to add any markup for the
+        // pseudo-links between the label nodes, but
+        // we do need a selection so we can run the
+        // force layout.
+
+        var labelLinkSelection = svg.selectAll('line.labelLink')
+            .data(labelLinks);
+
+        // The label pseud-nodes themselves are just
+        // `<g>` containers.
+
+        var labelSelection = svg.selectAll('g.labelNode')
+            .data(labels)
+            .enter()
+            .append('g')
+                .classed('labelNode',true);
+
+        // Now add the text itself. Of the paired
+        // pseudo-nodes, only odd ones get the text
+        // elements.
+
+        labelSelection.append('text')
+            .text(function(d, i) {
+                return i % 2 == 0 ? '' : d.node.title;
+            })
+            .attr('data-node-index', function(d, i){
+                return i % 2 == 0 ? 'none' : Math.floor(i/2);
+            });
+
+        // The last bit of markup are the lists of
+        // connections for each link.
+
+        var connectionSelection = graph.selectAll('ul.connection')
+            .data(edges)
+            .enter()
+            .append('ul')
+            .classed('connection hidden', true)
+            .attr('data-edge-index', function(d,i) {return i;});
+
+        connectionSelection.each(function(connection){
+            var selection = d3.select(this);
+            connection.links.forEach(function(link){
+                selection.append('li')
+                    .insert("a")
+                    .on("click", function(){ 
+                      graphTransition(link)
+                    })
+                    .text(link);
+            })
+        })
+
+        // Create the main force layout.
+        var setCharge = -500;
+
+        var force = d3.layout.force()
+            .size([width, height])
+            .nodes(nodes)
+            .links(edges)
+            //controls link and node distance
+            .linkDistance(function(){
+              return linkDistance
+            })
+            .charge(function(){
+              return setCharge
+            });
+
+        // Create the force layout for the labels.
+
+        var labelForce = d3.layout.force()
+            .size([width, height])
+            .nodes(labels)
+            .links(labelLinks)
+            .gravity(0)
+            .linkDistance(0)
+            .linkStrength(0.8)
+            .charge(-100);
+
+        // Let trucks drag the nodes.
+
+        nodeSelection.call(force.drag);
+
+        // Function to handle clicks on node elements
+        var selectedNode ;
+        var nodeClicked = function(node) {
+            selectedNode = node;
+            // Ignore events based on dragging.
+            // uncomment to prevent dragging
+            // if (d3.event.defaultPrevented) return;
+
+            // Remember whether or not the clicked
+            // node is currently selected.
+
+            var selected = node.selected;
+
+            // Keep track of the desired text color.
+
+            var fillColor;
+
+            // In all cases we start by resetting
+            // all the nodes and edges to their
+            // de-selected state. We may override
+            // this transition for some nodes and
+            // edges later.
+
+            nodeSelection
+                .each(function(node) { node.selected = false; })
+                .selectAll('circle')
+                    .transition()
+                    .attr('r', nodeRadius)
+                    .style('fill', nodeFill)
+                    .duration(500)
+                    ;
+
+            edgeSelection
+                .transition()
+                .style('stroke', edgeStroke)
+                .style('opacity', .125);
+
+            labelSelection
+                .transition()
+                .style('opacity', 0);
+
+            // Now see if the node wasn't previously selected.
+            console.log(nodeSelection);
+            if (!selected) {
+
+                // This node wasn't selected before, so
+                // we want to select it now. That means
+                // changing the styles of some of the
+                // elements in the graph.
+
+                // First we transition the incident edges.
+
+                node.incidentEdgeSelection
+                    .transition()
+                    .style('stroke', node.color)
+                    .style('opacity', 1);
+
+                // Now we transition the adjacent nodes.
+
+                node.adjacentNodeSelection.selectAll('circle')
+                    .transition()
+                    .attr('r', nodeRadius)
+                    .style('fill', node.color);
+                    // Add Name to Selected and Adjacent Nodes
+                    // .append('text')
+                    //   .text(function(d, i) {
+                    //       return i % 2 == 0 ? '' : d.node.first_na;
+                    //   })
+                    //   .attr('data-node-index', function(d, i){
+                    //       return i % 2 == 0 ? 'none' : Math.floor(i/2);
+                    //   });
+
+                labelSelection
+                    .filter(function(label) {
+                        var adjacent = false;
+                        node.adjacentNodeSelection.each(function(d){
+                            if (label.node === d) {
+                                adjacent = true;
+                            }
+                        })
+                        return adjacent;
+                    })
+                    .transition()
+                    .style('opacity', 1)
+                    .selectAll('text')
+                        .style('fill', adjLabelFill);
+
+                // And finally, transition the node itself.
+
+                d3.selectAll('circle[data-node-index="'+node.index+'"]')
+                    .transition()
+                    .attr('r', selectedNodeRadius)
+                    .style('fill', node.color);
+
+                // Make sure the node's label is visible
+
+                labelSelection
+                    .filter(function(label) {return label.node === node;})
+                    .transition()
+                    .attr("xlink:href", "http://www.google.com")
+                    .style('opacity', 1);
+
+                // And note the desired color for bundling with
+                // the transition of the label position.
+
+                fillColor = node.text;
+
+                // Delete the current notes section to prepare
+                // for new information.
+
+                notes.selectAll('*').remove();
+
+                // Fill in the notes section with informationm
+                // from the node. Because we want to transition
+                // this to match the transitions on the graph,
+                // we first set it's opacity to 0.
+
+                notes.style({'opacity': 0});
+
+                // Now add the notes content.
+
+                notes.append('h1').text(node.name);
+                notes.append('h2').text(node.subtitle);
+                if (node.url && node.image) {
+                    notes.append('div')
+                        .classed('artwork',true)
+                        .append('a')
+                        .attr('href', node.url)
+                        .append('img')
+                            .attr('src', node.image);
+                }
+                notes.append('h3').text(node.name + "'s Favorite Trucks:")          
+                var list = notes.append('ul');
+                if (node.links == 0){
+                list.append('li')
+                  .text(node.first_na + " doesn't have any Favorite Trucks.")
+                }
+                node.links.forEach(function(link){
+                    list.append('li')
+                        .text(link)
+                        .attr('href', node.truck_id);
+                })
+
+                // With the content in place, transition
+                // the opacity to make it visible.
+
+                notes.transition().style({'opacity': 1});
+
+            } else {
+
+                // Since we're de-selecting the current
+                // node, transition the notes section
+                // and then remove it.
+                edgeSelection
+                    .transition()
+                    .style('stroke', edgeStroke)
+                    .style('opacity', 1)
+                    .duration(750);
+
+                notes.transition()
+                    .style({'opacity': 0})
+                    .each('end', function(){
+                        notes.selectAll('*').remove();
+                    });
+
+                // Transition all the labels to their
+                // default styles.
+
+                labelSelection
+                    .transition()
+                    .style('opacity', 1)
+                    .selectAll('text')
+                        .style('fill', labelFill);
+
+                // The fill color for the current node's
+                // label must also be bundled with its
+                // position transition.
+
+                fillColor = labelFill;
+            }
+
+            // Toggle the selection state for the node.
+
+            node.selected = !selected;
+
+            // Update the position of the label text.
+
+            var text = d3.select('text[data-node-index="'+node.index+'"]').node();
+            var label = null;
+            labelSelection.each(function(d){
+                if (d.node === node) { label = d; }
+            })
+
+            if (text && label) {
+                positionLabelText(text, label, fillColor);
+            }
+
+        };
+
+        // Function to handle click on edges.
+
+        var edgeClicked = function(edge, idx) {
+
+            // Remember the current selection state of the edge.
+
+            var selected = edge.selected;
+
+            // Transition all connections to hidden. If the
+            // current edge needs to be displayed, it's transition
+            // will be overridden shortly.
+
+            connectionSelection
+                .each(function(edge) { edge.selected = false; })
+                .transition()
+                .style('opacity', 0)
+                .each('end', function(){
+                    d3.select(this).classed('hidden', true);
+                });
+
+            // If the current edge wasn't selected before, we
+            // want to transition it to the selected state now.
+
+            if (!selected) {
+                d3.select('ul.connection[data-edge-index="'+idx+'"]')
+                    .classed('hidden', false)
+                    .style('opacity', 0)
+                    .transition()
+                    .style('opacity', 1);
+            }
+
+            // Toggle the resulting selection state for the edge.
+
+            edge.selected = !selected;
+
+        };
+
+        // Handle clicks on the nodes.
+
+        nodeSelection.on('click', nodeClicked);
+
+        labelSelection.on('click', function(pseudonode) {
+            nodeClicked(pseudonode.node);
+        });
+
+        // Handle clicks on the edges.
+
+        edgeSelection.on('click', edgeClicked);
+        connectionSelection.on('click', edgeClicked);
+
+        // Animate the force layout.
+
+        force.on('tick', function() {
+
+            // Constrain all the nodes to remain in the
+            // graph container.
+
+            nodeSelection.each(function(node) {
+                node.x = Math.max(node.x, 2*selectedNodeRadius);
+                node.y = Math.max(node.y, 2*selectedNodeRadius);
+                node.x = Math.min(node.x, width-2*selectedNodeRadius);
+                node.y = Math.min(node.y, height-2*selectedNodeRadius);
+            });
+
+            // Kick the label layout to make sure it doesn't
+            // finish while the main layout is still running.
+
+            labelForce.start();
+
+            // Calculate the positions of the label nodes.
+
+            labelSelection.each(function(label, idx) {
+
+                // Label pseudo-nodes come in pairs. We
+                // treat odd and even nodes differently.
+
+                if(idx % 2) {
+
+                    // Odd pseudo-nodes have the actual text.
+                    // That text needs a real position. The
+                    // pseudo-node itself we leave to the
+                    // force layout to position.
+
+                    positionLabelText(this.childNodes[0], label);
+
+                } else {
+
+                    // Even pseudo-nodes (which have no text)
+                    // are fixed to the center of the
+                    // corresponding real node. This will
+                    // override the position calculated by
+                    // the force layout.
+
+                    label.x = label.node.x;
+                    label.y = label.node.y;
+
+                }
+            });
+
+            // Calculate the position for the connection lists.
+
+            connectionSelection.each(function(connection){
+                var x = (connection.source.x + connection.target.x)/2 - 27;
+                var y = (connection.source.y + connection.target.y)/2;
+                d3.select(this)
+                    .style({
+                        'top':  y + 'px',
+                        'left': x + 'px'
+                    });
+            });
+
+            // Update the posistions of the nodes and edges.
+
+            nodeSelection.call(positionNode).transition().duration(250);
+            labelSelection.call(positionNode);
+            edgeSelection.call(positionEdge);
+            labelLinkSelection.call(positionEdge);
+
+        });
+        graphTransition = function(link){
+          force.stop();
+          linkDistance = 0;
+          setCharge = 0;
+          force.start();
+          window.setTimeout(function (){
+          d3.selectAll('svg')
+            .remove();
+          console.log(trucks); 
+          TrucksGraphCreate(trucks, link);}, 1000)
+        };
+        // graphTransition = function(){
+        //   if(setCharge == -2000) {
+        //     force.stop();
+        //     linkDistance = 0;
+        //     setCharge = 0;
+        //     force.start();
+        //     console.log(force);
+        //         // circles = d3.selectAll("circle")
+        //         // .transition().delay(0).duration(2500)
+        //         //         .attr("y", 200)
+        //         //         .attr("x", 200);
+        //   } 
+        //   else {  
+        //     force.stop();
+        //     linkDistance = Math.min(width,height)/4;
+        //     setCharge = -2000;
+        //     force.start()
+        //     console.log(force);
+        //   }
+        // };
+
+        // Start the layout computations.
+
+        force.start();
+        labelForce.start();
+        nodeClicked(savedUserNode);
+    }
+  </script> 
+
+  <!-- Users connected by trucks in common -->
 </div>
