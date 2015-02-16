@@ -117,6 +117,14 @@ angular
       var start = (self.currentPage - 1)*6;
       $scope.sixMarkers = $scope.markers.slice(start, start+6);
 
+      if ($scope.sixMarkers.length === 0) {
+        d3.select('ul.pager').style({bottom: 0});
+      } else if ($scope.sixMarkers.length <= 3) {
+        d3.select('ul.pager').style({bottom: '180px'});
+      } else {
+        d3.select('ul.pager').style({bottom: '275px'});
+      }
+
     };
 
 
