@@ -224,8 +224,9 @@ p.h1.font-secondary {
 }
 /* Footer Styling */
 .empty-division {
-  height: 500px;
-}
+  height: 550px;
+  opacity: 0;
+} 
 .footer {
   z-index: 1000;
   width: 100px;
