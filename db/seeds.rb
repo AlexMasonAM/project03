@@ -16,31 +16,31 @@ accts = TruckAccount.all
 
 # create 25 trucks (with real truck info) and assign them to random truck accounts
 trucks = [
-  { name: 'The Grilled Cheese Truck', yelp_id: 'the-grilled-cheese-truck-los-angeles', genre: 'American', twitter: 'grlldcheesetruk' },
-  { name: 'Kogi BBQ', yelp_id: 'kogi-bbq-los-angeles', genre: 'Korean', twitter: 'kogibbq' },
-  { name: 'Coolhaus', yelp_id: 'coolhaus-ice-cream-truck-culver-city-2', genre: 'Dessert', twitter: 'CoolhausLA' },
-  { name: 'Komodo', yelp_id: 'komodo-truck-los-angeles-3', genre: 'Asian Fusion', twitter: 'komodotruck' },
-  { name: 'Lobsta Truck', yelp_id: 'lobsta-truck-los-angeles', genre: 'Seafood', twitter: 'LobstaTruck' },
-  { name: 'Sprinkles Mobile', yelp_id: 'sprinklesmobile-beverly-hills', genre: 'Dessert', twitter: 'sprinklesmobile' },
-  { name: 'South Philly Experience', yelp_id: 'south-philly-experience-venice-2', genre: 'American', twitter: 'southphillyexp' },
-  { name: 'Jogasaki Sushi Burrito', yelp_id: 'jogasaki-truck-los-angeles', genre: 'Asian Fusion', twitter: 'JogasakiBurrito' },
-  { name: 'Baby\'s Badass Burgers', yelp_id: 'babys-badass-burgers-los-angeles', genre: 'Burgers', twitter: 'BabysBBs' },
-  { name: 'India Jones Chow Truck', yelp_id: 'india-jones-chow-truck-santa-monica', genre: 'Indian', twitter: 'indiajonesCT' },
-  { name: 'The Middle Feast', yelp_id: 'the-middle-feast-food-truck-los-angeles', genre: 'Middle Eastern', twitter: 'MidFeastTruck' },
-  { name: 'Get Shaved', yelp_id: 'get-shaved-truck-northridge', genre: 'Dessert', twitter: 'getshaved' },
-  { name: 'Mexi Calbi', yelp_id: 'mexi-calbi-anaheim', genre: 'Asian Fusion', twitter: 'MexiCalbi' },
-  { name: 'Don Chow Tacos', yelp_id: 'don-chow-tacos-los-angeles', genre: 'Asian Fusion', twitter: 'donchowtacos' },
-  { name: 'White Rabbit Truck', yelp_id: 'white-rabbit-truck-los-angeles-2', genre: 'Asian Fusion', twitter: 'WhiteRabbitTruk' },
-  { name: 'Dogtown Dogs', yelp_id: 'dogtown-dogs-santa-monica', genre: 'Hot Dogs', twitter: 'dogtowndog' },
-  { name: 'Crepe\'n Around', yelp_id: 'crepen-around-northridge', genre: 'Dessert', twitter: 'CrepenAround' },
-  { name: 'Hungry Nomad', yelp_id: 'hungry-nomad-truck-hollywood', genre: 'Armenian', twitter: 'nomadtruck' },
-  { name: 'El Chato Taco Truck', yelp_id: 'el-chato-taco-truck-los-angeles-2', genre: 'Mexican', twitter: 'ChatoTacoTruck' },
-  { name: 'The Lobos Truck', yelp_id: 'the-lobos-truck-los-angeles', genre: 'American', twitter: 'TheLobosTruck' },
-  { name: 'Tokyo Doggie Style', yelp_id: 'tokyo-doggie-style-los-angeles-2', genre: 'Asian Fusion', twitter: 'TokyoDoggieStyl' },
-  { name: 'The Bun Truck', yelp_id: 'the-bun-truck-los-angeles', genre: 'Asian Fusion', twitter: 'thebuntruck' },
-  { name: 'Amazebowls', yelp_id: 'amazebowls-los-angeles-2', genre: 'Vegan', twitter: 'Amazebowls' },
-  { name: 'Mandoline Grill', yelp_id: 'mandoline-grill-los-angeles', genre: 'Vietnamese', twitter: 'MandolineGrill' },
-  { name: 'Burnt to a Crisp', yelp_id: 'burnt-to-a-crisp-truck-los-angeles', genre: 'American', twitter: 'burnttoacrisptx' }
+  { name: 'The Grilled Cheese Truck', yelp_id: 'the-grilled-cheese-truck-los-angeles', genre: 'American', twitter: 'grlldcheesetruk', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Kogi BBQ', yelp_id: 'kogi-bbq-los-angeles', genre: 'Korean', twitter: 'kogibbq', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Coolhaus', yelp_id: 'coolhaus-ice-cream-truck-culver-city-2', genre: 'Dessert', twitter: 'CoolhausLA', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Komodo', yelp_id: 'komodo-truck-los-angeles-3', genre: 'Asian Fusion', twitter: 'komodotruck', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Lobsta Truck', yelp_id: 'lobsta-truck-los-angeles', genre: 'Seafood', twitter: 'LobstaTruck', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Sprinkles Mobile', yelp_id: 'sprinklesmobile-beverly-hills', genre: 'Dessert', twitter: 'sprinklesmobile', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'South Philly Experience', yelp_id: 'south-philly-experience-venice-2', genre: 'American', twitter: 'southphillyexp', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Jogasaki Sushi Burrito', yelp_id: 'jogasaki-truck-los-angeles', genre: 'Asian Fusion', twitter: 'JogasakiBurrito', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Baby\'s Badass Burgers', yelp_id: 'babys-badass-burgers-los-angeles', genre: 'Burgers', twitter: 'BabysBBs', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'India Jones Chow Truck', yelp_id: 'india-jones-chow-truck-santa-monica', genre: 'Indian', twitter: 'indiajonesCT', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'The Middle Feast', yelp_id: 'the-middle-feast-food-truck-los-angeles', genre: 'Middle Eastern', twitter: 'MidFeastTruck', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Get Shaved', yelp_id: 'get-shaved-truck-northridge', genre: 'Dessert', twitter: 'getshaved', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Mexi Calbi', yelp_id: 'mexi-calbi-anaheim', genre: 'Asian Fusion', twitter: 'MexiCalbi', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Don Chow Tacos', yelp_id: 'don-chow-tacos-los-angeles', genre: 'Asian Fusion', twitter: 'donchowtacos', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'White Rabbit Truck', yelp_id: 'white-rabbit-truck-los-angeles-2', genre: 'Asian Fusion', twitter: 'WhiteRabbitTruk', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Dogtown Dogs', yelp_id: 'dogtown-dogs-santa-monica', genre: 'Hot Dogs', twitter: 'dogtowndog', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Crepe\'n Around', yelp_id: 'crepen-around-northridge', genre: 'Dessert', twitter: 'CrepenAround', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Hungry Nomad', yelp_id: 'hungry-nomad-truck-hollywood', genre: 'Armenian', twitter: 'nomadtruck', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'El Chato Taco Truck', yelp_id: 'el-chato-taco-truck-los-angeles-2', genre: 'Mexican', twitter: 'ChatoTacoTruck', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'The Lobos Truck', yelp_id: 'the-lobos-truck-los-angeles', genre: 'American', twitter: 'TheLobosTruck', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Tokyo Doggie Style', yelp_id: 'tokyo-doggie-style-los-angeles-2', genre: 'Asian Fusion', twitter: 'TokyoDoggieStyl', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'The Bun Truck', yelp_id: 'the-bun-truck-los-angeles', genre: 'Asian Fusion', twitter: 'thebuntruck', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Amazebowls', yelp_id: 'amazebowls-los-angeles-2', genre: 'Vegan', twitter: 'Amazebowls', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Mandoline Grill', yelp_id: 'mandoline-grill-los-angeles', genre: 'Vietnamese', twitter: 'MandolineGrill', tweet_most_recent: Faker::Lorem.sentence },
+  { name: 'Burnt to a Crisp', yelp_id: 'burnt-to-a-crisp-truck-los-angeles', genre: 'American', twitter: 'burnttoacrisptx', tweet_most_recent: Faker::Lorem.sentence }
 ]
 trucks.each do |truck|
   Truck.create(
@@ -48,6 +48,7 @@ trucks.each do |truck|
     genre: truck[:genre],
     twitter_handle: truck[:twitter],
     yelp_id: truck[:yelp_id],
+    tweet_most_recent: truck[:tweet_most_recent],
     truck_account_id: accts.sample.id
   )
 end
