@@ -6,13 +6,7 @@
       <div class="col-md-4 logo-set">
         <img src="assets/logo-details.png" alt="Truck Details" width="275">
       </div>
-<!--  IMAGE from yelp
-      <div class="col-md-6 col-md-offset-2">
-        <img ng-src="{{detail.yelpdata.image_url}}" alt="Mountain View" style="width:304px;height:228px">
-      </div> -->    
     </div>  
-
-
     <div class="row">
       <h1 class="font-secondary blue large-title">
         {{ detail.truck.name }}:
@@ -27,20 +21,22 @@
     </div>
     <div class="row">  
      <h3 class="font-secondary medium-subtitles white">More Truck Info:</h3>
-     <h3 class="font-secondary medium-subtitles white">Latest review:</h3>
-     <h3 class="font-secondary medium-subtitles white">Genres</h3>
+     <span class="font-secondary medium-subtitles black">phone: {{ detail.yelpdata.display_phone }}</span>
     </div>
     <div>
-      <br>
-      Business Phone number: {{ detail.yelpdata.display_phone }}<br>
-      Food genre: <span class="label label-info" ng-repeat="i in detail.yelpdata.categories">    {{ i[0] }}   </span>
-
-      <h3>Latest review:</h3>
-      Rating: {{ detail.yelpdata.reviews[0].rating }}<br>
-     "{{ detail.yelpdata.reviews[0].excerpt }}"<br>
-
-     <!-- Date: {{ detail.yelpdata.reviews[0].time_created*1000 | date: 'MMM dd yyyy' }} -->
-      Date: {{ detail.yelpdata.reviews[0].time_created | date: 'MMM dd yyyy' }} 
+      <div class="row">  
+        <h3 class="font-secondary medium-subtitles white">Food genre: <span class="label label-info genres black" ng-repeat="i in detail.yelpdata.categories">    {{ i[0] }}   </span></h3>
+      </div>
+<!--       <div class="col-lg-6 yelp-image">
+        <img ng-src="{{detail.yelpdata.image_url}}" alt="Mountain View" style="width:304px;height:228px">
+      </div>   --> 
+      <div class="row">
+        <div class="col-xs-6 no-padding-left">
+          <h3 class="font-secondary medium-subtitles white">Latest review:</h3>
+          <span class="font-secondary medium-subtitles black">rating: {{ detail.yelpdata.reviews[0].rating }} <span class="white divider"> | </span>
+            date: {{ detail.yelpdata.reviews[0].time_created | date: 'MMM dd yyyy' }}</span>
+          <h3 class="font-secondary review-text grey">--"{{ detail.yelpdata.reviews[0].excerpt }}"</h3>
+        </div> 
+      </div>      
     </div>
- 
 </div>

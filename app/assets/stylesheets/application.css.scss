@@ -184,6 +184,9 @@ ul.pagination > li > a {
 .white {
   color: white;
 }
+.black {
+  color: black;
+}
 .black-bg {
   background-color: black;
 }
@@ -278,8 +281,32 @@ p.h1.font-secondary {
 } 
 .medium-subtitles {
   font-size: 2.25em;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 25px;
   text-decoration: none;
   display: inline-block;
+}
+.genres {
+  margin: 0 5px;
+  font-size: .75em;
+  padding: auto; 
+}
+.divider {
+  margin: 0 5px;
+}
+.review-text {
+  font-size: 1.75em;
+  font-style: italic;
+  display: block;
+  text-align: center;
+ }
+.no-padding-left{ 
+  padding-left: 0;
+}
+.yelp-image{
+  padding: 0;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 1em;
+  margin-top: 5px;
 }
