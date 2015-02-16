@@ -51,7 +51,7 @@
   margin-top: 450px;
   background-color: white;
   opacity: .95;
-  height: 2000px;
+  // height: 2000px;
 }
 .navbar-fixed-top {
   height: 175px;
@@ -125,6 +125,19 @@ li.next > a {
   color: #03D9FD;
   z-index: 1;
 
+}
+
+/* Pagination controls */
+ul.pagination {
+  font-family: 'Duckhunt';
+  position: relative;
+  bottom: 100px;
+}
+ul.pagination > li.active > a {
+  background-color: #03D9FD;
+}
+ul.pagination > li > a {
+  color: #03D9FD;
 }
 
 /* Truck displays on index */
