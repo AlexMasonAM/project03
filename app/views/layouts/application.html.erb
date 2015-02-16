@@ -38,6 +38,8 @@
   </div>
 
 <%= yield %>
+<div class="navbar navbar-default"></div>
+
 
 <div class="font-primary">Truck Hunt</div>
 <div class="font-secondary">the truck stops here</div>
@@ -45,6 +47,7 @@
 
 <script>
 // Global variable to track of current user
+
 <% if current_user %>
 var currentUser = {
   id: <%= current_user.id %>,
