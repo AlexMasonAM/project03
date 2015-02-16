@@ -294,8 +294,10 @@
             // Return the newly created object so it can be
             // added to the nodes array.
 
-            if(node.name == selectedTruck)
+            if(node.name == selectedTruck){
               savedTruckNode = node;
+              node.seleceted = true;
+            }
             return node;
         });
 

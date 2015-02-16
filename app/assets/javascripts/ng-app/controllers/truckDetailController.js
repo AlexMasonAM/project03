@@ -49,6 +49,7 @@ angular
 
     Truck.get({id: $stateParams.truckid}, function(truck) {
       self.truck = truck;
+      window.currentDetailTruck = truck.name;
       $http.get("/api/yelp/search/" + "?term=" + self.truck.yelp_id).success( function(data,status) {
         self.yelpdata = data;  
       });
