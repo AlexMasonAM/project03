@@ -22,6 +22,9 @@
       <ul class="nav navbar-nav font-secondary">
         <% if current_user %>
           <li ><%= link_to "Logout", logout_path %></li>
+          <li>
+            <a ui-sref='home.truck-graph'>Truck Chart</a>
+          </li>          
           <% if session[:truck_id] %>
             <li><%= link_to "Dashboard", truck_account_path(current_user) %></li>
           <% end %>
@@ -29,6 +32,9 @@
           <li><%= link_to "Login", login_path %></li> 
           <li><%= link_to "Sign-up", signup_path %></li>
           <li><%= link_to "Sign-up truck", truck_signup_path %></li>
+          <li>
+            <a ui-sref='home.truck-graph'>Truck Chart</a>
+          </li>
         <% end %>
       </ul> 
       <a class="tagline">
