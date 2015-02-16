@@ -7,8 +7,10 @@
         <%= image_tag "logo-details.png", width:275 %>
       </div>
       <div class="col-md-4 basic-graph">
-        <a href="#/truck-graph">Favorites Graph</a>
-      </div>  
+        <a href="#/truck-graph">
+          <%= image_tag "truck-graph-01.png", width:400 %>
+        </a>
+      </div>
     </div>  
     <div class="row">
       <h1 class="font-secondary blue large-title">
@@ -68,7 +70,7 @@
         font-size: 2em;
         line-height: 1em;
     }
-    #graph {
+    #basic-graph {
         float: left;
         position: relative;
         border-radius: 10px;
@@ -210,7 +212,7 @@
 
         // Find the main graph container.
 
-        var graph = d3.select('#graph');
+        var graph = d3.select('#basic-graph');
 
         // Create the SVG container for the visualization and
         // define its dimensions.
@@ -291,7 +293,7 @@
         // Find the graph nodes from the data set. Each
         // album is a separate node.
 
-        var nodes = data.map(function(entry, idx, list) {
+        var nodes = truckGraph.data.map(function(entry, idx, list) {
 
             // This iteration returns a new object for
             // each node.

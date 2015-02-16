@@ -60,7 +60,13 @@ body {
   width: 100%;
   position: relative;
   clear: both;
+  opacity: 0;
 }
+#tagline {
+  margin-right: 40px;
+  margin-top: 25px;
+  display: block;
+} 
 .navbar-fixed-top {
   height: 175px;
 }
@@ -323,6 +329,7 @@ p.h1.font-secondary {
   height: 220px;
   background-color: white;
   border-radius: 5px;
+  background-image: url('/truck-graph-01.png');
 }
 .large-title {
   font-size: 8em;
