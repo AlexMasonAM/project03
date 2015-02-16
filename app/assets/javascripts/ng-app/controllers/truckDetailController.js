@@ -28,20 +28,22 @@ angular
     }
 
     self.toggleFavorite = function() {
-      if(!self.isFavorite) {
-        self.fav = new Favorite({
-          truck_id: self.truck.id,
-          user_id: currentUser.id
-        });
-        self.fav.$save();
-        self.isFavorite = true;
-        self.post = " saved!";
-        self.pre = '';
-      } else {
-        self.fav.$delete({id: self.favoriteId});
-        self.isFavorite = false;
-        self.pre = "Add as ";
-        self.post = '';
+      if(currentUser && currentUser.type == 'User') {
+        if(!self.isFavorite) {
+          self.fav = new Favorite({
+            truck_id: self.truck.id,
+            user_id: currentUser.id
+          });
+          self.fav.$save();
+          self.isFavorite = true;
+          self.post = " saved!";
+          self.pre = '';
+        } else {
+          self.fav.$delete({id: self.favoriteId});
+          self.isFavorite = false;
+          self.pre = "Add as ";
+          self.post = '';
+        }
       }
     };
 
