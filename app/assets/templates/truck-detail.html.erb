@@ -4,7 +4,7 @@
     <!-- <h1 class="jumbotron text-center clearfix">Truck Details</h1> -->
     <div class="row">
       <div class="col-md-4 logo-set">
-        <img src="assets/logo-details.png" alt="Truck Details" width="275">
+        <%= image_tag "logo-details.png", width:275 %>
       </div>
     </div>  
     <div class="row">
@@ -20,8 +20,8 @@
       </div>  
     </div>
     <div class="row">  
-     <h3 class="font-secondary medium-subtitles white">More Truck Info:</h3>
-     <span class="font-secondary medium-subtitles black">phone: {{ detail.yelpdata.display_phone }}</span>
+      <h3 class="font-secondary medium-subtitles white">More Truck Info:</h3>
+      <span class="font-secondary medium-subtitles black">phone: {{ detail.yelpdata.display_phone }}</span>
     </div>
     <div>
       <div class="row">  
