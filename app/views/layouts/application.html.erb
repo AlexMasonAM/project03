@@ -18,6 +18,7 @@
         <%= image_tag "logo-stacked.png", height: '150' %>
       </a>
     </div>
+    <%= image_tag "tagline-02.png", width:'600', class: 'header-logo navbar-right' %>
     <div class="navbar-right">
       <ul class="nav navbar-nav font-secondary">
         <% if current_user %>
@@ -36,14 +37,13 @@
             <a ui-sref='home.truck-graph'>Truck Graph</a>
           </li>
         <% end %>
-      </ul> 
-      <a id="tagline">
-        <%= image_tag "tagline-02.png", width:'600' %>
-      </a>       
+      </ul>     
     </div>
   </div>
 
 <%= yield %>
+
+
 
 <div class="empty-division">
 </div>
@@ -52,6 +52,7 @@
 
 <script>
 // Global variable to track of current user
+
 <% if current_user %>
 var currentUser = {
   id: <%= current_user.id %>,

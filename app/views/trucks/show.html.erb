@@ -1,11 +1,37 @@
-<div ng-controller="CheckinController">
+<div class="row text-center rails-page" ng-controller="CheckinController">
+  <div class="col-md-4"></div>
+  <div class="col-md-3 bg-gray">
+   <%= image_tag "truck-blue.png" %>
   <form ng-submit="createMarker()">
-    Message:<br>
-    <textarea ng-model="message"></textarea><br>
-    We'll be at this location for
-    <select ng-model="hours" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12]">
-    </select>
-    hours<br><br>
-    <button type="submit">Check-in</button>
+    <h3>Message:</h3>
+    <textarea class="form-control" rows=5 ng-model="message"></textarea><br>
+    <h4>We'll be at this location for</h4>
+    <div class="row">
+      <div class="col-xs-8">
+      <select class="form-control" ng-model="hours" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12]">
+      </select>
+      </div>
+      <div class="col-xs-4">
+      <label class="hours-label">hours</label>
+      </div>
+    </div>
+    <br>
+    <button class="btn btn-default" type="submit">Check-in</button>
+    <div class="checkin-padding"></div>
+    </br>
   </form>
+  </div>
+  <div class="col-md-4"></div>
 </div>
+
+<style>
+.bg-gray {
+  background-color: gray;
+  border-radius: 10px;
+}
+.hours-label {
+  font-size: 24px;
+}
+.checkin-padding {
+  height: 20px;
+}
