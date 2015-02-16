@@ -34,7 +34,7 @@ body {
 
 .angular-google-map-container {
   width: 100%;
-  height: 500px;
+  height: 450px;
 }
 
 .container-fluid {
@@ -43,16 +43,16 @@ body {
 .map-container-fixed {
   position: fixed;
   top: 0;
-  height: 550px;
+  height: 500px;
   width: 100%;
   padding-top: 175px;
   margin-left: -15px;
-  z-index: -1
 }
 
 .main-view {
   margin-top: 450px;
-  // background-color: rgba(0,0,0,1);
+  background-color: rgb(0,0,0);
+  opacity: .95;
   height: 1150px;
 }
 .navbar-fixed-top {
@@ -185,7 +185,6 @@ ul.pagination > li > a {
 }
 .black-bg {
   background-color: rgba(0,0,0,1);
-  opacity: 1
 }
 p.font-primary > strong {
   font-size: 65px;
