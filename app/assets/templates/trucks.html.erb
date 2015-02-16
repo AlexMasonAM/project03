@@ -1,11 +1,11 @@
 <!-- This div contains the three filters -->
-  <div class="container-fluid">
+<div class="container-fluid">
   <div class="row filters">
     <a href="" ng-click="home.filter='genre'"><div ng-class="{active:(home.filter=='genre')}"class="circle font-secondary" id="genre">genre</div></a>
     <a href="" ng-click="home.filter='location'"><div ng-class="{active:(home.filter=='location')}"class="circle font-secondary" id="location">location</div></a>
     <a href="" ng-click="home.filter='favorites'"><div ng-class="{active:(home.filter=='favorites')}"class="circle font-secondary" id="favorites">favorites</div></a>
   </div>
-  </div>
+</div>
 <div class="black-bg">
   <div class="row filters">
     <div class="col-xs-4 text-center">
@@ -17,7 +17,6 @@
         <option value="Burgers">Burgers</option>
       </select>
     </div>
-
     <div class="col-xs-4 text-center">
       Distance filter
       <select ng-model='home.distance' ng-change='applyFilters()'>
@@ -62,7 +61,7 @@
   </div>
 
 <!-- Pagination controls -->
-  <pager total-items="markers.length" previous-text="<" next-text=">" items-per-page=6 ng-model="home.currentPage" ng-change="home.pageChanged()"></pager>
+<pager total-items="markers.length" previous-text="<" next-text=">" items-per-page=6 ng-model="home.currentPage"></pager>
   <br>
   <div class="centered">
     <pagination total-items="markers.length" ng-model='home.currentPage' items-per-page=6 ng-change="home.pageChanged()"></pagination>
@@ -88,3 +87,4 @@
     color: #9D6854;
   }
 </style>
+
