@@ -62,6 +62,7 @@ angular
     self.genre = 'All';
     self.distance = 100;
     self.radioModel = 'All';
+    self.filter = 'genre';
 
 
     $scope.applyFilters = function() {
@@ -101,17 +102,6 @@ angular
     function isDistanceMatch(marker) {
       return marker.distance <= self.distance;
     }
-
-    // /*   Old Trucks controller.  moving it in here */
-
-    // var Truck = $resource('/api/trucks/:id', {id: '@id'});
-
-    // Truck.query(function(data){
-    //   self.trucks = data;
-
-    //   self.sixTrucks = self.trucks.slice(0, 6);
-
-    // });
 
     self.pageChanged = function() {
 

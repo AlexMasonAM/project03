@@ -28,7 +28,9 @@
   src:font-url('Haettenschweiler.ttf');
 }
 
-
+body {
+  background-color: black
+}
 
 .angular-google-map-container {
   width: 100%;
@@ -45,12 +47,12 @@
   width: 100%;
   padding-top: 175px;
   margin-left: -15px;
+  z-index: -1
 }
 
 .main-view {
   margin-top: 450px;
-  background-color: white;
-  opacity: .95;
+  // background-color: rgba(0,0,0,1);
   // height: 2000px;
 }
 .navbar-fixed-top {
@@ -135,7 +137,7 @@ ul.pagination {
   bottom: 25px;
 }
 ul.pagination > li.active > a {
-  background-color: #03D9FD;
+  background-color: #03D9FD !important;
 }
 ul.pagination > li > a {
   color: #03D9FD;
@@ -164,15 +166,13 @@ ul.pagination > li > a {
 }
 
 .filters {
-  padding: 20px 0;
-  margin: 10px 0 !important;
-  background-color: gray;
+  background-color: rgba(55, 63, 55, .85);
 }
 .blue {
   color: #05dbfc;
 }
 .brown {
-  color: #bd876f;
+  color: #9D6854;
 }
 .gray {
   color: gray;
@@ -184,7 +184,8 @@ ul.pagination > li > a {
   color: black;
 }
 .black-bg {
-  background-color: black;
+  background-color: rgba(0,0,0,1);
+  opacity: 1
 }
 p.font-primary > strong {
   font-size: 65px;
