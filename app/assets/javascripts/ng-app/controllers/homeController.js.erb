@@ -37,6 +37,7 @@ angular
 
       $scope.allMarkers = $scope.markers.slice();
       $scope.sixMarkers = $scope.markers.slice(0,6);
+      adjustPagerPosition();
     });
 
 
@@ -115,6 +116,11 @@ angular
       $scope.sixMarkers = $scope.markers.slice(start, start+6);
 
       // adjust the page changer arrow position depending on how many rows of trucks are present
+      adjustPagerPosition();
+
+    };
+
+    function adjustPagerPosition() {
       if ($scope.sixMarkers.length === 0) {
         d3.select('ul.pager').style({bottom: 0});
       } else if ($scope.sixMarkers.length <= 3) {
@@ -122,8 +128,7 @@ angular
       } else {
         d3.select('ul.pager').style({bottom: '275px'});
       }
-
-    };
+    }
 
 
 }
