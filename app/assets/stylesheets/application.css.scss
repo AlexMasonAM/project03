@@ -104,26 +104,24 @@ a.tagline {
 ul.pager {
   position: relative;
   bottom: 275px;
+  height: 1px;
 }
 
 li.previous {
   font-family: 'Duckhunt';
   font-size: 72px;
   float: left;
-  z-index: -1;
 }
 li.next {
   font-family: 'Duckhunt';
   font-size: 72px;
   float: right;
-  z-index: -1;
 }
 li.previous > a,
 li.next > a {
   background-color: rgba(0,0,0,0) !important;
   border: none !important;
   color: #03D9FD;
-  z-index: 1;
 
 }
 
@@ -131,7 +129,7 @@ li.next > a {
 ul.pagination {
   font-family: 'Duckhunt';
   position: relative;
-  bottom: 100px;
+  bottom: 25px;
 }
 ul.pagination > li.active > a {
   background-color: #03D9FD;
@@ -148,7 +146,6 @@ ul.pagination > li > a {
   margin-top: 20px;
   background-image:image-url("truck-white.png");
   background-size:contain;
-  z-index: 1;
 }
 .truck-box:active {
     width: 300px;
@@ -157,7 +154,6 @@ ul.pagination > li > a {
   margin-top: 20px;
   background-image:image-url("truck-blue.png");
   background-size:contain;
-
 }
 .centered {
   margin: auto;
