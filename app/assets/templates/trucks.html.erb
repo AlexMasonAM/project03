@@ -43,12 +43,14 @@
   <h3 class="font-primary">{{flash}}</h3>
   <div class="row">
     <div class="col-md-4 text-center" ng-repeat="t in sixMarkers">
-      <div class="truck-box">
+      <a href="#/trucks/{{t.truck.id}}">
+        <div class="truck-box">
         <!-- set this divs background image to be the truck image we want -->
-      </div>  
-      <span class="font-secondary blue h3">{{t.truck.name}}</span>
-      <span class="brown h3">|</span>
-      <span class="font-secondary gray h3"> {{t.distance | number: 1}} miles</span>
+        </div> 
+      </a> 
+        <span class="font-secondary blue h3"><a href="#/trucks/{{t.truck.id}}">{{t.truck.name}}</a></span>
+        <span class="brown h3">|</span>
+        <span class="font-secondary gray h3"> {{t.distance | number: 1}} miles</span>
     </div>
   </div>
 
