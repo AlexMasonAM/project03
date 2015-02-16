@@ -45,6 +45,8 @@
 
 <%= yield %>
 
+
+
 <div class="empty-division">
 </div>
    
@@ -52,6 +54,7 @@
 
 <script>
 // Global variable to track of current user
+
 <% if current_user %>
 var currentUser = {
   id: <%= current_user.id %>,
