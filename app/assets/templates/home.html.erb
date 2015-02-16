@@ -8,6 +8,7 @@
               <h3><span>{{truck.name}}</span><span class="brown"> | </span><span class="gray">{{distance | number: 1}} miles</span></h3>
               <h4>Near: {{address}}</h4>
               <h4>Until: {{end_time | date:'shortTime'}}</h4>
+              <h4><i>"{{truck.tweet_most_recent}}"</i></h4>
             </a>
         </div>
       </ui-gmap-windows>
