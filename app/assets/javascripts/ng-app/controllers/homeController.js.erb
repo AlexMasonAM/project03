@@ -61,9 +61,15 @@ angular
 
     self.genre = 'All';
     self.distance = 100;
-    self.radioModel = 'All';
+    self.favorites = 'All';
     self.filter = 'genre';
 
+    $scope.resetFilters = function() {
+      self.genre = 'All';
+      self.distance = 100;
+      self.favorites = 'All';
+      $scope.applyFilters();
+    }
 
     $scope.applyFilters = function() {
 
@@ -79,7 +85,7 @@ angular
     };
 
     function isFavoriteMatch(marker) {
-      if(self.radioModel == 'All' || !self.loggedInUser) {
+      if(self.favorites == 'All' || !self.loggedInUser) {
         return true;
       }
       else {
