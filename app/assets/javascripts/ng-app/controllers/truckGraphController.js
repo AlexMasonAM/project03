@@ -30,7 +30,12 @@ angular
           d.users.push(u.first_name + " " + u.last_name[0] + ".");
         });
       });
-      TrucksGraphCreate(self.trucks);
+      
+      //updating currentDetailTruck to correct format
+     
+      TrucksGraphCreate(self.trucks, window.currentDetailTruck);
+      
+
     });
 
 
