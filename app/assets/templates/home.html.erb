@@ -1,13 +1,13 @@
 <div class="map-container-fixed container">
-  <ui-gmap-google-map center='map.center' options='map.options' zoom='map.zoom'>
-    <ui-gmap-markers models="markers" coords="'self'" click="'onClick'">
+  <ui-gmap-google-map center='map.center' options='map.options' zoom='map.zoom' >
+    <ui-gmap-markers models="markers" coords="'self'" click="'onClick'" icon="'icon'">
       <ui-gmap-windows show="'show'">
         <div ng-non-bindable>
             <a class="infowindow font-secondary" href="#/trucks/{{truck.id}}">
               <%= image_tag 'truck-blue.png' %>
-              <h4>{{truck.name}} | {{distance | number: 1}} miles</h4>
-              <p>Near: {{address}}</p>
-              <p>Until: {{end_time | date:'shortTime'}}</p>
+              <h3><span>{{truck.name}}</span><span class="brown"> | </span><span class="gray">{{distance | number: 1}} miles</span></h3>
+              <h4>Near: {{address}}</h4>
+              <h4>Until: {{end_time | date:'shortTime'}}</h4>
             </a>
         </div>
       </ui-gmap-windows>
