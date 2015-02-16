@@ -1,8 +1,8 @@
-<div class="row">
-  <div class="col-md-1">
+<div class="row rails-page">
+  <div class="col-md-4">
   </div>
   <div class="col-md-4">
-  <h1>Log in</h1>
+  <h1 class="blue">Log in</h1>
   <% flash.each do |key, value| %>
   <div class='alert alert-<%= key %>' role='alert'>
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -11,23 +11,23 @@
 <% end %>
 <%= form_for :account, url:'/login' do |f| %>
   <div class="form-group">
-  <p>Account type:</p>
-  <%= select_tag("type", options_for_select(['user', 'truck'])) %>
+  <p class="blue">Account type:</p>
+  <%= select_tag("type", options_for_select(['user', 'truck']), class: 'form-control') %>
   </div>
 
   <div class="form-group">
-    <p>Email:</p>
+    <p class="blue">Email:</p>
     <%= f.text_field :email, placeholder:'email', class: 'form-control' %>
   </div>
   <div class="form-group">
-    <p>Password:</p>
+    <p class="blue">Password:</p>
     <%= f.password_field :password, placeholder:'password', class:"form-control" %>
   </div>
   <div class="form-group">
-    <%= f.submit "Login", class:"btn btn-success" %>
+    <%= f.submit "Login", class:"btn btn-default" %>
   </div>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-4">
   </div>
   </div>
 

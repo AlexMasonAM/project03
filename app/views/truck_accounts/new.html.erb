@@ -1,11 +1,11 @@
 
 
-<div class="row">
+<div class="row rails-page">
 
-  <div class="col-md-1">
+  <div class="col-md-4">
   </div>
   <div class="col-md-4">
-<h1>Create a new truck account</h1>
+<h1 class="blue">Create a new truck account</h1>
 
 <% flash.each do |key, value| %>
   <div class='alert alert-<%= key %>' role='alert'>
@@ -17,32 +17,32 @@
 
 <%= form_for @truck_account, url: truck_signup_path do |f| %>
   <div class="form-group">
-    <p>First name:</p>
+    <p class="blue">First name:</p>
     <%= f.text_field :first_name, placeholder:"First name", class: "form-control"%>
   </div>
   <div class="form-group">
-    <p>Last name:</p>
+    <p class="blue">Last name:</p>
     <%= f.text_field :last_name, placeholder:"Last name", class: "form-control"%>
   </div>
   <div class="form-group">
-    <p>Email:</p>
+    <p class="blue">Email:</p>
     <%= f.text_field :email, placeholder:"Email ", class: "form-control"%>
   </div>
   <div class="form-group">
-    <p>Company:</p>
+    <p class="blue">Company:</p>
     <%= f.text_field :company, placeholder:"Company ", class: "form-control"%>
   </div>
   <div class="form-group">  
-    <p>Password:</p>
+    <p class="blue">Password:</p>
     <%= f.password_field :password, placeholder:"Choose password", class: "form-control"%>
   </div>
   <div class="form-group">  
-    <p>Confirm password:</p>
+    <p class="blue">Confirm password:</p>
     <%= f.password_field :password_confirmation, placeholder:"Confirm password", class: "form-control"%>
   </div>
  
   <div class="form-group">
-    <%= f.submit "Sign up", class:"btn btn-lg btn-primary" %>
+    <%= f.submit "Sign up", class:"btn btn-lg btn-default" %>
   </div>
 <% end %>
 </div>

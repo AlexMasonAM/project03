@@ -70,6 +70,13 @@ body {
 .navbar-fixed-top {
   height: 175px;
 }
+
+.header-logo {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+}
+
 ul.nav {
   padding-right: 25px;
   float: right;
@@ -116,6 +123,13 @@ a.tagline {
 /* Truck index page styling */
 /* RAMIS SECTION */
 
+/* Rails pages styling */
+.rails-page * {
+  font-family: 'Duckhunt';
+}
+.rails-page .btn-default:active {
+  background-color: #05dbfc;
+}
 
 /* Page turner buttons on index */
 ul.pager {
