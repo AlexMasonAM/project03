@@ -165,9 +165,6 @@ ul.pagination > li > a {
   text-align: center;
 }
 
-.filters {
-  background-color: rgba(55, 63, 55, .85);
-}
 .blue {
   color: #05dbfc;
 }
@@ -209,6 +206,62 @@ p.h1.font-secondary {
   position: relative;
   top: -161px;
   right: -155px;
+}
+/* Filters styling */
+
+.filters {
+  background-color: rgba(55, 63, 55, .85);
+}
+
+.circle {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  margin-right: 10px;
+  display: inline-block;
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  background-color: rgba(0, 226, 255, 1);
+  text-align: center;
+  font-size: 48px;
+  padding-top: 35px;
+  color: white;
+  opacity: 1 !important;
+}
+.circle.active {
+  color: #9D6854;
+}
+.filter-display {
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: rgba(211, 211, 211, .50);
+  height: 150px;
+}
+.filter-display > h1 {
+  margin-top: 0;
+}
+.filter-image {
+  position: absolute;
+  bottom:5px;
+  right:20px;
+}
+.genre.btn {
+  font-size: 15px;
+}
+.genre.btn.active, 
+.distance.btn.active,
+.favorites.btn.active {
+  background: #05dbfc;
+}
+.reset.btn {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+}
+.reset.btn:active {
+  background: #05dbfc;
 }
 
 /* Truck Graph page styling */
