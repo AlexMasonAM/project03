@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      #fixed {
+        position: fixed;
+        top: 0;
+        height: 550px;
+        width: 100%;
+        z-index: -1;
+      }
+      #map-canvas{
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+      }
+      #map-detail { 
+        height: 2000px; 
+        background-color: steelblue;
+        margin-top: 550px;
+        opacity: .9;
+        position: relative;
+        text-align: center;
+      }
+      #filters {
+        height: 200px;
+        width: 100%;
+        background-color: peachpuff;
+      }
+      .filter-detail {
+        display: inline-block;
+        border: 1px solid gray;
+        border-radius: 100%;
+        background-color: gray;
+        height: 75%;
+        width: 150px;
+        margin-top: 2%;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+      .hide-button {
+        float: right;
+      }
+      .hide-button.behind {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      body {
+        margin: 0;
+      }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8x3hvmCjTvywMflhIJ6luVvS67cvVmC4">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mylatlng = new google.maps.LatLng(34.0294007,-118.2668506);
+        var mapOptions = {
+          center: mylatlng,
+          zoom: 11,
+          scrollwheel: false,
+          zoomControl: false,
+          streetViewControl: false,
+          scaleControl: false,
+          rotateControl: false,
+          panControl: false,
+          overviewMapControl: false,
+          mapTypeControl: false
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "Kogi Truck"
+        });
+
+        marker = new google.maps.Marker({
+            position: mylatlng,
+            map: map,
+            title:"WDI_DTLA_1!"
+        });
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+
+      }
+
+      function toggleBounce() {
+
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+      function hide() {
+        filters = document.getElementById("filters")
+        if (filters.style.display == "none") {
+          filters.style.display = "block"
+        } else {
+          filters.style.display = "none"
+        }
+      }
+    </script>
+
+  </head>
+  <body>
+  <div id="fixed">
+<div id="map-canvas"></div>
+</div>
+<div id="map-detail">
+  <button class="hide-button behind" onclick="hide()">hide</button>
+  <div id="filters">
+    <div class="filter-detail">genre</div>
+    <div class="filter-detail">distance</div>
+    <div class="filter-detail">social</div>
+    <button class="hide-button" onclick="hide()">hide</button>
+  </div>
+  <div>
+    <br>
+    <h1>TRUCK DETAILS</h1>
+  </div>
+</div>
+  </body>
+</html>

@@ -1,7 +1,13 @@
 class Api::MarkersController < ApplicationController
   
   def index
-    markers = Marker.where("end_time >= ?", Time.now)
+
+    # only send back markers that have not expired
+    # markers = Marker.where("end_time >= ?", Time.now)
+
+    # for now, just return last 25 markers
+    markers = Marker.all[-25..-1]
+
     render json: markers, 
            except: [:truck_id, :updated_at],
            include: {truck: {only: [:id, :name, :genre, :twitter_handle, :tweet_most_recent]}}
